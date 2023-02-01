@@ -10,6 +10,11 @@
     <div>
       <form>
         <input
+        placeholder="test"
+        name="test"
+        />
+        <InputText
+        placeholder="test"
         name="test"
         />
 <button @click="testinput">Wyślij</button>

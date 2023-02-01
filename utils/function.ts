@@ -1,30 +1,24 @@
- export function Error(text: string, red:string) {
-    var text = "null"
-    var red = "null"
-  if((text = "This User does not exist, check your detail", red = "This User does not exist, check your detail")) {
-        text = "Użytkownik nie istanieje",
-        red = "false"
-      }  if((text = "The given data was invalid", red = "The given data was invalid")) {
-        text = "Wprowadzono błedne dane",
-        red = "false"
-      }
-    return{
-      text, red
-    } 
+export function ErrorMessage(text: string,) {
+  var result = {
+    plMessage: '',
+    errorInput: true
   }
-
-
-  // export function InputError(text: string, red:string) {
-  //   var text = "null"
-  //   var red = "null"
-  // if((text = "This User does not exist, check your detail", red = "This User does not exist, check your detail")) {
-  //       text = "Użytkownik nie istanieje",
-  //       red = "false"
-  //     }  if((text = "", red = "This User does not exist, check your detail")) {
-  //       text = "Użytkownik",
-  //       red = "false"
-  //     }
-  //   return{
-  //     text, red
-  //   } 
+  if (text == "The given data was invalid.") {
+    result = {
+      plMessage: '',
+      errorInput: true
+    }
+  }
+  // else if (text == "The given data was invalid."){
+  //   plMessage = "test444"
   // }
+  else if (text == "This User does not exist, check your details") {
+    result = {
+      plMessage: 'Podany użyutkownik nie istnieje, sprawdź poprawność danych',
+      errorInput: true
+    }
+  }
+  return result
+  //  plMessage;
+  //  errorInput;
+}

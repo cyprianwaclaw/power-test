@@ -5,7 +5,7 @@
         {{ fastTwoObject }}
       </pre>
       <div>
-        <buttton @click="logoutUser()">Wyloguj</buttton>
+        <buttton @click="logoutUser()">Wylodfdfdfguj</buttton>
       </div>
     </div>
   </template>

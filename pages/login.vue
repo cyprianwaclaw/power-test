@@ -6,19 +6,33 @@
           <h1 class="title-form">Login</h1>
           <!-- <input :class="{ active: isActive }" /> -->
           <Form @submit="onSubmit">
-            <InputText class="" name="email" type="email" placeholder="Email" />
-            <InputText
-              class="mt-5"
+            <input
+              class="base-input"
+              name="email"
+              type="email"
+              placeholder="Email"
+              :class="{ active: isActive }"
+              v-model="email"
+            />
+            <input
+              class="base-input"
               name="password"
               type="password"
               placeholder="Password"
+              :class="{ active: isActive }"
+              v-model="password"
             />
-            <div v-if="loginError">
-              <!-- <p class="pt-8 text-red-500 -mb-7">{{ hasError.text }}</p>
-               -->
-              <p class="pt-8 text-red-500 -mb-7">Errors: {{ error }} {{ invaliddata }}</p>
+            <!-- <InputNotSuccess class="" name="email" type="email" placeholder="Email" />
+            <InputNotSuccess
+              class="mt-3"
+              :class="{ active: isActive }"
+              name="password"
+              type="password"
+              placeholder="Password"
+            /> -->
+            <div>
+              <p class="pt-8 text-red-500 -mb-7">{{ errorMessage.plMessage }}</p>
             </div>
-
             <button class="submit-btn-login" type="submit">Login</button>
           </Form>
         </div>
@@ -30,29 +44,34 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import * as Yup from "yup";
-import { Error } from "@/utils/function";
-import { storeToRefs } from "pinia";
 import { Form } from "vee-validate";
+import { ErrorMessage } from "@/utils/function";
+import { storeToRefs } from "pinia";
 import { useAuth } from "@/store/useAuth";
 
 definePageMeta({
   middleware: "guest",
 });
 
+const email = ref("");
+const password = ref("");
+
 const authStore = useAuth();
-const { loginError } = storeToRefs(authStore);
-let error = loginError;
-let invaliddata = loginError;
 
-const schema = Yup.object().shape({
-  email: Yup.string().email("Błędny email").required("Pole wymagane"),
-  password: Yup.string().min(6).required("Pole wymagane"),
-});
+const {
+  loginErrorMessage,
+  //  loginErrorErrorsEmail, loginErrorErrorsPassword
+} = storeToRefs(authStore);
 
-async function onSubmit(values) {
-    const { email, password } = values;
-    await authStore.loginUser(email,password);
-    console.log(email)
+let isActive = ref(false);
+
+let errorMessage: any = "";
+async function onSubmit() {
+  // const { email, password } = values;
+  await authStore.loginUser(email.value, password.value);
+  // console.log(loginErrorErrorsPassword.value)
+  errorMessage = ErrorMessage(loginErrorMessage.value);
+  isActive = errorMessage.errorInput
 }
 
 function onInvalidSubmit() {
@@ -65,15 +84,22 @@ function onInvalidSubmit() {
 </script>
 
 <style scoped>
-.active {
-  border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 12px 15px;
-  font-size: 14px;
-  outline: none;
-  background-color: rgb(227, 140, 140);
-  width: 100%;
-  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
+
+:root {
+  --primary-color: #618CFB;
+  --error-color: #f23648;
+  --error-bg-color: #fddfe2;
+  --success-color: #21a67a;
+  --success-bg-color: #e0eee4;
 }
+.active {
+  background-color: var(--error-bg-color);
+  color: var(--error-color);
+  border: 2px solid transparent;
+  outline: none;
+}
+.active:focus {
+  border-color: var(--error-color);
+}
+
 </style>

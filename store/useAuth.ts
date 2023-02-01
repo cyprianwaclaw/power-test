@@ -4,8 +4,9 @@ import { axiosInstance } from '@/axios.config'
 export const useAuth = defineStore('auth', {
     state: () => ({
         loggedIn: localStorage.getItem("access_token") ? true : false,
-        // loggedIn: localStorage.getItem("access_token"),
-        loginError:[],
+        loginErrorMessage: {} as string,
+        loginErrorErrorsEmail: {} as string,
+        loginErrorErrorsPassword: {} as string,
         user: [],
         fastTwo: [],
         access_token: []
@@ -15,15 +16,16 @@ export const useAuth = defineStore('auth', {
         async loginUser(email: string, password: string) {
             this.loading = true
             try {
-                const res = await axiosInstance.post('/login', { email, password })
+                const res = await axiosInstance.post('/login', {email, password})
                 this.access_token = await res.data.access_token
                 localStorage.setItem("access_token", this.access_token)
-               await  useRouter().push('/dashboard')
+                await useRouter().push('/dashboard')
                 window.location.reload();
                 this.loading = false
-            } catch (e) {
-                this.loginError = e.response.data
-                // console.log(e.response.data)
+            } catch (error) {
+                this.loginErrorMessage =  error.response.data.message
+                this.loginErrorErrorsEmail =  error.response.data.errors.email
+                this.loginErrorErrorsPassword =  error.response.data.errors.password
             }
         },
 

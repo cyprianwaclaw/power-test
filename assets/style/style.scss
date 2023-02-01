@@ -1,12 +1,33 @@
-$color-error:#dfdffd;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+$text-gray: #a7a2a2;
+$text-black:#212427;
 $color-success:#dfdffd;
-$blue:#3A85DD;
+$color-error:#dfdffd;
+$blue:#618CFB;
+$family: 'Manrope',
+sans-serif;
 :root {
-    --primary-color: #0071fe;
+    --primary-color: #618CFB;
     --error-color: #f23648;
     --error-bg-color: #fddfe2;
     --success-color: #21a67a;
     --success-bg-color: #e0eee4;
+}
+
+.click {
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 999px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.family {
+    font-family: $family;
+    color: $text-black
 }
 
 .submit-btn-login {
@@ -112,30 +133,43 @@ label {
 }
 
 input {
-    border-radius: 8px;
-    border: 2px solid transparent;
-    padding: 12px 15px;
-    font-size: 14px;
-    outline: none;
-    background-color: #f2f5f7;
     width: 100%;
+    font-size: 15px;
+    margin-top: 4px;
+    border: 2px solid transparent;
+    outline: none;
+    border-radius: 8px;
+    border-color: #e6e8ea;
+    padding: 0.5rem 0.75rem;
     transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 input:focus {
     border-color: var(--primary-color);
+    border-width: 2px;
+}
+
+input::placeholder {
+    font-size: 15px;
+    color: $text-gray
+}
+
+input:focus::placeholder {
+    font-size: 0px;
 }
 
 .help-message {
     position: absolute;
     bottom: -20px;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .has-error input {
     background-color: var(--error-bg-color);
     color: var(--error-color);
+    border: 2px solid transparent;
+    outline: none;
 }
 
 .has-error input:focus {
@@ -149,6 +183,8 @@ input:focus {
 .success input {
     background-color: var(--success-bg-color);
     color: var(--success-color);
+    border: 2px solid transparent;
+    outline: none;
 }
 
 .success input:focus {
