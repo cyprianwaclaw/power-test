@@ -1,0 +1,182 @@
+$color-error:#dfdffd;
+$color-success:#dfdffd;
+$blue:#3A85DD;
+:root {
+    --primary-color: #0071fe;
+    --error-color: #f23648;
+    --error-bg-color: #fddfe2;
+    --success-color: #21a67a;
+    --success-bg-color: #e0eee4;
+}
+
+.submit-btn-login {
+    background: $blue;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 17px;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 40px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.submit-btn-login:hover {
+    background-color: #4091ee;
+    transition: transform 0.3s ease-in-out;
+}
+
+.submit-btn-login.invalid {
+    animation: shake 0.5s;
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+}
+
+.submit-btn {
+    background: $blue;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 17px;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 48px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #4091ee;
+    transition: transform 0.3s ease-in-out;
+}
+
+.submit-btn.invalid {
+    animation: shake 0.5s;
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px);
+    }
+    10% {
+        transform: translate(-1px, -2px);
+    }
+    20% {
+        transform: translate(-3px, 0px);
+    }
+    30% {
+        transform: translate(3px, 2px);
+    }
+    40% {
+        transform: translate(1px, -1px);
+    }
+    50% {
+        transform: translate(-1px, 2px);
+    }
+    60% {
+        transform: translate(-3px, 1px);
+    }
+    70% {
+        transform: translate(3px, 1px);
+    }
+    80% {
+        transform: translate(-1px, -1px);
+    }
+    90% {
+        transform: translate(1px, 2px);
+    }
+    100% {
+        transform: translate(1px, -2px);
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.base-input {
+    position: relative;
+    margin-bottom: 1px;
+    width: 100%;
+}
+
+input {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 12px 15px;
+    font-size: 14px;
+    outline: none;
+    background-color: #f2f5f7;
+    width: 100%;
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+}
+
+.help-message {
+    position: absolute;
+    bottom: -20px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.has-error input {
+    background-color: var(--error-bg-color);
+    color: var(--error-color);
+}
+
+.has-error input:focus {
+    border-color: var(--error-color);
+}
+
+.has-error .help-message {
+    color: var(--error-color);
+}
+
+.success input {
+    background-color: var(--success-bg-color);
+    color: var(--success-color);
+}
+
+.success input:focus {
+    border-color: var(--success-color);
+}
+
+.success .help-message {
+    color: var(--success-color);
+    padding-top: 12px
+}
+
+.auth-background {
+    /* The image used */
+    background-image: url("@/assets/file/photo1.jpg");
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0px 1000000px 4px rgba(0, 0, 0, 0.15);
+}
+
+.shaddow-effect {
+    box-shadow: -6px 7px 11px rgba(0, 0, 0, 0.08);
+}
+
+.title-form {
+    margin-top: 14px;
+    margin-bottom: 18px;
+    font-size: 36px;
+}
