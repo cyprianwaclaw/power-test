@@ -11,27 +11,22 @@
               name="email"
               type="email"
               placeholder="Email"
-              :class="{ active: isActive }"
+              :class="{ errorInput: ErrorValue }"
               v-model="email"
             />
+            <p class=" text-red-500">{{ errorErrorsEmail.plMessage }}</p>
             <input
               class="base-input"
               name="password"
               type="password"
               placeholder="Password"
-              :class="{ active: isActive }"
+              :class="{ errorInput: ErrorValue }"
               v-model="password"
             />
-            <!-- <InputNotSuccess class="" name="email" type="email" placeholder="Email" />
-            <InputNotSuccess
-              class="mt-3"
-              :class="{ active: isActive }"
-              name="password"
-              type="password"
-              placeholder="Password"
-            /> -->
             <div>
-              <p class="pt-8 text-red-500 -mb-7">{{ errorMessage.plMessage }}</p>
+              <p class="pt-8 text-red-500 -mb-7">
+                {{ errorErrorsPassword }}
+                {{ errorMessage.plMessage }}</p>
             </div>
             <button class="submit-btn-login" type="submit">Login</button>
           </Form>
@@ -44,10 +39,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import * as Yup from "yup";
-import { Form } from "vee-validate";
-import { ErrorMessage } from "@/utils/function";
 import { storeToRefs } from "pinia";
+import { Form } from "vee-validate";
 import { useAuth } from "@/store/useAuth";
+import { ErrorMessage,  ErrorErrorsEmail, ErrorErrorsPassword } from "@/utils/function";
 
 definePageMeta({
   middleware: "guest",
@@ -60,18 +55,22 @@ const authStore = useAuth();
 
 const {
   loginErrorMessage,
-  //  loginErrorErrorsEmail, loginErrorErrorsPassword
+   loginErrorErrorsEmail, loginErrorErrorsPassword
 } = storeToRefs(authStore);
 
-let isActive = ref(false);
 
 let errorMessage: any = "";
+let ErrorValue = ref(false);
+let errorErrorsEmail: any = "";
+let errorErrorsPassword: any = "";
 async function onSubmit() {
   // const { email, password } = values;
   await authStore.loginUser(email.value, password.value);
   // console.log(loginErrorErrorsPassword.value)
   errorMessage = ErrorMessage(loginErrorMessage.value);
-  isActive = errorMessage.errorInput
+  errorErrorsPassword = ErrorErrorsPassword(loginErrorErrorsPassword.value);
+  errorErrorsEmail =  ErrorErrorsEmail(loginErrorErrorsEmail.value);
+  ErrorValue = errorMessage.errorInput
 }
 
 function onInvalidSubmit() {
@@ -83,23 +82,5 @@ function onInvalidSubmit() {
 }
 </script>
 
-<style scoped>
-
-:root {
-  --primary-color: #618CFB;
-  --error-color: #f23648;
-  --error-bg-color: #fddfe2;
-  --success-color: #21a67a;
-  --success-bg-color: #e0eee4;
-}
-.active {
-  background-color: var(--error-bg-color);
-  color: var(--error-color);
-  border: 2px solid transparent;
-  outline: none;
-}
-.active:focus {
-  border-color: var(--error-color);
-}
-
+<style scoped lang="scss">
 </style>

@@ -1,19 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
-$text-gray: #a7a2a2;
-$text-black:#212427;
-$color-success:#dfdffd;
-$color-error:#dfdffd;
-$blue:#618CFB;
-$family: 'Manrope',
-sans-serif;
-:root {
-    --primary-color: #618CFB;
-    --error-color: #f23648;
-    --error-bg-color: #fddfe2;
-    --success-color: #21a67a;
-    --success-bg-color: #e0eee4;
-}
-
+@import "variables";
 .click {
     -webkit-tap-highlight-color: transparent;
     border-radius: 999px;
@@ -23,6 +8,10 @@ sans-serif;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.isError {
+    color: $color-error
 }
 
 .family {
@@ -166,33 +155,36 @@ input:focus::placeholder {
 }
 
 .has-error input {
-    background-color: var(--error-bg-color);
-    color: var(--error-color);
+    background-color: $error-backgrund;
+    color: $color-error;
     border: 2px solid transparent;
     outline: none;
 }
 
 .has-error input:focus {
-    border-color: var(--error-color);
+    border-color: $color-error;
 }
 
 .has-error .help-message {
-    color: var(--error-color);
+    color: $color-error;
 }
 
 .success input {
-    background-color: var(--success-bg-color);
-    color: var(--success-color);
+    background-color: $success-backgrund;
+    color: $color-success;
+    ;
     border: 2px solid transparent;
     outline: none;
 }
 
 .success input:focus {
-    border-color: var(--success-color);
+    border-color: $color-success;
+    ;
 }
 
 .success .help-message {
-    color: var(--success-color);
+    color: $color-success;
+    ;
     padding-top: 12px
 }
 
@@ -215,4 +207,18 @@ input:focus::placeholder {
     margin-top: 14px;
     margin-bottom: 18px;
     font-size: 36px;
+}
+
+.errorInput {
+    background-color: $error-backgrund;
+    color: $color-error;
+    border: 1px solid;
+    border-color: $color-error;
+    outline: none;
+}
+
+.errorInput:focus {
+    border-color: $color-error;
+    border: 2px solid;
+    outline: none;
 }
