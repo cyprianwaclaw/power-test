@@ -19,57 +19,41 @@
     color: $text-black
 }
 
-.submit-btn-login {
-    background: $blue;
-    outline: none;
-    border: none;
-    color: white;
+.primary-button {
+    box-shadow: inset 0 0 0 1 $primary-hover;
+    background-color: $primary;
     font-size: 18px;
     font-weight: 500;
-    padding: 12px 17px;
+    padding: 12px 25px;
+    color: $white;
     display: block;
-    width: 100%;
     border-radius: 8px;
-    margin-top: 40px;
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
-.submit-btn-login:hover {
-    background-color: #4091ee;
-    transition: transform 0.3s ease-in-out;
+.prmary-button:hover {
+    box-shadow: inset 300px 0 0 0 $primary-hover;
 }
 
-.submit-btn-login.invalid {
-    animation: shake 0.5s;
-    /* When the animation is finished, start again */
-    animation-iteration-count: infinite;
-}
-
-.submit-btn {
-    background: $blue;
-    outline: none;
-    border: none;
-    color: white;
+.submit-auth {
+    box-shadow: inset 0 0 0 1 $primary-hover;
+    background-color: $primary;
     font-size: 18px;
     font-weight: 500;
-    padding: 12px 17px;
+    padding: 12px 25px;
+    color: $white;
     display: block;
-    width: 100%;
     border-radius: 8px;
-    margin-top: 48px;
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
+    // margin-top: 40px;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
-.submit-btn:hover {
-    background-color: #4091ee;
-    transition: transform 0.3s ease-in-out;
+.submit-auth:hover {
+    box-shadow: inset 600px 0 0 0 $primary-hover;
 }
 
-.submit-btn.invalid {
+.submit-auth.invalid {
     animation: shake 0.5s;
-    /* When the animation is finished, start again */
     animation-iteration-count: infinite;
 }
 
@@ -128,13 +112,13 @@ input {
     border: 2px solid transparent;
     outline: none;
     border-radius: 8px;
-    border-color: #e6e8ea;
+    border-color: $input-border;
     padding: 0.5rem 0.75rem;
     transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 input:focus {
-    border-color: var(--primary-color);
+    border-color: $primary;
     border-width: 2px;
 }
 
@@ -172,19 +156,16 @@ input:focus::placeholder {
 .success input {
     background-color: $success-backgrund;
     color: $color-success;
-    ;
     border: 2px solid transparent;
     outline: none;
 }
 
 .success input:focus {
     border-color: $color-success;
-    ;
 }
 
 .success .help-message {
     color: $color-success;
-    ;
     padding-top: 12px
 }
 
@@ -215,10 +196,16 @@ input:focus::placeholder {
     border: 1px solid;
     border-color: $color-error;
     outline: none;
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.errorInput::placeholder {
+    color: $color-error;
 }
 
 .errorInput:focus {
     border-color: $color-error;
     border: 2px solid;
     outline: none;
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }

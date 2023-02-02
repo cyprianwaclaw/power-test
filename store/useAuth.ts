@@ -23,9 +23,9 @@ export const useAuth = defineStore('auth', {
                 window.location.reload();
                 this.loading = false
             } catch (error) {
-                this.loginErrorMessage =  error.response.data.message
                 this.loginErrorErrorsEmail =  error.response.data.errors.email
                 this.loginErrorErrorsPassword =  error.response.data.errors.password
+                this.loginErrorMessage =  error.response.data.message
             }
         },
 

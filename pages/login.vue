@@ -14,7 +14,18 @@
               :class="{ errorInput: ErrorValue }"
               v-model="email"
             />
-            <p class=" text-red-500">{{ errorErrorsEmail.plMessage }}</p>
+
+            <!-- <div v-if="!errorErrorsEmail0">
+              <p>tets</p>
+            </div>
+            <p class="errorStyle">{{ errorErrorsEmail1.plMessage }}</p>
+              <div v-if="!errorErrorsEmail1.plMessage">
+                <p> {{ errorErrorsEmail0.plMessage }}</p>
+              </div> -->
+              <!-- {{ errorErrorsEmail0 }} {{ errorErrorsEmail1 }} -->
+              <p class="errorStyle">
+              {{ errorErrorsEmail0.plMessage }}</p>
+              {{ errorErrorsEmail.plMessage }}
             <input
               class="base-input"
               name="password"
@@ -23,12 +34,12 @@
               :class="{ errorInput: ErrorValue }"
               v-model="password"
             />
+            <p class="errorStyle">{{ errorErrorsPassword.plMessage }}</p>
             <div>
-              <p class="pt-8 text-red-500 -mb-7">
-                {{ errorErrorsPassword }}
-                {{ errorMessage.plMessage }}</p>
+              <p class="errorUser">
+                {{ errorMessage }}</p>
             </div>
-            <button class="submit-btn-login" type="submit">Login</button>
+            <button class="submit-auth  w-full" type="submit">Login</button>
           </Form>
         </div>
       </div>
@@ -42,7 +53,7 @@ import * as Yup from "yup";
 import { storeToRefs } from "pinia";
 import { Form } from "vee-validate";
 import { useAuth } from "@/store/useAuth";
-import { ErrorMessage,  ErrorErrorsEmail, ErrorErrorsPassword } from "@/utils/function";
+import { ErrorMessage,  ErrorErrorsEmail0, ErrorErrorsEmail1, ErrorErrorsPassword } from "@/utils/function";
 
 definePageMeta({
   middleware: "guest",
@@ -60,8 +71,11 @@ const {
 
 
 let errorMessage: any = "";
+let EmailTest = ref()
 let ErrorValue = ref(false);
 let errorErrorsEmail: any = "";
+let errorErrorsEmail0: any = "";
+let errorErrorsEmail1: any = "";
 let errorErrorsPassword: any = "";
 async function onSubmit() {
   // const { email, password } = values;
@@ -69,7 +83,21 @@ async function onSubmit() {
   // console.log(loginErrorErrorsPassword.value)
   errorMessage = ErrorMessage(loginErrorMessage.value);
   errorErrorsPassword = ErrorErrorsPassword(loginErrorErrorsPassword.value);
-  errorErrorsEmail =  ErrorErrorsEmail(loginErrorErrorsEmail.value);
+  errorErrorsEmail =  ErrorErrorsEmail0(loginErrorErrorsEmail.value);
+  // errorErrorsEmail1 = loginErrorErrorsEmail.value;
+  let emailMessage0:string = errorErrorsEmail0
+  // let emailMessage1:string = errorErrorsEmail1[1]
+  // let emailMessageFull0: string =  emailMessage0;
+  // let emailMessageFull1: string =  emailMessage1;
+  
+  // console.log(ChnageUndefined(emailMessage0))
+  // errorErrorsEmail0 =  ErrorErrorsEmail0(emailMessage0);
+  let EmailTest = 'ERROR: ' + emailMessage0
+  console.log(EmailTest)
+  // errorErrorsEmail0 =  ErrorErrorsEmail0(emailMessageFull0);
+  // errorErrorsEmail1 =  ErrorErrorsEmail1(emailMessageFull1);
+  // console.log(emailMessageFull0)
+  // console.log(emailMessageFull1)
   ErrorValue = errorMessage.errorInput
 }
 
@@ -82,5 +110,18 @@ function onInvalidSubmit() {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+.errorStyle {
+font-size: 13px;
+margin-top: 2px;
+margin-bottom: 8px;
+color:red
+}
+
+.errorUser{
+  font-size: 15px;
+  margin-top: 44px;
+  margin-bottom: 12px;
+  color:red
+  }
 </style>
