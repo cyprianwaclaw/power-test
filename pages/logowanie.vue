@@ -1,7 +1,7 @@
 <template>
   <div class="auth-background">
     <!-- <NuxtLayout> -->
-    <div class="auth-des">
+    <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
     <!-- <input ref="inputField"/> -->
