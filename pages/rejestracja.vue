@@ -55,6 +55,9 @@
   import { Form } from 'vee-validate';
   import { useAuth } from "@/store/useAuth";
   
+  definePageMeta({
+  middleware: "guest",
+});
   const authStore = useAuth();
   
   async function onSubmit(values) {

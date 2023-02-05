@@ -1,13 +1,17 @@
 <template>
+
+  <!-- :class="{ 'has-error': ErrorLogin}" -->
+  <!-- :class="{ 'has-error': !!errorMessage, success: meta.valid }" -->
     <div
      class="base-input"
-      :class="{ 'has-error': !!errorMessage, success: meta.valid }"
     >
       <label :for="name">{{ label }}</label>
       <input
       class="base-input"
         :name="name"
         :id="name"
+        :ErrorLogin="hasError"
+        :hasError="hasError"
         :type="type"
         :value="inputValue"
         :placeholder="placeholder"
@@ -15,9 +19,11 @@
         @blur="handleBlur"
       />
   
-      <p class="help-message" v-show="errorMessage || meta.valid">
+      <div class="help-message" v-if="errorMessage || meta.valid">
+      <p class="red">
         {{ errorMessage || successMessage }}
-      </p>
+      </p>  
+      </div>
     </div>
   </template>
   
@@ -45,8 +51,11 @@
       type: String,
       default: '',
     },
+    hasError: {
+      type: Boolean,
+    },
     errorMessage: {
-      type: String,
+      type: String, 
       default: '',
     },
     placeholder: {
@@ -54,9 +63,10 @@
       default: '',
     },
   });
-  
+
+  let ErrorLogin:any = props.hasError;
+
   const name = toRef(props, 'name');
-  
   const {
     value: inputValue,
     errorMessage,
@@ -67,7 +77,7 @@
     initialValue: props.value,
   });
   </script>
-  <style scoped>
+  <style scoped >
   .success input {
     border: 2px solid transparent;
     outline: none;
@@ -83,19 +93,5 @@
     border-color: #618CFB;
 }
 
-.has-error input {
-    border: 2px solid transparent;
-    outline: none;
-    color:#212427;
-    background: white;
-    border-color: #e6e8ea;
-    padding: 0.5rem 0.75rem;
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-
-}
-
-.has-error input:focus {
-    border-color: #618CFB;
-}
   </style>
   

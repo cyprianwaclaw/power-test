@@ -2,10 +2,10 @@
   <div>
     <h1>Stona główna</h1>
     <div v-if="isUser">
-      <NuxtLink to="/dashboard"><p class="account-linik">My account</p></NuxtLink>
+      <NuxtLink to="/panel"><p class="account-linik">My account</p></NuxtLink>
     </div>
     <div v-else>
-      <NuxtLink to="/login"><p class="account-linik">Login</p></NuxtLink>
+      <NuxtLink to="/logowanie"><p class="account-linik">Login</p></NuxtLink>
     </div>
     <div>
       <form>

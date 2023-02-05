@@ -10,7 +10,7 @@
     user-select: none;
 }
 
-.isError {
+.red {
     color: $color-error
 }
 
@@ -120,6 +120,7 @@ input {
 input:focus {
     border-color: $primary;
     border-width: 2px;
+    color: $text-black !important;
 }
 
 input::placeholder {
@@ -132,9 +133,8 @@ input:focus::placeholder {
 }
 
 .help-message {
-    position: absolute;
-    bottom: -20px;
-    margin-top: 10px;
+    // position: absolute;
+    margin-top: 2px;
     font-size: 12px;
 }
 
@@ -191,21 +191,11 @@ input:focus::placeholder {
 }
 
 .errorInput {
-    background-color: $error-backgrund;
     color: $color-error;
-    border: 1px solid;
-    border-color: $color-error;
-    outline: none;
     transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.errorInput::placeholder {
-    color: $color-error;
-}
-
-.errorInput:focus {
-    border-color: $color-error;
-    border: 2px solid;
-    outline: none;
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+.errorInput1 {
+    color: $text-black;
+    // transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }

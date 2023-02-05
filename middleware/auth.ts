@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const { loggedIn } = storeToRefs(authState)
     let user = loggedIn.value
     if (!user) {
-        return navigateTo('/login')
+        return navigateTo('/logowanie')
     }
 
 })
