@@ -17,8 +17,8 @@
         :placeholder="placeholder"
         @input="handleChange"
         @blur="handleBlur"
-        autofocus
-      />
+        />
+        <!-- autofocus -->
   
       <div class="help-message" v-if="errorMessage || meta.valid">
       <p class="red">

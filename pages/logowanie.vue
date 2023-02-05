@@ -95,10 +95,10 @@ const schema = Yup.object().shape({
 @media only screen and (max-width: 640px) {
   .width-login {
       position: absolute;
-      width: 350px;
+      width: 300px;
       background: white;
       border-radius: 16px;
-      padding: 33px 33px 4px 33px;
+      padding: 24px 24px 4px 24px;
       top: 50%;
       right: 50%;
       transform: translate(50%, -50%);
