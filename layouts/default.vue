@@ -31,7 +31,7 @@
 }
 @media only screen and (max-width: 1536px){
     .own-container{
-        width: 1100px;
+        width: 100px;
         padding-left: 12px;
         padding-right: 12px;
         margin-right: auto;

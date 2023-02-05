@@ -87,14 +87,62 @@ const schema = Yup.object().shape({
     .required("Uzupełnij hasło"),
 });
 
-const inputField = ref();
-function focusInput() {
-  inputField.value.focus();
-}
-// focusInput()
 </script>
 
 <style scoped>
+
+
+@media only screen and (max-width: 640px) {
+  .width-login {
+      position: absolute;
+      width: 350px;
+      background: white;
+      border-radius: 16px;
+      padding: 33px 33px 4px 33px;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .width-login {
+      position: absolute;
+      width: 400px;
+      background: white;
+      border-radius: 16px;
+      padding: 42px 55px 4px 55px;
+      top: 45%;
+      right: 0%;
+      transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .width-login {
+      position: absolute;
+      width: 400px;
+      background: white;
+      border-radius: 16px;
+      padding: 42px 55px 4px 55px;
+      top: 45%;
+      right: 5%;
+      transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .width-login {
+      position: absolute;
+      width: 400px;
+      background: white;
+      border-radius: 16px;
+      padding: 42px 55px 4px 55px;
+      top: 45%;
+      right: 5%;
+      transform: translate(-50%, -50%);
+  }
+}
 .errorUser {
   padding-top: 36px;
   font-size: 14px;
@@ -106,16 +154,6 @@ function focusInput() {
   border-radius: 16px;
   top: 45%;
   left: 5%;
-  transform: translate(-50%, -50%);
-}
-.width-login {
-  position: absolute;
-  width: 400px;
-  background: white;
-  border-radius: 16px;
-  padding: 42px 55px 4px 55px;
-  top: 45%;
-  right: 5%;
   transform: translate(-50%, -50%);
 }
 
