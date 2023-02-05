@@ -38,13 +38,17 @@
         </div>
         <button class="submit-auth w-full mt-10" type="submit">Zaloguj się</button>
       </Form>
-      <div>
+      <div class="sm:flex hidden">
         <p class="text-des">
           Nie masz jeszcze konta?
           <NuxtLink to="/rejestracja"
             ><span class="navigate">Zarejestruj się</span></NuxtLink
           >
         </p>
+      </div>
+      <div class="sm:hidden md:hidden flex flex-col">
+        <p class="text-des">Nie masz jeszcze konta?</p>
+        <p class="navigate -mt-7 mb-8"><NuxtLink to="/rejestracja" >Zarejestruj się</NuxtLink></p>
       </div>
     </div>
     <!-- </NuxtLayout> -->
@@ -166,6 +170,7 @@ const schema = Yup.object().shape({
   color: #a7a2a2;
 }
 .navigate {
+  font-size: 14px;
   color: #618cfb;
   font-weight: 600;
 }
