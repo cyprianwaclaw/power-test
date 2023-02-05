@@ -38,7 +38,7 @@
 .submit-auth {
     box-shadow: inset 0 0 0 1 $primary-hover;
     background-color: $primary;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     padding: 12px 25px;
     color: $white;
@@ -186,13 +186,14 @@ input:focus::placeholder {
 
 .title-form {
     margin-top: 14px;
+    font-weight: 700;
     margin-bottom: 18px;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 .errorInput {
     color: $color-error;
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    // transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .errorInput1 {

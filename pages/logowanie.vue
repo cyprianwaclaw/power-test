@@ -1,46 +1,53 @@
 <template>
-  <div class="auth-background pt-14 flex">
-    <NuxtLayout>
-      <div class="bg-white mx-36 rounded-2xl shaddow-effect">
-        <div class="w-full px-24 pb-16 pt-10">
-          <h1 class="title-form">Logowanie</h1>
-          <Form
-            @submit="onSubmit"
-            :validation-schema="schema"
-            @click="inputColor()"
-            @invalid-submit="onInvalidSubmit"
-            
-          >
-            <InputNotSuccess class="base-input" type="email" :class="{ errorInput:
-            ErrorLogin.errorInput }" hasError: true name="email" placeholder="E-mail" />
-            <InputNotSuccess
-              type="password"
-              :class="{ errorInput: ErrorLogin.errorInput }"
-              class="mt-3"
-              name="password"
-              placeholder="Hasło"
-            />
-            <div v-if="!hideAfter">
-              <!-- TODO:Chowanie komunikatu gdy nie ma błędu -->
-            <div v-if="ErrorLogin.plMessage">
-              <p class="errorUser red font-medium">
-                <Icon
-                  name="ph:warning-circle-light"
-                  color="red"
-                  size="20"
-                  class="mb-1 mr-1.5"
-                />{{ ErrorLogin.plMessage }}
-              </p>
-            </div>
-          </div>
-            <button class="submit-auth w-full mt-10 " type="submit">Zaloguj się</button>
-          </Form>
-          <div>
-            <p class="">Nie masz jeszcze konta? <NuxtLink to="/rejestracja"><span class="">Zarejestruj się</span></NuxtLink></p>
+  <div class="auth-background">
+    <!-- <NuxtLayout> -->
+    <div class="auth-des">
+      <h1>Test</h1>
+    </div>
+    <!-- <input ref="inputField"/> -->
+    <!-- <button @click="focusInput">sas</button> -->
+    <div class="width-login shaddow-effect" @click="inputColor()">
+      <h1 class="title-form">Logowanie</h1>
+      <Form
+        @submit="onSubmit"
+        :validation-schema="schema"
+        @invalid-submit="onInvalidSubmit"
+      >
+        <InputNotSuccess ref="inputField" class="base-input" type="email" :class="{
+        errorInput: ErrorLogin.errorInput }" hasError: true name="email"
+        placeholder="E-mail" />
+        <InputNotSuccess
+          type="password"
+          :class="{ errorInput: ErrorLogin.errorInput }"
+          class="mt-3"
+          name="password"
+          placeholder="Hasło"
+        />
+        <div v-if="!hideAfter">
+          <!-- TODO:Chowanie komunikatu gdy nie ma błędu -->
+          <div v-if="ErrorLogin.plMessage">
+            <p class="errorUser red font-medium">
+              <Icon
+                name="ph:warning-circle-light"
+                color="red"
+                size="20"
+                class="mb-1 mr-1.5"
+              />{{ ErrorLogin.plMessage }}
+            </p>
           </div>
         </div>
+        <button class="submit-auth w-full mt-10" type="submit">Zaloguj się</button>
+      </Form>
+      <div>
+        <p class="text-des">
+          Nie masz jeszcze konta?
+          <NuxtLink to="/rejestracja"
+            ><span class="navigate">Zarejestruj się</span></NuxtLink
+          >
+        </p>
       </div>
-    </NuxtLayout>
+    </div>
+    <!-- </NuxtLayout> -->
   </div>
 </template>
 
@@ -56,9 +63,9 @@ definePageMeta({
 });
 
 const authStore = useAuth();
-const { error,  loggedIn } = storeToRefs(authStore);
+const { error, loggedIn } = storeToRefs(authStore);
 
-var hideAfter = true; 
+var hideAfter = true;
 var ErrorLogin: any = false;
 
 function inputColor() {
@@ -70,7 +77,7 @@ async function onSubmit(values: any) {
   await authStore.loginUser(email, password);
   let input = ErrorInput(error.value);
   ErrorLogin = input;
-  hideAfter = false
+  hideAfter = false;
 }
 
 const schema = Yup.object().shape({
@@ -80,11 +87,56 @@ const schema = Yup.object().shape({
     .required("Uzupełnij hasło"),
 });
 
+const inputField = ref();
+function focusInput() {
+  inputField.value.focus();
+}
+// focusInput()
 </script>
 
 <style scoped>
-.errorUser{
-padding-top: 36px;
-margin-bottom: -34px;
+.errorUser {
+  padding-top: 36px;
+  font-size: 14px;
+  margin-bottom: -30px;
+}
+
+.auth-des {
+  position: absolute;
+  border-radius: 16px;
+  top: 45%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+.width-login {
+  position: absolute;
+  width: 400px;
+  background: white;
+  border-radius: 16px;
+  padding: 42px 55px 4px 55px;
+  top: 45%;
+  right: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.text-des {
+  font-size: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #ededed;
+  margin-top: 44px;
+  margin-bottom: 32px;
+  color: #a7a2a2;
+}
+.navigate {
+  color: #618cfb;
+  font-weight: 600;
+}
+
+.navigate:hover {
+  color: #6181d3;
+  text-decoration: underline;
+  text-decoration-color: #6181d3;
+  text-decoration-thickness: 2px;
+  font-weight: 600;
 }
 </style>
