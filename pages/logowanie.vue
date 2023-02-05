@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-background">
+  <div class="auth-background w-full">
     <!-- <NuxtLayout> -->
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
@@ -99,7 +99,7 @@ const schema = Yup.object().shape({
       background: white;
       border-radius: 16px;
       padding: 24px 24px 4px 24px;
-      top: 50%;
+      top: 40%;
       right: 50%;
       transform: translate(50%, -50%);
   }
