@@ -1,6 +1,7 @@
 <template>
   <div class="auth-background w-full overflow-hidden">
     <!-- <NuxtLayout> -->
+      <Nav/>
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
