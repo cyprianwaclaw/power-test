@@ -1,12 +1,11 @@
 <template>
-  <div class="sm:auth-background w-full overflow-hidden">
-    <!-- <NuxtLayout> -->
+  <div class="auth-background w-full bg-color bg-red-200">
+  <div class="w-full bg-color bg-red-200">
       <Nav/>
+      <div class="w-full bg-color bg-red-200">
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
-    <!-- <input ref="inputField"/> -->
-    <!-- <button @click="focusInput">sas</button> -->
     <div class="width-login shaddow-effect" @click="inputColor()">
       <h1 class="title-form">Logowanie</h1>
       <Form
@@ -52,7 +51,8 @@
         <p class="navigate -mt-7 mb-8"><NuxtLink to="/rejestracja" >Zarejestruj się</NuxtLink></p>
       </div>
     </div>
-    <!-- </NuxtLayout> -->
+    </div>
+    </div>
   </div>
 </template>
 
@@ -177,6 +177,13 @@ const schema = Yup.object().shape({
 }
 
 .navigate:hover {
+  color: #6181d3;
+  text-decoration: underline;
+  text-decoration-color: #6181d3;
+  text-decoration-thickness: 2px;
+  font-weight: 600;
+}
+.navigate:focus {
   color: #6181d3;
   text-decoration: underline;
   text-decoration-color: #6181d3;

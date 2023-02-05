@@ -1,5 +1,5 @@
 <template>
-<div class="family">
+<div class="family click">
     <NuxtLoadingIndicator />
         <NuxtPage />  
     </div>    
