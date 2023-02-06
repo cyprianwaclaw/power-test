@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-background -mt-16">
+  <div class="auth-background -mt-20">
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
