@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-background h-screen">
+  <div class="auth-background -mb-10">
     <Nav/>
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
