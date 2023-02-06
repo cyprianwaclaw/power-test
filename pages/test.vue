@@ -1,9 +1,9 @@
 <template>
   <div>
     <Nav />
-    <div class="mt-10">
-        <h1>test</h1>
-        </div>
+    <div class="pt-12 bg-red-100 h-screen -mt-12">
+<h1 class=""></h1>
+  </div>
   </div>
 </template>
 
