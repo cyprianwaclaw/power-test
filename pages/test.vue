@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen  bg-blue-100">
-    <div class="width-login shaddow-effect" @click="inputColor()">
+  <div class=" bg-blue-100">
+    <div class="" @click="inputColor()">
       <h1 class="">Logowanie</h1>
       <Form
         @submit="onSubmit"
