@@ -172,9 +172,9 @@
     @media only screen and (max-width: 640px) {
         .auth-background {
             background-color: lightblue !important;
-            height: 100vh;
+            height: calc(100vh);
             /* The image used */
-            background-image: url("@/assets/file/photoM.jpg");
+            // background-image: url("@/assets/file/photoM.jpg");
             /* Center and scale the image nicely */
             // box-shadow: inset 0px 1000000px 4px rgba(160, 107, 107, 0.15);
         }
