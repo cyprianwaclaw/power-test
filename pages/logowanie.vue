@@ -1,6 +1,5 @@
 <template>
-  <div class="auth-background w-full bg-color bg-red-200">
-  <div class="w-full bg-color bg-red-200">
+  <div class="auth-background">
       <Nav/>
       <div class="w-full bg-color bg-red-200">
     <div class="auth-des hidden sm:flex">
@@ -50,7 +49,6 @@
         <p class="text-des">Nie masz jeszcze konta?</p>
         <p class="navigateM -mt-7 mb-8"><NuxtLink to="/rejestracja" >Zarejestruj się</NuxtLink></p>
       </div>
-    </div>
     </div>
     </div>
   </div>

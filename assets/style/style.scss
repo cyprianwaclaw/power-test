@@ -1,199 +1,212 @@
-@import "variables";
-.click {
-    -webkit-tap-highlight-color: transparent;
-    border-radius: 999px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.red {
-    color: $color-error
-}
-
-.family {
-    font-family: $family;
-    color: $text-black
-}
-
-.primary-button {
-    box-shadow: inset 0 0 0 1 $primary-hover;
-    background-color: $primary;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 12px 25px;
-    color: $white;
-    display: block;
-    border-radius: 8px;
-    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
-}
-
-.prmary-button:hover {
-    box-shadow: inset 300px 0 0 0 $primary-hover;
-}
-
-.submit-auth {
-    box-shadow: inset 0 0 0 1 $primary-hover;
-    background-color: $primary;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 25px;
-    color: $white;
-    display: block;
-    border-radius: 8px;
-    // margin-top: 40px;
-    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
-}
-
-.submit-auth:hover {
-    box-shadow: inset 600px 0 0 0 $primary-hover;
-}
-
-.submit-auth.invalid {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-    0% {
-        transform: translate(1px, 1px);
+    @import "variables";
+    .click {
+        -webkit-tap-highlight-color: transparent;
+        border-radius: 999px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-    10% {
-        transform: translate(-1px, -2px);
+    
+    .red {
+        color: $color-error
     }
-    20% {
-        transform: translate(-3px, 0px);
+    
+    .family {
+        font-family: $family;
+        color: $text-black
     }
-    30% {
-        transform: translate(3px, 2px);
+    
+    .primary-button {
+        box-shadow: inset 0 0 0 1 $primary-hover;
+        background-color: $primary;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 12px 25px;
+        color: $white;
+        display: block;
+        border-radius: 8px;
+        transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
     }
-    40% {
-        transform: translate(1px, -1px);
+    
+    .prmary-button:hover {
+        box-shadow: inset 300px 0 0 0 $primary-hover;
     }
-    50% {
-        transform: translate(-1px, 2px);
+    
+    .submit-auth {
+        box-shadow: inset 0 0 0 1 $primary-hover;
+        background-color: $primary;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 25px;
+        color: $white;
+        display: block;
+        border-radius: 8px;
+        // margin-top: 40px;
+        transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
     }
-    60% {
-        transform: translate(-3px, 1px);
+    
+    .submit-auth:hover {
+        box-shadow: inset 600px 0 0 0 $primary-hover;
     }
-    70% {
-        transform: translate(3px, 1px);
+    
+    .submit-auth.invalid {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
     }
-    80% {
-        transform: translate(-1px, -1px);
+    
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px);
+        }
+        10% {
+            transform: translate(-1px, -2px);
+        }
+        20% {
+            transform: translate(-3px, 0px);
+        }
+        30% {
+            transform: translate(3px, 2px);
+        }
+        40% {
+            transform: translate(1px, -1px);
+        }
+        50% {
+            transform: translate(-1px, 2px);
+        }
+        60% {
+            transform: translate(-3px, 1px);
+        }
+        70% {
+            transform: translate(3px, 1px);
+        }
+        80% {
+            transform: translate(-1px, -1px);
+        }
+        90% {
+            transform: translate(1px, 2px);
+        }
+        100% {
+            transform: translate(1px, -2px);
+        }
     }
-    90% {
-        transform: translate(1px, 2px);
+    
+    label {
+        display: block;
+        margin-bottom: 4px;
+        width: 100%;
     }
-    100% {
-        transform: translate(1px, -2px);
+    
+    .base-input {
+        position: relative;
+        margin-bottom: 1px;
+        width: 100%;
     }
-}
-
-label {
-    display: block;
-    margin-bottom: 4px;
-    width: 100%;
-}
-
-.base-input {
-    position: relative;
-    margin-bottom: 1px;
-    width: 100%;
-}
-
-input {
-    width: 100%;
-    font-size: 15px;
-    margin-top: 4px;
-    border: 2px solid transparent;
-    outline: none;
-    border-radius: 8px;
-    border-color: $input-border;
-    padding: 0.5rem 0.75rem;
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-input:focus {
-    border-color: $primary;
-    border-width: 2px;
-    color: $text-black !important;
-}
-
-input::placeholder {
-    font-size: 15px;
-    color: $text-gray
-}
-
-input:focus::placeholder {
-    font-size: 0px;
-}
-
-.help-message {
-    // position: absolute;
-    margin-top: 2px;
-    font-size: 12px;
-}
-
-.has-error input {
-    background-color: $error-backgrund;
-    color: $color-error;
-    border: 2px solid transparent;
-    outline: none;
-}
-
-.has-error input:focus {
-    border-color: $color-error;
-}
-
-.has-error .help-message {
-    color: $color-error;
-}
-
-.success input {
-    background-color: $success-backgrund;
-    color: $color-success;
-    border: 2px solid transparent;
-    outline: none;
-}
-
-.success input:focus {
-    border-color: $color-success;
-}
-
-.success .help-message {
-    color: $color-success;
-    padding-top: 12px
-}
-
-.auth-background {
-    /* The image used */
-    background-image: url("@/assets/file/photo1.jpg");
-    height: 100vh;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow: inset 0px 1000000px 4px rgba(0, 0, 0, 0.15);
-}
-
-.shaddow-effect {
-    box-shadow: -6px 7px 11px rgba(0, 0, 0, 0.08);
-}
-
-.title-form {
-    margin-top: 14px;
-    font-weight: 700;
-    margin-bottom: 18px;
-    font-size: 24px;
-}
-
-// .errorInput {
-//     color: $color-error;
-// }
-.bg-color {
-    background-color: rgb(229, 229, 246);
-}
+    
+    input {
+        width: 100%;
+        font-size: 15px;
+        margin-top: 4px;
+        border: 2px solid transparent;
+        outline: none;
+        border-radius: 8px;
+        border-color: $input-border;
+        padding: 0.5rem 0.75rem;
+        transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+    
+    input:focus {
+        border-color: $primary;
+        border-width: 2px;
+        color: $text-black !important;
+    }
+    
+    input::placeholder {
+        font-size: 15px;
+        color: $text-gray
+    }
+    
+    input:focus::placeholder {
+        font-size: 0px;
+    }
+    
+    .help-message {
+        // position: absolute;
+        margin-top: 2px;
+        font-size: 12px;
+    }
+    
+    .has-error input {
+        background-color: $error-backgrund;
+        color: $color-error;
+        border: 2px solid transparent;
+        outline: none;
+    }
+    
+    .has-error input:focus {
+        border-color: $color-error;
+    }
+    
+    .has-error .help-message {
+        color: $color-error;
+    }
+    
+    .success input {
+        background-color: $success-backgrund;
+        color: $color-success;
+        border: 2px solid transparent;
+        outline: none;
+    }
+    
+    .success input:focus {
+        border-color: $color-success;
+    }
+    
+    .success .help-message {
+        color: $color-success;
+        padding-top: 12px
+    }
+    
+    @media only screen and (max-width: 640px) {
+        .auth-background {
+            /* The image used */
+            background-image: url("@/assets/file/photoM.jpg");
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-size: cover;
+            box-shadow: inset 0px 1000000px 4px rgba(0, 0, 0, 0.15);
+        }
+    }
+    
+    @media only screen and (min-width: 640px) {
+        .auth-background {
+            /* The image used */
+            background-image: url("@/assets/file/photo1.jpg");
+            height: 100vh;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: inset 0px 1000000px 4px rgba(0, 0, 0, 0.15);
+        }
+    }
+    
+    .shaddow-effect {
+        box-shadow: -6px 7px 11px rgba(0, 0, 0, 0.08);
+    }
+    
+    .title-form {
+        margin-top: 14px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        font-size: 24px;
+    }
+    
+    // .errorInput {
+    //     color: $color-error;
+    // }
+    .bg-color {
+        background-color: rgb(229, 229, 246);
+    }
