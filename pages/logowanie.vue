@@ -42,7 +42,7 @@
         <p class="text-des">
           Nie masz jeszcze konta?
           <NuxtLink to="/rejestracja"
-            ><span class="navigate">Zarejestruj się</span></NuxtLink
+            ><span class="navigateM">Zarejestruj się</span></NuxtLink
           >
         </p>
       </div>
@@ -104,7 +104,7 @@ const schema = Yup.object().shape({
       background: white;
       border-radius: 16px;
       padding: 24px 24px 4px 24px;
-      top: 40%;
+      top: 50%;
       right: 50%;
       transform: translate(50%, -50%);
   }
