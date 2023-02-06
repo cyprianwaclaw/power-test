@@ -4,7 +4,7 @@
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
-    <div class="width-login shaddow-effect" @click="inputColor()">
+    <div class="width-login shaddow-effect hidden" @click="inputColor()">
       <h1 class="title-form">Logowanie</h1>
       <Form
         @submit="onSubmit"
