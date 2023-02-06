@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Nav />
     <h1>Stona główna</h1>
     <div v-if="isUser">
       <NuxtLink to="/panel"><p class="account-linik">My account</p></NuxtLink>
