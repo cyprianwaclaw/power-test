@@ -1,14 +1,12 @@
 <template>
-    <div class="h-screen bg-red-100 relative">
-        <Nav/>
-<h1 class="mt-10">sdsdsdsd</h1>
-    </div>
+  <div>
+    <Nav />
+    <div class="mt-10">
+        <h1>test</h1>
+        </div>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
