@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-slate-200">
     <Nav />
     <h1>Stona główna</h1>
     <div v-if="isUser">
