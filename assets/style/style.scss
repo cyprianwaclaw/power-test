@@ -166,6 +166,7 @@
     
     .success .help-message {
         color: $color-success;
+        position: absoute;
         padding-top: 12px
     }
     
@@ -173,10 +174,6 @@
         .auth-background {
             background-color: rgb(244, 249, 251) !important;
             min-height: 100vh;
-            /* The image used */
-            // background-image: url("@/assets/file/photoM.jpg");
-            /* Center and scale the image nicely */
-            // box-shadow: inset 0px 1000000px 4px rgba(160, 107, 107, 0.15);
         }
     }
     
