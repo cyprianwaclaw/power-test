@@ -171,7 +171,7 @@
     
     @media only screen and (max-width: 640px) {
         .auth-background {
-            background-color: lightblue !important;
+            background-color: rgb(244, 249, 251) !important;
             min-height: 100vh;
             /* The image used */
             // background-image: url("@/assets/file/photoM.jpg");
@@ -198,7 +198,6 @@
     }
     
     .title-form {
-        margin-top: 14px;
         font-weight: 700;
         margin-bottom: 18px;
         font-size: 24px;
