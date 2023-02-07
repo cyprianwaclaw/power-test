@@ -10,8 +10,16 @@
         user-select: none;
     }
     
+    .text-gray {
+        color: $text-gray
+    }
+    
     .red {
         color: $color-error
+    }
+    
+    .page-background {
+        background-color: $page-backgroud;
     }
     
     .family {
@@ -173,7 +181,7 @@
     @media only screen and (max-width: 520px) {
         .auth-background {
             padding-top: 90px;
-            background-color: rgb(244, 249, 251) !important;
+            background-color: $page-backgroud !important;
             position: absolute;
             height: 100%;
             z-index: 1;
@@ -207,6 +215,6 @@
     // .errorInput {
     //     color: $color-error;
     // }
-    .bg-color {
-        background-color: rgb(229, 229, 246);
-    }
+    // .bg-color {
+    //     background-color: rgb(229, 229, 246);
+    // }

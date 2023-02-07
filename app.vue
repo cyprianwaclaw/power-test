@@ -1,5 +1,5 @@
 <template>
-<div class="family click">
+<div class="family click page-background">
     <NuxtLayout name="app">
     <NuxtLoadingIndicator />
         <NuxtPage />  
