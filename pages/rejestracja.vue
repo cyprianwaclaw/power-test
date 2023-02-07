@@ -1,6 +1,5 @@
 <template>
     <div class="auth-background pt-14 flex">
-      <NuxtLayout>
         <div class="bg-white mx-36 rounded-2xl shaddow-effect">
           <div class="w-full px-24 pb-16 pt-10">
             <h1 class="title-form">Register</h1>
@@ -44,7 +43,6 @@
             </Form>
           </div>
           </div>
-        </NuxtLayout>
         </div>
       </template>
       

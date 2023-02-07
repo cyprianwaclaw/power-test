@@ -170,17 +170,16 @@
         padding-top: 12px
     }
     
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 520px) {
         .auth-background {
             background-color: rgb(244, 249, 251) !important;
-            // height: 100vh;
             position: absolute;
             height: 100%;
             width: 100%;
         }
     }
     
-    @media only screen and (min-width: 640px) {
+    @media only screen and (min-width: 520px) {
         .auth-background {
             /* The image used */
             background-image: url("@/assets/file/photo1.jpg");

@@ -3,7 +3,7 @@
     <div class="auth-des hidden sm:flex">
       <h1>Test</h1>
     </div>
-    <div class="sm:width-login sm:shaddow-effect" @click="inputColor()">
+    <div class="width-login sm:shaddow-effect" @click="inputColor()">
       <h1 class="title-form">Logowanie</h1>
       <Form
         @submit="onSubmit"
@@ -92,7 +92,19 @@ const schema = Yup.object().shape({
 <style scoped>
 
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 5200px) {
+  .width-login {
+      position: absolute;
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      top: 300px;
+      transform: translate(50%, -50%);
+      right: 50%;
+  }
+}
+
+@media only screen and (min-width: 520px) {
   .width-login {
       position: absolute;
       width: 300px;
