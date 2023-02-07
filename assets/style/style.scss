@@ -172,9 +172,11 @@
     
     @media only screen and (max-width: 520px) {
         .auth-background {
+            padding-top: 90px;
             background-color: rgb(244, 249, 251) !important;
             position: absolute;
             height: 100%;
+            z-index: 1;
             width: 100%;
         }
     }
