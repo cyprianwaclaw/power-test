@@ -173,7 +173,8 @@
     @media only screen and (max-width: 640px) {
         .auth-background {
             background-color: rgb(244, 249, 251) !important;
-            height: 100vh;
+            // height: 100vh;
+            height: 100%;
         }
     }
     
