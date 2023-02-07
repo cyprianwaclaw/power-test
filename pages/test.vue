@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute h-screen w-full pt-10 bg-blue-100">
+  <div class="absolute max-h-screen w-full  bg-blue-100">
     <div class="" @click="inputColor()">
       <h1 class="">Logowanie</h1>
       <Form
