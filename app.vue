@@ -1,9 +1,9 @@
 <template>
-<div class="family click page-background">
-    <NuxtLayout name="app">
-    <NuxtLoadingIndicator />
+<div class="family  page-background">
+    <div class="click">
+        <NuxtLoadingIndicator />
         <NuxtPage />  
-        </NuxtLayout>
+    </div>
     </div>    
 </template>
 
