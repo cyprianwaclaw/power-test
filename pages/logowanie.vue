@@ -45,7 +45,9 @@
       </div>
       <div class="sm:hidden md:hidden flex flex-col">
         <p class="text-des">Nie masz jeszcze konta?</p>
-        <p class="navigateM -mt-7 mb-8"><NuxtLink to="/rejestracja" >Zarejestruj się</NuxtLink></p>
+        <p class="navigateM -mt-7 mb-8">
+          <NuxtLink to="/rejestracja">Zarejestruj się</NuxtLink>
+        </p>
       </div>
     </div>
   </div>
@@ -86,73 +88,66 @@ const schema = Yup.object().shape({
     .min(8, "Hasło musi mieć powyżej 8 znaków")
     .required("Uzupełnij hasło"),
 });
-
 </script>
 
 <style scoped>
-
-
 @media only screen and (max-width: 5200px) {
   .width-login {
-      position: absolute;
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      top: 300px;
-      transform: translate(50%, -50%);
-      right: 50%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
   }
 }
 
 @media only screen and (min-width: 520px) {
   .width-login {
-      position: absolute;
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      padding: 24px 24px 4px 24px;
-      top: 50%;
-      right: 50%;
-      transform: translate(50%, -50%);
+    position: absolute;
+    width: 300px;
+    background: white;
+    border-radius: 16px;
+    padding: 24px 24px 4px 24px;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .width-login {
-      position: absolute;
-      width: 400px;
-      background: white;
-      border-radius: 16px;
-      padding: 42px 55px 4px 55px;
-      top: 45%;
-      right: 0%;
-      transform: translate(-50%, -50%);
+    position: absolute;
+    width: 400px;
+    background: white;
+    border-radius: 16px;
+    padding: 42px 55px 4px 55px;
+    top: 45%;
+    right: 0%;
+    transform: translate(-50%, -50%);
   }
 }
 
 @media only screen and (min-width: 1536px) {
   .width-login {
-      position: absolute;
-      width: 400px;
-      background: white;
-      border-radius: 16px;
-      padding: 42px 55px 4px 55px;
-      top: 45%;
-      right: 5%;
-      transform: translate(-50%, -50%);
+    position: absolute;
+    width: 400px;
+    background: white;
+    border-radius: 16px;
+    padding: 42px 55px 4px 55px;
+    top: 45%;
+    right: 5%;
+    transform: translate(-50%, -50%);
   }
 }
 
 @media only screen and (min-width: 1536px) {
   .width-login {
-      position: absolute;
-      width: 400px;
-      background: white;
-      border-radius: 16px;
-      padding: 42px 55px 4px 55px;
-      top: 45%;
-      right: 5%;
-      transform: translate(-50%, -50%);
+    position: absolute;
+    width: 400px;
+    background: white;
+    border-radius: 16px;
+    padding: 42px 55px 4px 55px;
+    top: 45%;
+    right: 5%;
+    transform: translate(-50%, -50%);
   }
 }
 .errorUser {
