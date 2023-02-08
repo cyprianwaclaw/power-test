@@ -8,6 +8,7 @@
           name="carbon:close"
           size="30"
           class="black-color w-12"
+          @click="Modal()"
         />
       </div>
       <div class="mt-2" @click="Modal()">
