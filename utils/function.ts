@@ -27,3 +27,35 @@ export function onInvalidSubmit() {
     submitBtn.classList.remove("invalid");
   }, 400);
 }
+
+
+// TODO: Dodać wszystkie linki
+export function RouteChange(name: string) {
+  let result = "";
+
+  // aktywny domek - menu
+  if (name == "/panel") {
+    result = "home";
+  }
+
+  // aktywne osoby - menu
+  else if (name == "/panel/zaproszeni") {
+    result = "invite";
+  }
+
+  // aktywne konto - menu
+  else if (name == "/panel/konto") {
+    result = "account";
+  }
+
+  else if (name == "/panel/konto/srodki/wyplata") {
+    result = "account";
+  }
+  // aktywny quiz - menu
+  else if (name == "/panel/quiz") {
+    result = "quiz";
+  }
+
+
+  return result;
+}
