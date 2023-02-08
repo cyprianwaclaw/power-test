@@ -3,7 +3,7 @@
     <div class="">
       <NavUser />
     </div>
-    <div class="own-container">
+    <div class="own-container pt-28 min-h-screen page-background ">
       <slot />
     </div>
     <div class="sm:hidden">
