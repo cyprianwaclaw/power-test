@@ -33,9 +33,9 @@
   import { storeToRefs } from "pinia";
   import { useAuth } from "@/store/useAuth";
   
-  // definePageMeta({
-  //   middleware: "auth",
-  // });
+  definePageMeta({
+    middleware: "auth",
+  });
   
   const authStore = useAuth();
   const { user, fastTwo, loggedIn } = storeToRefs(authStore);

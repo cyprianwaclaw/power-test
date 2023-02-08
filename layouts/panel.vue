@@ -5,7 +5,6 @@
     </div>
     <div class="own-container">
       <slot />
-      <p>szdsds</p>
     </div>
     <div class="sm:hidden">
       <NavBottom />
