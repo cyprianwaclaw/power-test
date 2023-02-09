@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="panel">
-      <h1>Moje srodki</h1>
+      <h1>Dodaje quizy</h1>
     </NuxtLayout>
   </template>
   

@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="panel">
-      <h1>Zaproszone osoby</h1>
+      <h1 class="title-h1">Zaproszone osoby</h1>
     </NuxtLayout>
   </template>
   

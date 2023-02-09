@@ -51,6 +51,9 @@ export function RouteChange(name: string) {
   else if (name == "/panel/konto/srodki/wyplata") {
     result = "account";
   }
+  else if (name == "/panel/konto/srodki") {
+    result = "account";
+  }
   // aktywny quiz - menu
   else if (name == "/panel/quiz") {
     result = "quiz";

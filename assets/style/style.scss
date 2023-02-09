@@ -220,16 +220,49 @@
         font-size: 24px;
     }
     
-    // .errorInput {
-    //     color: $color-error;
-    // }
-    // .bg-color {
-    //     background-color: rgb(229, 229, 246);
-    // }
     .dark-blur-background {
         background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(2px); // height: 100%;
         width: 100%;
         height: 100vh;
         margin-bottom: -150px
+    }
+    
+    @media only screen and (max-width: 520px) {
+        .title-h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            color: $text-black;
+        }
+        .title-h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: $text-black;
+            margin-bottom: 22px;
+        }
+    }
+    
+    @media only screen and (min-width: 520px) {
+        .title-h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: $text-black;
+            margin-bottom: 22px;
+        }
+        .title-h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: $text-black;
+            margin-bottom: 22px;
+        }
+    }
+    
+    .nav-border {
+        border-bottom: 1px solid $border;
+    }
+    
+    .nav-icon {
+        color: $icon;
+        width: 100%;
     }

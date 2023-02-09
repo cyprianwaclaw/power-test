@@ -3,7 +3,7 @@
     <div class="">
       <NavUser />
     </div>
-    <div class="own-container pt-28 min-h-screen page-background ">
+    <div class="own-container min-h-screen page-background ">
       <slot />
     </div>
     <div class="sm:hidden">
@@ -16,7 +16,8 @@
 
 <style scoped>
 .own-container {
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-top: 98px
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="panel">
-    <h1>Ustawienia</h1>
+    <h1 class="title-h1">Ustawienia</h1>
   </NuxtLayout>
 </template>
 

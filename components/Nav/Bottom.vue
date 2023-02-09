@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="px-2 sm:py-4 w-fullflex bg-white w-full fixed left-0 bottom-0">
+  <div class="nav-border-bottom px-2 sm:py-4 w-fullflex bg-white w-full fixed left-0 bottom-0">
     <div class="flex w-full justify-beetwen py-2">
       <div class="w-full">
         <div v-if="routeName == 'home'">
@@ -110,10 +110,6 @@ function Modal() {
 const routeName = RouteChange(route.path);
 </script>
 <style scoped>
-.nav-icon {
-  color: #a7a2a2;
-  width: 100%;
-}
 
 .modal-view {
   background-color: white;
@@ -138,6 +134,9 @@ const routeName = RouteChange(route.path);
   background: rgba(209, 157, 56, 0.25);
 }
 .blue {
-  background: #dbdef5;
+  background: rgba(43, 59, 199, 0.17);
+}
+.nav-border-bottom{
+  border-top: 1px solid #EDEDED; 
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <div class="py-4 px-6 sm:py-4 fixed w-full flex bg-white z-10">
+  <div class="nav-border py-4 px-6 sm:py-4 fixed w-full flex bg-white z-10">
     <div class="flex w-full place-items-center">
       <div class="w-12 block justify-start" @click="Back()"><Icon name="ph:caret-right-bold" size="30" class="primary-color back-arrow"/></div>
       <div class="w-full flex justify-end">
         <div class="mobile-search-input w-full">
           <input/>
         </div>
-        <Icon name="ph:magnifying-glass-light" size="30" class="text-gray"/>
+        <Icon name="ph:magnifying-glass-light" size="30" color="#C4C4C4"/>
       </div>
     </div>
   </div>
