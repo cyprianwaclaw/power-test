@@ -39,13 +39,13 @@
         <p class="text-des">
           Nie masz jeszcze konta?
           <NuxtLink to="/rejestracja"
-            ><span class="navigateM">Zarejestruj się</span></NuxtLink
+            ><span class="navigate">Zarejestruj się</span></NuxtLink
           >
         </p>
       </div>
       <div class="sm:hidden md:hidden flex flex-col">
         <p class="text-des">Nie masz jeszcze konta?</p>
-        <p class="navigateM -mt-7 mb-8">
+        <p class="navigate -mt-7 mb-8">
           <NuxtLink to="/rejestracja">Zarejestruj się</NuxtLink>
         </p>
       </div>
@@ -172,29 +172,5 @@ const schema = Yup.object().shape({
   margin-bottom: 32px;
   color: #a7a2a2;
 }
-.navigate {
-  font-size: 14px;
-  color: #618cfb;
-  font-weight: 600;
-}
 
-.navigateM {
-  font-size: 14px;
-  color: #618cfb;
-  font-weight: 600;
-}
-.navigate:hover {
-  color: #6181d3;
-  text-decoration: underline;
-  text-decoration-color: #6181d3;
-  text-decoration-thickness: 2px;
-  font-weight: 600;
-}
-.navigateM:active {
-  color: #6181d3;
-  text-decoration: underline;
-  text-decoration-color: #6181d3;
-  text-decoration-thickness: 2px;
-  font-weight: 600;
-}
 </style>
