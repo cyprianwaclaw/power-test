@@ -29,7 +29,7 @@
       Standard, przejdź na<NuxtLink to="panel/premium"><span class="navigate"> PREMIUM</span></NuxtLink> i 
       zyskaj dodatkowe funkcję</p>
          
-          <button class="button-primary">Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" /></button>
+          <button class="button-primary mt-5">Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" /></button>
   </div>
   </NuxtLayout>
 </template>
