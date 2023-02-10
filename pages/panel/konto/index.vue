@@ -18,7 +18,6 @@
   <p class="retangle-title family">Quizy</p>
 </NuxtLink></div>
 </div>
-    </NuxtLayout>
   </template>
   
   <script setup lang="ts">
