@@ -28,10 +28,8 @@
     <p class="text">Aktualnie posiadasz pakiet 
       Standard, przejdź na<NuxtLink to="panel/premium"><span class="navigate"> PREMIUM</span></NuxtLink> i 
       zyskaj dodatkowe funkcję</p>
-      <ButtonRight
-      link="/panel"
-      name="Przejdź na premium"
-      />
+         
+          <button class="button-primary">Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" /></button>
   </div>
   </NuxtLayout>
 </template>
