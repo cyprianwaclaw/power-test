@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="panel">
-    <h1 class="title-h1">Twoje konto</h1>
+    <h1 class="title-h1 pb-6">Twoje konto</h1>
     <div class="columns-2 flex gap-5">
       <div class="retangle gold">
         <NuxtLink to="">
@@ -18,19 +18,64 @@
     <div class="retangle green">
       <NuxtLink to="">
         <Icon name="ph:newspaper-fill" color="38D1AC" size="34" />
-        <p class="retangle-title family">Faktury i płatności</p>
+        <p class="retangle-title family mb-1">Faktury i płatności</p>
       </NuxtLink>
     </div>
     <!-- w zależności od pakietu -->
-  <div class="mt-12 bg-white py-8 px-8">
-    <p class="text-des-mobile text-sm">Obecnie posiadasz pakiet</p>
-    <h3>Standard</h3>
-    <p class="text">Aktualnie posiadasz pakiet 
-      Standard, przejdź na<NuxtLink to="panel/premium"><span class="navigate"> PREMIUM</span></NuxtLink> i 
-      zyskaj dodatkowe funkcję</p>
-         
-          <button class="button-primary mt-5">Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" /></button>
-  </div>
+    <div class="mt-12 mb-16 bg-white py-8 px-8 rounded-3xl">
+      <p class="text-des-mobile">Obecnie posiadasz pakiet</p>
+      <h3 class="font-semibold text-2xl mb-4 mt-1">Standard</h3>
+      <p class="text">
+        Aktualnie posiadasz pakiet Standard, przejdź na
+        <NuxtLink to="panel/premium"><span class="navigate"> PREMIUM </span></NuxtLink>i
+        zyskaj dodatkowe funkcję
+      </p>
+      <button class="button-primary mt-6 mb-1">
+        Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
+      </button>
+    </div>
+    <!-- koniec  -->
+    <h2 class="title-h2 mb-7">Statystyki konta</h2>
+    <div class="mb-12 white-retangle">
+      <div class="row-table-start">
+        <h2 class="title">123</h2>
+        <div class="flex place-items-center gap-1.5">
+          <p class="text-des-mobile">Zdobyte punkty</p>
+          <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
+        </div>
+      </div>
+      <div class="row-table-start">
+        <h2 class="title">1</h2>
+        <p class="text-des-mobile">Udzielonych odpowiedzi</p>
+        <div class="flex columns-2 mt-5 mb-2">
+          <div class="flex flex-col w-full">
+            <p class="correct">12</p>
+            <p class="correct">Poprawne</p>
+          </div>
+          <div class="flex flex-col w-full">
+            <p class="bad">12</p>
+            <p class="bad">Błędne</p>
+          </div>
+        </div>
+      </div>
+      <div class="row-table-end">
+        <h2 class="title">1</h2>
+        <p class="text-des-mobile">Udzielonych odpowiedzi</p>
+        <div class="flex columns-2 mt-4 mb-2 place-items-center gap-1" @click="copyToken">
+          <Icon name="ic:round-content-copy" size="20" class="primary-color" />
+          <p class="primary-color font-semibold">Skopiuj kod polecający</p>
+        </div>
+      </div>
+    </div>
+    <div class="white-retangle">
+      <div class="row-table-start -mt-4">
+        <h2 class="title-menu-mobile">123</h2>
+      </div>
+      <div class="row-table-end">
+        <h2 class="title-menu-mobile">123</h2>
+      </div>
+    </div>
+    <div class="h-32"></div>
   </NuxtLayout>
 </template>
 
@@ -52,13 +97,22 @@ let fastTwoObject = fastTwo.value;
 async function logoutUser() {
   await authStore.logout();
 }
+
+function Modal() {}
+function copyToken() {}
 </script>
-<style scoped>
+<style scoped lang="scss">
 .retangle {
   padding: 16px 16px 16px 23px;
   margin-bottom: 20px;
   border-radius: 8px;
   width: 100%;
+}
+.white-retangle {
+  background-color: white;
+  border-radius: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 .retangle-title {
   font-size: 16px;
@@ -74,5 +128,18 @@ async function logoutUser() {
 .blue {
   background: rgba(43, 59, 199, 0.17);
 }
-
+.bad {
+  font-size: 16px;
+  color: #f23648;
+  font-weight: 500;
+}
+.correct {
+  font-size: 16px;
+  color: #21a67a;
+  font-weight: 500;
+}
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
 </style>

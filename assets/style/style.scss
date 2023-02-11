@@ -216,14 +216,24 @@ input:focus::placeholder {
     .title-h1 {
         font-size: 28px;
         font-weight: 600;
-        margin-bottom: 22px;
         color: $text-black;
     }
     .title-h2 {
-        font-size: 28px;
+        font-family: $family;
+        font-style: normal;
         font-weight: 600;
+        font-size: 21px;
+        line-height: 22px;
         color: $text-black;
-        margin-bottom: 22px;
+    }
+    .row-table-start {
+        border-bottom: 1px solid $border;
+        padding: 16px 34px 16px 16px;
+        margin-left: 20px;
+    }
+    .row-table-end {
+        padding: 16px 34px 4px 16px;
+        margin-left: 20px;
     }
 }
 
@@ -232,13 +242,25 @@ input:focus::placeholder {
         font-size: 28px;
         font-weight: 600;
         color: $text-black;
-        margin-bottom: 22px;
     }
     .title-h2 {
-        font-size: 28px;
+        font-family: $family;
+        font-style: normal;
         font-weight: 600;
+        font-size: 21px;
+        line-height: 22px;
         color: $text-black;
-        margin-bottom: 22px;
+    }
+    .row-table {
+        border-bottom: 1px solid $border;
+    }
+    .title-menu-mobile {
+        font-family: $family;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 22px;
+        color: $text-black;
     }
 }
 
