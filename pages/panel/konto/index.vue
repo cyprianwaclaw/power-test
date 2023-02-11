@@ -22,7 +22,7 @@
       </NuxtLink>
     </div>
     <!-- w zależności od pakietu -->
-    <div class="mt-12 mb-16 bg-white py-8 px-8 rounded-3xl">
+    <div class="mt-12 mb-14 bg-white py-8 px-8 rounded-3xl">
       <p class="text-des-mobile">Obecnie posiadasz pakiet</p>
       <h3 class="font-semibold text-2xl mb-4 mt-1">Standard</h3>
       <p class="text">
@@ -36,11 +36,11 @@
     </div>
     <!-- koniec  -->
     <h2 class="title-h2 mb-7">Statystyki konta</h2>
-    <div class="mb-12 white-retangle">
+    <div class="mb-9 white-retangle">
       <div class="row-table-start">
         <h2 class="title">123</h2>
         <div class="flex place-items-center gap-1.5">
-          <p class="text-des-mobile">Zdobyte punkty</p>
+          <p class="text-des-mobile"> Ilość punktów</p>
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
         </div>
       </div>
@@ -60,7 +60,7 @@
       </div>
       <div class="row-table-end">
         <h2 class="title">1</h2>
-        <p class="text-des-mobile">Udzielonych odpowiedzi</p>
+        <p class="text-des-mobile">Liczba zaproszonych osób</p>
         <div class="flex columns-2 mt-4 mb-2 place-items-center gap-1" @click="copyToken">
           <Icon name="ic:round-content-copy" size="20" class="primary-color" />
           <p class="primary-color font-semibold">Skopiuj kod polecający</p>
@@ -68,14 +68,26 @@
       </div>
     </div>
     <div class="white-retangle">
-      <div class="row-table-start -mt-4">
-        <h2 class="title-menu-mobile">123</h2>
+      <NuxtLink to="/panel/ustawienia">
+      <div class="row-table-start -mt-4 flex place-items-center justify-between">
+        <div class="flex place-items-center">
+          <Icon name="ph:gear-light" size="26" class="primary-color" />
+          <h2 class="title-menu-mobile">Ustawienia</h2>
+        </div>
+        <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
       </div>
-      <div class="row-table-end">
-        <h2 class="title-menu-mobile">123</h2>
+    </NuxtLink>
+      <NuxtLink to="/panel/wiadomosc">
+      <div class="row-table-end flex place-items-center justify-between">
+        <div class="flex place-items-center">
+          <Icon name="ph:paper-plane-right-light" size="26" class="primary-color" />
+          <h2 class="title-menu-mobile">Napisz do nas</h2>
+        </div>
+        <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
       </div>
+    </NuxtLink>
     </div>
-    <div class="h-32"></div>
+    <div class="h-24"></div>
   </NuxtLayout>
 </template>
 

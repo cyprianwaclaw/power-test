@@ -18,6 +18,6 @@
 .own-container {
   margin-left: 30px;
   margin-right: 30px;
-  padding-top: 92px
+  padding-top: 100px
 }
 </style>

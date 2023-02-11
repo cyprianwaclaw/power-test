@@ -228,12 +228,20 @@ input:focus::placeholder {
     }
     .row-table-start {
         border-bottom: 1px solid $border;
-        padding: 16px 34px 16px 16px;
+        padding: 16px 24px 16px 16px;
         margin-left: 20px;
     }
     .row-table-end {
-        padding: 16px 34px 4px 16px;
+        padding: 16px 24px 2px 16px;
         margin-left: 20px;
+    }
+    .title-menu-mobile {
+        font-family: $family;
+        font-weight: 500;
+        font-size: 16px;
+        color: $text-black;
+        margin-left: 8px;
+        ;
     }
 }
 
