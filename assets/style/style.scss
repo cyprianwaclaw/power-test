@@ -35,6 +35,15 @@
     color: $text-black
 }
 
+.modal-view {
+    background-color: white;
+    border: solid transparent;
+    border-radius: 46px 46px 0px 0px;
+    padding: 24px 24px 24px 24px;
+    position: relative;
+    z-index: 100;
+}
+
 .submit-auth {
     box-shadow: inset 0 0 0 1 $primary-hover;
     background-color: $primary;
@@ -228,20 +237,24 @@ input:focus::placeholder {
     }
     .row-table-start {
         border-bottom: 1px solid $border;
-        padding: 16px 24px 16px 16px;
+        padding: 16px 16px 16px 8px;
         margin-left: 20px;
     }
     .row-table-end {
-        padding: 16px 24px 2px 16px;
+        padding: 16px 16px 2px 8px;
         margin-left: 20px;
     }
     .title-menu-mobile {
         font-family: $family;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 17px;
         color: $text-black;
-        margin-left: 8px;
-        ;
+    }
+    .white-retangle {
+        background-color: white;
+        border-radius: 24px;
+        padding-top: 16px;
+        padding-bottom: 16px;
     }
 }
 
@@ -270,6 +283,12 @@ input:focus::placeholder {
         line-height: 22px;
         color: $text-black;
     }
+    .white-retangle {
+        background-color: white;
+        border-radius: 24px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
 }
 
 .nav-border {
@@ -282,7 +301,7 @@ input:focus::placeholder {
 }
 
 .text-des-mobile {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     color: $text-gray;
 }

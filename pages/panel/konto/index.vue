@@ -27,7 +27,7 @@
       <h3 class="font-semibold text-2xl mb-4 mt-1">Standard</h3>
       <p class="text">
         Aktualnie posiadasz pakiet Standard, przejdź na
-        <NuxtLink to="panel/premium"><span class="navigate"> PREMIUM </span></NuxtLink>i
+        <NuxtLink to="/panel/premium"><span class="navigate"> PREMIUM </span></NuxtLink>i
         zyskaj dodatkowe funkcję
       </p>
       <button class="button-primary mt-6 mb-1">
@@ -40,7 +40,7 @@
       <div class="row-table-start">
         <h2 class="title">123</h2>
         <div class="flex place-items-center gap-1.5">
-          <p class="text-des-mobile"> Ilość punktów</p>
+          <p class="text-des-mobile">Ilość punktów</p>
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
         </div>
       </div>
@@ -69,25 +69,30 @@
     </div>
     <div class="white-retangle">
       <NuxtLink to="/panel/ustawienia">
-      <div class="row-table-start -mt-4 flex place-items-center justify-between">
-        <div class="flex place-items-center">
-          <Icon name="ph:gear-light" size="26" class="primary-color" />
-          <h2 class="title-menu-mobile">Ustawienia</h2>
+        <div class="row-table-start -mt-4 flex place-items-center justify-between">
+          <div class="flex place-items-center">
+            <Icon name="ph:gear-light" size="26" class="primary-color" />
+            <h2 class="title-menu-mobile ml-2">Ustawienia</h2>
+          </div>
+          <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
         </div>
-        <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
-      </div>
-    </NuxtLink>
+      </NuxtLink>
       <NuxtLink to="/panel/wiadomosc">
-      <div class="row-table-end flex place-items-center justify-between">
-        <div class="flex place-items-center">
-          <Icon name="ph:paper-plane-right-light" size="26" class="primary-color" />
-          <h2 class="title-menu-mobile">Napisz do nas</h2>
+        <div class="row-table-end flex place-items-center justify-between">
+          <div class="flex place-items-center">
+            <Icon name="ph:paper-plane-right-light" size="26" class="primary-color" />
+            <h2 class="title-menu-mobile ml-2">Napisz do nas</h2>
+          </div>
+          <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
         </div>
-        <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
-      </div>
-    </NuxtLink>
+      </NuxtLink>
     </div>
-    <div class="h-24"></div>
+    <div class=" flex justify-end mt-14 pb-20">
+      <div class="flex" @click="logoutUser()">
+        <p class="one primary-color">Wyloguj się </p>
+        <Icon name="material-symbols:logout-rounded" size="18" class="primary-color margin-top" />
+      </div>
+    </div>
   </NuxtLayout>
 </template>
 
@@ -120,12 +125,7 @@ function copyToken() {}
   border-radius: 8px;
   width: 100%;
 }
-.white-retangle {
-  background-color: white;
-  border-radius: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+
 .retangle-title {
   font-size: 16px;
   font-weight: 500;
@@ -153,5 +153,15 @@ function copyToken() {}
 .title {
   font-size: 24px;
   font-weight: 600;
+}
+.one {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+}
+.margin-top{
+  margin-top: 3px;
+  margin-left: 4px;
 }
 </style>

@@ -111,15 +111,6 @@ const routeName = RouteChange(route.path);
 </script>
 <style scoped>
 
-.modal-view {
-  background-color: white;
-  border: solid transparent;
-  border-radius: 46px 46px 0px 0px;
-
-  padding: 24px 24px 24px 24px;
-  position: relative;
-  z-index: 100;
-}
 .circle-icon {
   border: solid transparent;
   width: 47px;
