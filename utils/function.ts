@@ -62,3 +62,7 @@ export function RouteChange(name: string) {
 
   return result;
 }
+
+export function AddAnswer(correct: number, incorrect: number){
+  return correct + incorrect
+  }

@@ -38,33 +38,33 @@
     <h2 class="title-h2 mb-7">Statystyki konta</h2>
     <div class="mb-9 white-retangle">
       <div class="row-table-start">
-        <h2 class="title">123</h2>
+        <h2 class="title">{{ userPoints }}</h2>
         <div class="flex place-items-center gap-1.5">
           <p class="text-des-mobile">Ilość punktów</p>
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
         </div>
       </div>
       <div class="row-table-start">
-        <h2 class="title">1</h2>
-        <p class="text-des-mobile">Udzielonych odpowiedzi</p>
+        <h2 class="title">{{ AddAnswer(correctAnswer, inCorrectAnswer) }}</h2>
+        <p class="text-des-mobile">Liczba udzielonych odpowiedzi</p>
         <div class="flex columns-2 mt-5 mb-2">
           <div class="flex flex-col w-full">
-            <p class="correct">12</p>
+            <p class="correct">{{ correctAnswer }}</p>
             <p class="correct">Poprawne</p>
           </div>
           <div class="flex flex-col w-full">
-            <p class="bad">12</p>
+            <p class="bad">{{ inCorrectAnswer }}</p>
             <p class="bad">Błędne</p>
           </div>
         </div>
       </div>
       <div class="row-table-end">
-        <h2 class="title">1</h2>
+        <h2 class="title">{{ users }}</h2>
         <p class="text-des-mobile">Liczba zaproszonych osób</p>
         <div class="flex columns-2 mt-4 mb-2 place-items-center gap-1" @click="copyToken">
           <Icon name="ic:round-content-copy" size="20" class="primary-color" />
           <p class="primary-color font-semibold">Skopiuj kod polecający</p>
-          <div  class="tooltip" v-if="tooltip">
+          <div class="tooltip" v-if="tooltip">
             <span ref="tooltip" class="tooltiptext family">
               Skopiowano kod polecający
             </span>
@@ -92,16 +92,21 @@
         </div>
       </NuxtLink>
     </div>
-    <div class=" flex justify-end mt-14 pb-20">
+    <div class="flex justify-end mt-14 pb-20">
       <div class="flex" @click="logoutUser()">
-        <p class="one primary-color">Wyloguj się </p>
-        <Icon name="material-symbols:logout-rounded" size="18" class="primary-color margin-top" />
+        <p class="one primary-color">Wyloguj się</p>
+        <Icon
+          name="material-symbols:logout-rounded"
+          size="18"
+          class="primary-color margin-top"
+        />
       </div>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+import { AddAnswer } from "@/utils/function";
 import { storeToRefs } from "pinia";
 import { useUser } from "@/store/useUser";
 import { useAuth } from "@/store/useAuth";
@@ -112,24 +117,36 @@ definePageMeta({
 
 const tooltip = ref<boolean>();
 const userStore = useUser();
+await userStore.getUser();
 await userStore.getInvitationToken();
-const { invitationToken } = storeToRefs(userStore);
+await userStore.getUserStats();
+await userStore.getInvitedUser();
 
+const {
+  point,
+  invitationToken,
+  correctAnswers,
+  inCorrectAnswers,
+  invitedCount,
+} = storeToRefs(userStore);
 
+let correctAnswer: number = correctAnswers.value;
+let inCorrectAnswer: number = inCorrectAnswers.value;
+let users: number = invitedCount.value;
+let userPoints: number = point.value;
 
 function Modal() {}
 function copyToken(token: any) {
-  var token:any = invitationToken.value;
+  var token: any = invitationToken.value;
   navigator.clipboard.writeText(token);
-  tooltip.value =! tooltip.value
-  setTimeout(() => tooltip.value = false, 1500)
+  tooltip.value = !tooltip.value;
+  setTimeout(() => (tooltip.value = false), 1500);
 }
 
 async function logoutUser() {
-  const authStore = useAuth()
+  const authStore = useAuth();
   await authStore.logout();
 }
-
 </script>
 <style scoped lang="scss">
 .retangle {
@@ -173,7 +190,7 @@ async function logoutUser() {
   line-height: 22px;
   letter-spacing: 0.02em;
 }
-.margin-top{
+.margin-top {
   margin-top: 3px;
   margin-left: 4px;
 }

@@ -9,7 +9,7 @@
       </p>
       <button class="button-primary mt-7 mb-1">
         <!-- Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" /> -->
-        <div  class="tooltip"  v-if="tooltip">
+        <div class="tooltip" v-if="tooltip">
           <span ref="tooltip" class="tooltiptext family">
             Skopiowano kod polecający
           </span>
@@ -20,7 +20,7 @@
         </div>
       </button>
     </div>
-    <div v-if="!isInvetedUser">
+    <div v-if="!isUser">
       <div class="grid place-items-center mt-10">
         <Icon name="ph:users" size="166" color="#CFD8E0" />
         <p class="invite-text -mt-2 mb-5">Brak znajomych</p>
@@ -30,8 +30,11 @@
         </p>
       </div>
     </div>
-    <div v-else>
-      <!--TODO: lista zaproszonych osób -->
+    <div v-else class="mt-24">
+      <div v-for="user in users" :key="user.id">
+        {{ user.name }}
+        {{ user.is_premium }}
+      </div>
     </div>
   </NuxtLayout>
 </template>
@@ -47,7 +50,12 @@ definePageMeta({
 const tooltip = ref<boolean>();
 const userStore = useUser();
 await userStore.getInvitationToken();
-const { invitationToken } = storeToRefs(userStore);
+await userStore.getInvitedUser();
+
+const { invitationToken, allUser, invitedUser } = storeToRefs(userStore);
+
+let isUser = invitedUser.value;
+let users = allUser.value;
 
 function Modal() {}
 function copyToken(token: any) {
@@ -56,8 +64,6 @@ function copyToken(token: any) {
   tooltip.value = !tooltip.value;
   setTimeout(() => (tooltip.value = false), 1500);
 }
-
-const isInvetedUser = false;
 </script>
 <style scoped>
 .invite-text {
