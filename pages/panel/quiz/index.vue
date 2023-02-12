@@ -52,7 +52,7 @@
         </div>
     </div>
     <NuxtLayout name="panel">
-      <h1 class="title-h1 mb-10">Wszystkie quizy</h1>
+      <h1 class="title-h1 mb-4">Wszystkie quizy</h1>
         <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
       <div class="h-44"></div>
     </NuxtLayout>
