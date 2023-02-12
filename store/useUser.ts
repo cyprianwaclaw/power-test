@@ -14,7 +14,7 @@ export const useUser = defineStore('user', {
                 this.user = await res.data
             } catch { }
         },
-        async getInvitatFfionToken() {
+        async getInvitationToken() {
             const res = await axiosInstance.get('/user/getInvitationToken')
             try {
                 this.invitationToken = await res.data.invitationToken

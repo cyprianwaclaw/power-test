@@ -44,13 +44,6 @@
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
         </div>
       </div>
-      <!-- <div class="tooltip">
-
-        <span class="tooltiptext family text-sm">
-          Międzynarodowy standard numeracji kont bankowych,<br> zaczyna się od liczb kierunkowych kraju
-        </span> -->
-      <!-- </div> -->
-
       <div class="row-table-start">
         <h2 class="title">1</h2>
         <p class="text-des-mobile">Udzielonych odpowiedzi</p>
@@ -71,7 +64,6 @@
         <div class="flex columns-2 mt-4 mb-2 place-items-center gap-1" @click="copyToken">
           <Icon name="ic:round-content-copy" size="20" class="primary-color" />
           <p class="primary-color font-semibold">Skopiuj kod polecający</p>
-          <!-- dodać  v-if="tooltip" -->
           <div  class="tooltip" v-if="tooltip">
             <span ref="tooltip" class="tooltiptext family">
               Skopiowano kod polecający
@@ -113,8 +105,6 @@
 import { storeToRefs } from "pinia";
 import { useUser } from "@/store/useUser";
 import { useAuth } from "@/store/useAuth";
-import { string } from "yup/lib/locale";
-
 
 definePageMeta({
   middleware: "auth",
@@ -122,21 +112,22 @@ definePageMeta({
 
 const tooltip = ref<boolean>();
 const userStore = useUser();
-await userStore.getInvitatFfionToken();
+await userStore.getInvitationToken();
 const { invitationToken } = storeToRefs(userStore);
 
 
-async function logoutUser() {
-  const authStore = useAuth()
-  await authStore.logout();
-}
 
 function Modal() {}
 function copyToken(token: any) {
   var token:any = invitationToken.value;
   navigator.clipboard.writeText(token);
   tooltip.value =! tooltip.value
-  setTimeout(() => tooltip.value = false, 1600)
+  setTimeout(() => tooltip.value = false, 1500)
+}
+
+async function logoutUser() {
+  const authStore = useAuth()
+  await authStore.logout();
 }
 
 </script>
