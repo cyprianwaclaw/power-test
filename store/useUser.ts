@@ -4,6 +4,7 @@ import { axiosInstance } from '@/axios.config'
 export const useUser = defineStore('user', {
     state: () => ({
         user: [],
+        invitationToken: [],
     }),
 
     actions: {
@@ -13,6 +14,11 @@ export const useUser = defineStore('user', {
                 this.user = await res.data
             } catch { }
         },
-
-    },
+        async getInvitatFfionToken() {
+            const res = await axiosInstance.get('/user/getInvitationToken')
+            try {
+                this.invitationToken = await res.data.invitationToken
+            } catch { }
+         },
+    }
 })

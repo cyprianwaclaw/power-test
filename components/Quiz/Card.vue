@@ -27,7 +27,7 @@ defineProps<{ quiz: Quiz }>();
 @media only screen and (max-width: 520px) {
 .card{
     border-radius: 24px;
-    margin-top: 45px;
+    margin-top: 32px;
 }
 .bg-image{
     width: 100%;

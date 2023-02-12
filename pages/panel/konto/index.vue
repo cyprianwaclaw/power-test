@@ -44,6 +44,13 @@
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
         </div>
       </div>
+      <!-- <div class="tooltip">
+
+        <span class="tooltiptext family text-sm">
+          Międzynarodowy standard numeracji kont bankowych,<br> zaczyna się od liczb kierunkowych kraju
+        </span> -->
+      <!-- </div> -->
+
       <div class="row-table-start">
         <h2 class="title">1</h2>
         <p class="text-des-mobile">Udzielonych odpowiedzi</p>
@@ -64,6 +71,12 @@
         <div class="flex columns-2 mt-4 mb-2 place-items-center gap-1" @click="copyToken">
           <Icon name="ic:round-content-copy" size="20" class="primary-color" />
           <p class="primary-color font-semibold">Skopiuj kod polecający</p>
+          <!-- dodać  v-if="tooltip" -->
+          <div  class="tooltip" v-if="tooltip">
+            <span ref="tooltip" class="tooltiptext family">
+              Skopiowano kod polecający
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -98,25 +111,34 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { useUser } from "@/store/useUser";
 import { useAuth } from "@/store/useAuth";
+import { string } from "yup/lib/locale";
+
 
 definePageMeta({
   middleware: "auth",
 });
 
-const authStore = useAuth();
-const { user, fastTwo, loggedIn } = storeToRefs(authStore);
-await authStore.getUser();
-await authStore.getFastTwo();
-let userObject = user.value;
-let fastTwoObject = fastTwo.value;
+const tooltip = ref<boolean>();
+const userStore = useUser();
+await userStore.getInvitatFfionToken();
+const { invitationToken } = storeToRefs(userStore);
+
 
 async function logoutUser() {
+  const authStore = useAuth()
   await authStore.logout();
 }
 
 function Modal() {}
-function copyToken() {}
+function copyToken(token: any) {
+  var token:any = invitationToken.value;
+  navigator.clipboard.writeText(token);
+  tooltip.value =! tooltip.value
+  setTimeout(() => tooltip.value = false, 1200)
+}
+
 </script>
 <style scoped lang="scss">
 .retangle {
@@ -163,5 +185,45 @@ function copyToken() {}
 .margin-top{
   margin-top: 3px;
   margin-left: 4px;
+}
+
+.tooltip {
+  position: absolute;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 165px;
+  background-color: #433d3d;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  border-radius: 8px;
+  padding-top: 6px;
+  padding-bottom: 10px;
+  position: absolute;
+  z-index: 1;
+  margin: 21px;
+  bottom: 10%;
+  left: 50%;
+  margin-left: 18px;
+  opacity: 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 45%;
+  margin-left: 0px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #322e2e transparent transparent transparent;
+}
+.tooltip .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>
