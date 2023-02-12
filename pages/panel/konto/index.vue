@@ -136,7 +136,7 @@ function copyToken(token: any) {
   var token:any = invitationToken.value;
   navigator.clipboard.writeText(token);
   tooltip.value =! tooltip.value
-  setTimeout(() => tooltip.value = false, 1200)
+  setTimeout(() => tooltip.value = false, 1600)
 }
 
 </script>
@@ -200,7 +200,7 @@ function copyToken(token: any) {
   font-weight: 300;
   text-align: center;
   border-radius: 8px;
-  padding-top: 6px;
+  padding-top: 8px;
   padding-bottom: 10px;
   position: absolute;
   z-index: 1;
@@ -220,7 +220,7 @@ function copyToken(token: any) {
   margin-left: 0px;
   border-width: 6px;
   border-style: solid;
-  border-color: #322e2e transparent transparent transparent;
+  border-color: #433d3d transparent transparent transparent;
 }
 .tooltip .tooltiptext {
   visibility: visible;
