@@ -14,7 +14,7 @@
       <p class="text-gray fontmedium text-sm mt-1">{{ user.email }}</p>
     </div>
     <!-- START retangle with user data  -->
-    <div class="white-retangle">
+    <div class="white-retangle pb-4">
       <NuxtLink to="/panel/ustawienia">
         <div class="row-table-start -mt-3 flex place-items-center justify-between">
           <div class="flex place-items-center gap-3">
