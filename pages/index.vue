@@ -1,28 +1,15 @@
 <template>
   <div class="bg-slate-200">
     <h1>Stona główna</h1>
-    <div v-if="isUser">
+    <div>
       <NuxtLink to="/panel"><p class="account-linik">My account</p></NuxtLink>
     </div>
-    <div v-else>
+    <div>
       <NuxtLink to="/logowanie"><p class="account-linik">Login</p></NuxtLink>
     </div>
     <div>
-      <form>
-        <input
-        placeholder="test"
-        name="test"
-        />
-        <InputText
-        placeholder="test"
-        name="test"
-        />
-<button @click="testinput">Wyślij</button>
-      </form>
+  
 
-    </div>
-    <div>
-      <buttton @click="logoutUser()">Wyloguj</buttton>
     </div>
   </div>
 </template>
@@ -36,15 +23,5 @@ import { useAuth } from "@/store/useAuth";
 //   middleware: "guest",
 // });
 
-const authStore = useAuth();
-const { loggedIn } = storeToRefs(authStore);
-let isUser = loggedIn.value;
 
-function testinput(values:any){
-  const {test} = values
-  console.log(test)
-}
-async function logoutUser() {
-  await authStore.logout();
-}
 </script>

@@ -21,6 +21,7 @@
       </button>
     </div>
     <div v-if="!isUser">
+      <!-- element na środku po x class="grid place-items-center"-->
       <div class="grid place-items-center mt-10">
         <Icon name="ph:users" size="166" color="#CFD8E0" />
         <p class="invite-text -mt-2 mb-5">Brak znajomych</p>
@@ -31,9 +32,19 @@
       </div>
     </div>
     <div v-else class="mt-24">
-      <div v-for="user in users" :key="user.id">
+      <div v-for="(user, index) in users" :key="index">
         {{ user.name }}
         {{ user.is_premium }}
+        <div>
+          <div v-if="user.avatar_path">
+            <!--  ma zdjęcia profilowego -->
+            <p>test</p>
+          </div>
+          <div v-else>
+            <!-- nie ma zdjęcia profilowego -->
+            <p>as</p>
+          </div>
+        </div>
       </div>
     </div>
   </NuxtLayout>

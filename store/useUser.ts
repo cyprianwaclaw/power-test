@@ -1,22 +1,26 @@
 import { defineStore } from 'pinia'
 import { axiosInstance } from '@/axios.config'
+import { Financial, Company, Personal, User } from '@/types'
 
 export const useUser = defineStore('user', {
     state: () => ({
-        point: {} as number,
+        currentUser: {} as User,
         invitationToken: [],
         correctAnswers: {} as number,
         inCorrectAnswers: {} as number,
         invitedUser: [],
         allUser: [],
         invitedCount: {} as number,
+        getPersonal: {} as Personal,
+        getCompany: {} as Company,
+        getFinancial: {} as Financial,
     }),
 
     actions: {
         async getUser() {
             const res = await axiosInstance.get('/users/current')
             try {
-                this.point = await res.data.user.points
+                this.currentUser = await res.data.user
             } catch { }
         },
         async getInvitationToken() {
@@ -38,6 +42,14 @@ export const useUser = defineStore('user', {
                 this.allUser = await res.data.data
                 this.invitedUser = await res.data.success
                 this.invitedCount = await res.data.count
+            } catch { }
+        },
+        async getSettingsUser() {
+            const res = await axiosInstance.get('/user/settings')
+            try {
+                this.getPersonal = await res.data.personal
+                this.getFinancial = await res.data.financial
+                this.getCompany = await res.data.company
             } catch { }
         },
     }

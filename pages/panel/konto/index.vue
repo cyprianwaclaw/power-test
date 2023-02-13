@@ -38,7 +38,7 @@
     <h2 class="title-h2 mb-7">Statystyki konta</h2>
     <div class="mb-9 white-retangle">
       <div class="row-table-start">
-        <h2 class="title">{{ userPoints }}</h2>
+        <h2 class="title">{{ current.points }}</h2>
         <div class="flex place-items-center gap-1.5">
           <p class="text-des-mobile">Ilość punktów</p>
           <Icon name="ph:info-bold" size="20" class="" color="#618CFB" @click="Modal" />
@@ -123,7 +123,7 @@ await userStore.getUserStats();
 await userStore.getInvitedUser();
 
 const {
-  point,
+  currentUser,
   invitationToken,
   correctAnswers,
   inCorrectAnswers,
@@ -133,9 +133,10 @@ const {
 let correctAnswer: number = correctAnswers.value;
 let inCorrectAnswer: number = inCorrectAnswers.value;
 let users: number = invitedCount.value;
-let userPoints: number = point.value;
+let current = currentUser.value;
 
 function Modal() {}
+
 function copyToken(token: any) {
   var token: any = invitationToken.value;
   navigator.clipboard.writeText(token);

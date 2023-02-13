@@ -5,8 +5,6 @@ export const useAuth = defineStore('auth', {
     state: () => ({
         loggedIn: localStorage.getItem("access_token") ? true : false,
         error: {} as string,
-        user: [],
-        fastTwo: [],
         access_token: []
     }),
 
@@ -22,22 +20,6 @@ export const useAuth = defineStore('auth', {
                 this.loading = false
             } catch (error) {
                 this.error = error.response.data.message
-            }
-        },
-
-        async getUser() {
-            const res = await axiosInstance.get('/users/current')
-            try {
-                this.user = await res.data
-            } catch { }
-        },
-        async getFastTwo() {
-            const res = await axiosInstance.get('/quizzes/fast-two', {
-            })
-            try {
-                this.fastTwo = await res.data
-            } catch (e) {
-                console.error(e)
             }
         },
         async logout() {
