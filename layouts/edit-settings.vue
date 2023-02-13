@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-6">
     <div class="">
       <NavUser />
     </div>
