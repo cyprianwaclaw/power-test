@@ -6,7 +6,7 @@
         <img :src="user.avatar_path" class="" />
       </div>
       <div v-else class="">
-        <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="150" />
+        <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="160" />
       </div>
     </div>
     <div class="grid place-items-center mb-12 mt-3">
@@ -59,10 +59,9 @@
         </div>
       </NuxtLink>
     </div>
-    <div class="my-7">
+<div class="mt-10">
 
-    </div>
-
+</div>
     <!-- FINISH retangle with user data  -->
   </NuxtLayout>
 </template>

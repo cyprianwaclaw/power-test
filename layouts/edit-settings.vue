@@ -6,8 +6,8 @@
     <div class="own-container min-h-screen page-background">
       <NuxtLink to="/panel/ustawienia">
       <div class="mb-14 flex justify-end">
-        <Icon name="ph:caret-right-bold" size="21" class="primary-color back-arrow" />
-        <p class="go primary-color">Wróć do ustawień</p>
+        <Icon name="ph:caret-right-bold" size="22" class="primary-color back-arrow" />
+        <p class="go primary-color">Powrót do Ustawień</p>
       </div>
     </NuxtLink>
       <slot />
@@ -24,7 +24,7 @@
 .own-container {
   margin-left: 30px;
   margin-right: 30px;
-  padding-top: 93px;
+  padding-top: 95px;
 }
 .go {
   font-weight: 600;
