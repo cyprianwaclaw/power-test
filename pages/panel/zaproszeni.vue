@@ -31,7 +31,7 @@
         </p>
       </div>
     </div>
-    <div v-else class="mt-24">
+    <div v-else class="mt-10 grid grid-cols-2 -mx-3">
       <SingleInvitedUser v-for="(user, index) in users" :key="index" class=""
       :user = user
       />
