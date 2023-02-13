@@ -59,7 +59,7 @@
         </div>
       </NuxtLink>
     </div>
-    <div class="my-4">
+    <div class="my-6">
 
     </div>
 
