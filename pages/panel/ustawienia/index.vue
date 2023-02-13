@@ -1,5 +1,6 @@
 <template>
   <NuxtLayout name="panel">
+    <!-- gdy nie ma jeszcze danych z api  -->
     <h1 class="title-h1">Ustawienia</h1>
     <div class="white-retangle mt-8">
       <div class="row-table-start">

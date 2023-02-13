@@ -6,12 +6,12 @@
         <img :src="user.avatar_path" class="" />
       </div>
       <div v-else class="">
-        <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="120" />
+        <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="150" />
       </div>
     </div>
     <div class="grid place-items-center mb-12 mt-3">
       <p class="font-medium text-xl">{{ user.name }} {{ user.surname }}</p>
-      <p class="text-gray fontmedium text-sm mt-0.5">{{ user.email }}</p>
+      <p class="text-gray fontmedium text-sm mt-1">{{ user.email }}</p>
     </div>
     <!-- START retangle with user data  -->
     <div class="white-retangle">
