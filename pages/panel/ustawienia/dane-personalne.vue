@@ -59,8 +59,8 @@
         </div>
       </NuxtLink>
     </div>
-    <div class="h-3">
-xz
+    <div class="my-4">
+
     </div>
 
     <!-- FINISH retangle with user data  -->
