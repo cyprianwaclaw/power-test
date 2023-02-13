@@ -165,7 +165,8 @@ input:focus::placeholder {
 .success input {
     background-color: $success-backgrund;
     color: $color-success;
-    border: 2px solid transparent;
+    // border: 2px solid $border;
+    border: 2px solid $color-success;
     outline: none;
 }
 
@@ -176,7 +177,7 @@ input:focus::placeholder {
 .success .help-message {
     color: $color-success;
     position: absoute;
-    padding-top: 12px
+    // padding-top: 12px
 }
 
 @media only screen and (max-width: 520px) {

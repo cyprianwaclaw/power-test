@@ -3,7 +3,7 @@
      class="base-input"
       :class="{ 'has-error': !!errorMessage, success: meta.valid }"
     >
-      <label :for="name">{{ label }}</label>
+      <label :for="name" class="label">{{ label }}</label>
       <input
       class="base-input"
         :name="name"
@@ -70,6 +70,24 @@
     font-weight: 400;
     font-size: 16px;
   }
+  .label{
+font-size: 14px;
+margin-bottom: -1px;
+  }
+  .success input {
+    border: 2px solid transparent;
+    outline: none;
+    color:#212427;
+    background: white;
+    border-color: #e6e8ea;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+}
+
+.success input:focus {
+    border-color: #618CFB;
+}
 </style>
 
   
