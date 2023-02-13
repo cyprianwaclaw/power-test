@@ -141,6 +141,7 @@ let company =  getCompany.value
 .text-email {
   font-size: 14px;
   font-weight: 400;
+  margin-top: -3px;
 }
 .text-name {
   font-size: 18px;
