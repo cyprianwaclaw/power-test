@@ -33,7 +33,7 @@
             </p>
           </div>
         </div>
-        <button class="submit-auth w-full mt-10" type="submit">Zaloguj się</button>
+        <button class="submit-auth w-full mt-10" id="submit" type="submit">Zaloguj się</button>
       </Form>
       <div class="sm:flex hidden">
         <p class="text-des">
@@ -60,9 +60,9 @@ import { Form } from "vee-validate";
 import { useAuth } from "@/store/useAuth";
 import { ErrorInput, onInvalidSubmit } from "@/utils/function";
 
-definePageMeta({
-  middleware: "guest",
-});
+// definePageMeta({
+//   middleware: "guest",
+// });
 
 const authStore = useAuth();
 const { error, loggedIn } = storeToRefs(authStore);

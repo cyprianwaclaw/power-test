@@ -21,7 +21,7 @@ export function ErrorInput(text: string,) {
 
 
 export function onInvalidSubmit() {
-  const submitBtn = document.querySelector(".submit-auth");
+  const submitBtn = document.querySelector("#submit");
   submitBtn.classList.add("invalid");
   setTimeout(() => {
     submitBtn.classList.remove("invalid");
@@ -66,3 +66,7 @@ export function RouteChange(name: string) {
 export function AddAnswer(correct: number, incorrect: number){
   return correct + incorrect
   }
+
+ export  function ChangePlaceholderInput(text: any){
+    return text
+}

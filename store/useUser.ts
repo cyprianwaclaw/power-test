@@ -52,5 +52,13 @@ export const useUser = defineStore('user', {
                 this.getCompany = await res.data.company
             } catch { }
         },
+        async updateUserName() {
+            const res = await axiosInstance.get('/user/settings')
+            try {
+                this.getPersonal = await res.data.personal
+                this.getFinancial = await res.data.financial
+                this.getCompany = await res.data.company
+            } catch { }
+        },
     }
 })

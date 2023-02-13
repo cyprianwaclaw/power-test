@@ -26,7 +26,7 @@
     </div>
     <!-- START retangle with user data  -->
     <div class="white-retangle">
-      <NuxtLink to="/panel/ustawienia">
+      <NuxtLink to="/panel/ustawienia/edycja/imie">
         <div class="row-table-start -mt-3 flex justify-between">
           <div class="flex gap-3">
             <p class="text-des-mobile">Imię</p>
@@ -85,6 +85,10 @@
         </div>
       </NuxtLink>
     </div>
+    <div class="flex justify-end mt-4"><NuxtLink to="/panel/ustawienia/edycja/dane-personalne">
+      <p>Edytuj</p>
+    </NuxtLink></div>
+
     <!-- FINISH retangle with user data  -->
   </NuxtLayout>
 </template>

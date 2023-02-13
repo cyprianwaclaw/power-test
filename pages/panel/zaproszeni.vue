@@ -31,7 +31,7 @@
         </p>
       </div>
     </div>
-    <div v-else class="mt-10 grid grid-cols-2 -mx-3 pb-28">
+    <div v-else class="mt-3 grid grid-cols-2 -mx-3 pb-28">
       <SingleInvitedUser v-for="(user, index) in users" :key="index" class=""
       :user = user
       />
@@ -62,7 +62,7 @@ function copyToken(token: any) {
   var token: any = invitationToken.value;
   navigator.clipboard.writeText(token);
   tooltip.value = !tooltip.value;
-  setTimeout(() => (tooltip.value = false), 1500);
+  setTimeout(() => (tooltip.value = false), 1700);
 }
 </script>
 <style scoped>

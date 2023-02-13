@@ -374,3 +374,8 @@ input:focus::placeholder {
 .button-primary:hover {
     box-shadow: inset 300px 0 0 0 $primary-hover;
 }
+
+.button-primary.invalid {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}

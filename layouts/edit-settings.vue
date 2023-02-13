@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-7">
+  <div class="pb-32">
     <div class="">
       <NavUser />
     </div>
@@ -9,8 +9,10 @@
         <Icon name="ph:caret-right-bold" size="22" class="primary-color back-arrow" />
         <p class="go primary-color">Powrót do Ustawień</p>
       </div>
-    </NuxtLink>
+    </NuxtLink><div class="mt-10">
+
       <slot />
+    </div>
     </div>
     <div class="sm:hidden">
       <NavBottom />

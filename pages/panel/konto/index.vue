@@ -141,7 +141,7 @@ function copyToken(token: any) {
   var token: any = invitationToken.value;
   navigator.clipboard.writeText(token);
   tooltip.value = !tooltip.value;
-  setTimeout(() => (tooltip.value = false), 1500);
+  setTimeout(() => (tooltip.value = false), 1700);
 }
 
 async function logoutUser() {
