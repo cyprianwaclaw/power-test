@@ -380,3 +380,13 @@ input:focus::placeholder {
     animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
+
+.input-not-data::placeholder {
+    color: #C4C4C4 !important;
+    font-weight: 300 !important;
+    font-size: 14px !important;
+}
+
+.input-data::placeholder {
+    color: $text-black !important
+}

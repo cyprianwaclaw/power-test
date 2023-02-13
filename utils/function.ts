@@ -67,6 +67,12 @@ export function AddAnswer(correct: number, incorrect: number){
   return correct + incorrect
   }
 
- export  function ChangePlaceholderInput(text: any){
-    return text
+ export  function ChangePlaceholderInput(name: any, text:string){
+    var results = null
+    if(name.length > 0){
+      results = name
+    } else {
+      results = text
+    }
+    return results;
 }

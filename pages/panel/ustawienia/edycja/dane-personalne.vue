@@ -38,6 +38,7 @@
         </div>
         <div class="row-table-end">
           <InputSettings
+            :color="inputNotData"
             name="phone"
             label="Numer telefonu"
             id="phone"
@@ -56,38 +57,47 @@
 </template>
 
 <script setup lang="ts">
-import { useUser } from "@/store/useUser";
-// import "yup-phone";
 import * as Yup from "yup";
 import { storeToRefs } from "pinia";
 import { Form } from "vee-validate";
-import { onInvalidSubmit, ChangePlaceholderInput } from "@/utils/function"
-
+import { useUser } from "@/store/useUser";
+import { onInvalidSubmit, ChangePlaceholderInput } from "@/utils/function";
 
 definePageMeta({
   middleware: "auth",
 });
 
 const userStore = useUser();
-const { currentUser } = storeToRefs(userStore);
-
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+await userStore.getSettingsUser();
+const { getPersonal } = storeToRefs(userStore);
+let personal = getPersonal.value;
 
 const schema = Yup.object().shape({
-    name: Yup.string() .matches(/^[A-Za-z ]*$/, 'Please enter valid name').max(20, "Imię nie może być dłuższe niż 20 znaków"),
-   surname: Yup.string().matches(/^[A-Za-z ]*$/, 'Please enter valid name').max(20, "Nazwisko nie może być dłuższe niż 20 znaków"),
-    email: Yup.string().email("Błędny email").max(35, "Email nie może być dłuższe niż 35  znaków"),
-    // odpowiedź z api
-    phone: Yup.string().matches(/^[0-9 ]*$/).max(9, "Numer telefonu musi mieć 9 cyfr"),
-})
+  name: Yup.string()
+    .matches(/^[A-Za-z ]*$/, "Please enter valid name")
+    .max(20, "Imię nie może być dłuższe niż 20 znaków"),
+  surname: Yup.string()
+    .matches(/^[A-Za-z ]*$/, "Please enter valid name")
+    .max(20, "Nazwisko nie może być dłuższe niż 20 znaków"),
+  email: Yup.string()
+    .email("Błędny email")
+    .max(35, "Email nie może być dłuższe niż 35  znaków"),
+  // odpowiedź z api
+  phone: Yup.string()
+    .matches(/^[0-9 ]*$/)
+    .max(9, "Numer telefonu musi mieć 9 cyfr"),
+});
 
-const namePlaceholder = ChangePlaceholderInput('Cyprian')
-const surnamePlaceholder = ChangePlaceholderInput('Cyprian')
-const emailPlaceholder = ChangePlaceholderInput('Cyprian')
-const phonePlaceholder = ChangePlaceholderInput('Cyprian')
+const inputNotData = ref("input-not-data")
+const inputData = ref("input-data")
+
+const namePlaceholder = ChangePlaceholderInput(personal.name, "Wprowadź imię");
+const surnamePlaceholder = ChangePlaceholderInput(personal.surname, "Wprowadź nazwisko");
+const emailPlaceholder = ChangePlaceholderInput(personal.email, "Wprowadź adres e-mail");
+const phonePlaceholder = ChangePlaceholderInput(personal.phone, "Twój numer telefonu");
 
 async function onSubmit(values: any) {
-  console.log('wysłano')
+  console.log("wysłano");
 }
 </script>
 
