@@ -14,7 +14,7 @@
             </div>
           </div>
           <div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </div>
       </NuxtLink>
@@ -39,7 +39,7 @@
               <p class="text-des-mobile">Nazwa działalności</p>
               <h2 class="title-menu-mobile">{{ company.name }}</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
         <NuxtLink to="/panel/ustawienia">
@@ -48,7 +48,7 @@
               <p class="text-des-mobile">NIP</p>
               <h2 class="title-menu-mobile">{{ company.nip }}</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
         <NuxtLink to="/panel/ustawienia">
@@ -57,7 +57,7 @@
               <p class="text-des-mobile">REGON</p>
               <h2 class="title-menu-mobile">{{ company.regon }}</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
         <NuxtLink to="/panel/wiadomosc">
@@ -65,7 +65,7 @@
             <div class="flex place-items-center">
               <h2 class="title-menu-mobile">Siedziba działalności</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
       </div>
@@ -77,9 +77,15 @@
           <div class="row-table-start -mt-4 flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Numer iban</p>
-              <h2 class="text-sm font-semibold">{{ financial.iban }}</h2>
+              <!-- gdy nie ma numeru iban -->
+              <div v-if="!financial.iban">
+                <h2 class="text-sm font-semibold">{{financial.iban }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-normal mt-0.5">wprowadź numer iban...</h2>
+              </div>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
         <NuxtLink to="/panel/ustawienia">
@@ -88,7 +94,7 @@
               <p class="text-des-mobile">Nazwa banku</p>
               <h2 class="title-menu-mobile">{{ financial.bank_name }}</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
         <NuxtLink to="/panel/ustawienia">
@@ -97,7 +103,7 @@
               <p class="text-des-mobile">Kod Swift</p>
               <h2 class="title-menu-mobile">{{ financial.swift }}</h2>
             </div>
-            <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
       </div>
@@ -141,7 +147,7 @@ let company =  getCompany.value
 .text-email {
   font-size: 14px;
   font-weight: 400;
-  margin-top: -3px;
+  margin-top: -1px;
 }
 .text-name {
   font-size: 18px;

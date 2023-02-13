@@ -79,7 +79,7 @@
             <Icon name="ph:gear-light" size="26" class="primary-color" />
             <h2 class="title-menu-mobile ml-2">Ustawienia</h2>
           </div>
-          <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
         </div>
       </NuxtLink>
       <NuxtLink to="/panel/wiadomosc">
@@ -88,7 +88,7 @@
             <Icon name="ph:paper-plane-right-light" size="26" class="primary-color" />
             <h2 class="title-menu-mobile ml-2">Napisz do nas</h2>
           </div>
-          <Icon name="ph:caret-right-bold" size="20" class="text-gray" />
+          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
         </div>
       </NuxtLink>
     </div>
