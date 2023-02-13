@@ -5,19 +5,33 @@
     <div class="white-retangle mt-8">
       <div class="row-table-start">
         <NuxtLink to="/panel/ustawienia/dane-personalne">
-        <div class="columns-2 flex -ml-1 mb-1 -mt-2 place-items-center justify-between">
-          <div class="flex place-items-center gap-4">
-            <img src="@/assets/file/photo1.jpg" class="image-hero" />
+          <div class="columns-2 flex -ml-1 mb-1 -mt-2 place-items-center justify-between">
+            <div class="flex place-items-center gap-4">
+              <div class="grid place-items-center">
+                <!-- gdy jest user avatar -->
+                <div v-if="user.avatar_path" class="">
+                  <img :src="user.avatar_path" class="" />
+                </div>
+                <div v-else class="">
+                  <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="55" />
+                </div>
+              </div>
+              <!-- <img src="@/assets/file/photo1.jpg" class="image-hero" /> -->
+              <div>
+                <div v-if="personal.surname">
+                  <h2 class="text-name">{{ personal.name }} {{ personal.surname }}</h2>
+                </div>
+                <div v-else>
+                  <h2 class="text-name">Imię Nazwisko</h2>
+                </div>
+                <p class="text-email text-gray">{{ personal.email }}</p>
+              </div>
+            </div>
             <div>
-              <p class="text-name">{{ personal.name }} {{personal.surname }}</p>
-              <p class="text-email text-gray">{{ personal.email }}</p>
+              <Icon name="ph:caret-right-light" size="20" class="text-gray" />
             </div>
           </div>
-          <div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
-          </div>
-        </div>
-      </NuxtLink>
+        </NuxtLink>
       </div>
       <div class="ml-6 mr-9 mt-6 mb-4">
         <p class="text">
@@ -31,13 +45,23 @@
       </div>
     </div>
     <div class="mt-14">
-      <h2 class="title-h2 mb-7">Dane do faktury</h2>
+      <h2 class="title-h2">Dane do faktury</h2>
+      <p class="mb-8 text-sm font-medium primary-color mr-6 mt-2 line">
+        Uzupełnij w przypadku chęci otrzymania faktury za zakupione pakiety
+      </p>
       <div class="white-retangle">
         <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start -mt-4 flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Nazwa działalności</p>
-              <h2 class="title-menu-mobile">{{ company.name }}</h2>
+              <div v-if="company.name">
+                <h2 class="title-menu-mobile">{{ company.name }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-thin primary-color">
+                  wprowadź nazwę działalności
+                </h2>
+              </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
@@ -46,7 +70,14 @@
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">NIP</p>
-              <h2 class="title-menu-mobile">{{ company.nip }}</h2>
+              <div v-if="company.nip">
+                <h2 class="title-menu-mobile">{{ company.nip }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-thin primary-color">
+                  wprowadź numer nip
+                </h2>
+              </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
@@ -55,7 +86,12 @@
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">REGON</p>
-              <h2 class="title-menu-mobile">{{ company.regon }}</h2>
+              <div v-if="company.regon">
+                <h2 class="title-menu-mobile">{{ company.regon }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-thin primary-color">wprowadź REGON</h2>
+              </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
@@ -78,11 +114,13 @@
             <div class="">
               <p class="text-des-mobile">Numer iban</p>
               <!-- gdy nie ma numeru iban -->
-              <div v-if="!financial.iban">
-                <h2 class="text-sm font-semibold">{{financial.iban }}</h2>
+              <div v-if="financial.iban">
+                <h2 class="text-sm font-semibold">{{ financial.iban }}</h2>
               </div>
               <div v-else>
-                <h2 class="text-gary text-sm font-normal mt-0.5">wprowadź numer iban...</h2>
+                <h2 class="text-gary text-sm font-thin primary-color">
+                  wprowadź numer iban
+                </h2>
               </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
@@ -92,7 +130,14 @@
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Nazwa banku</p>
-              <h2 class="title-menu-mobile">{{ financial.bank_name }}</h2>
+              <div v-if="financial.bank_name">
+                <h2 class="title-menu-mobile">{{ financial.bank_name }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-thin primary-color">
+                  wprowadź nazwę banku
+                </h2>
+              </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
@@ -100,15 +145,22 @@
         <NuxtLink to="/panel/ustawienia">
           <div class="row-table-end flex place-items-center justify-between">
             <div class="">
-              <p class="text-des-mobile">Kod Swift</p>
-              <h2 class="title-menu-mobile">{{ financial.swift }}</h2>
+              <p class="text-des-mobile">Kod swift</p>
+              <div v-if="financial.swift">
+                <h2 class="title-menu-mobile">{{ financial.swift }}</h2>
+              </div>
+              <div v-else>
+                <h2 class="text-gary text-sm font-thin primary-color">
+                  wprowadź kod swift
+                </h2>
+              </div>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
         </NuxtLink>
       </div>
     </div>
-    <div class=" flex justify-end mt-14 pb-20">
+    <div class="flex justify-end mt-14 pb-20">
       <p class="one primary-color">
         <NuxtLink to="/panel/ustawienia"> Regulamin </NuxtLink>
       </p>
@@ -120,21 +172,22 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useUser } from "@/store/useUser";
+import { storeToRefs } from "pinia"
+import { useUser } from "@/store/useUser"
 
 definePageMeta({
   middleware: "auth",
 });
 
-const userStore= useUser();
-const { getPersonal, getFinancial, getCompany } = storeToRefs(userStore);
+const userStore = useUser();
+const { currentUser, getPersonal, getFinancial, getCompany } = storeToRefs(userStore)
 
-await userStore.getSettingsUser()
+await userStore.getSettingsUser();
 
 let personal = getPersonal.value
 let financial = getFinancial.value
-let company =  getCompany.value
+let company = getCompany.value
+let user = currentUser.value
 
 </script>
 <style lang="scss" scoped>
@@ -158,7 +211,7 @@ let company =  getCompany.value
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
-  border-right: 1px solid #618CFB;
+  border-right: 1px solid #618cfb;
   margin-right: 11px;
   padding-right: 11px;
 }
@@ -167,5 +220,9 @@ let company =  getCompany.value
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
+}
+.line {
+  line-height: 24px;
+  margin-top: 10px;
 }
 </style>

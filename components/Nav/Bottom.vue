@@ -50,6 +50,7 @@
       </div>
     </div>
   </div>
+  center icon
   <div class="nav-border-bottom px-2 sm:py-4 w-fullflex bg-white w-full fixed left-0 bottom-0">
     <div class="flex w-full justify-beetwen py-2">
       <div class="w-full">
@@ -117,6 +118,9 @@ const routeName = RouteChange(route.path);
   height: 47px;
   padding: 8px;
   border-radius: 100%;
+}
+.nav-icon{
+  width: 100%
 }
 .green {
   background: rgba(43, 181, 40, 0.25);

@@ -32,20 +32,9 @@
       </div>
     </div>
     <div v-else class="mt-24">
-      <div v-for="(user, index) in users" :key="index">
-        {{ user.name }}
-        {{ user.is_premium }}
-        <div>
-          <div v-if="user.avatar_path">
-            <!--  ma zdjęcia profilowego -->
-            <p>test</p>
-          </div>
-          <div v-else>
-            <!-- nie ma zdjęcia profilowego -->
-            <p>as</p>
-          </div>
-        </div>
-      </div>
+      <SingleInvitedUser v-for="(user, index) in users" :key="index" class=""
+      :user = user
+      />
     </div>
   </NuxtLayout>
 </template>

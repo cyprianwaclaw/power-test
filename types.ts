@@ -41,3 +41,9 @@ export type User = {
   points: number,
   avatar_path: null | string,
 }
+
+export type InvitedUser = {
+  name: string
+  is_premium: boolean,
+  avatar_path: null | string,
+}

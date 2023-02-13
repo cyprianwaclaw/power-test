@@ -34,7 +34,7 @@
               <h2 class="title-menu-mobile">{{ user.name }}</h2>
             </div>
             <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5">wprowadź imię...</h2>
+              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź imię...</h2>
             </div>
           </div>
           <Icon name="ph:caret-right-light" size="20" class="text-gray" />
@@ -48,7 +48,7 @@
               <h2 class="title-menu-mobile">{{ user.surname }}</h2>
             </div>
             <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5">wprowadź nazwisko...</h2>
+              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź nazwisko...</h2>
             </div>
           </div>
           <Icon name="ph:caret-right-light" size="20" class="text-gray" />
@@ -62,7 +62,7 @@
               <h2 class="title-menu-mobile">{{ user.email }}</h2>
             </div>
             <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5">wprowadź email...</h2>
+              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź email...</h2>
             </div>
           </div>
           <Icon name="ph:caret-right-light" size="20" class="text-gray" />
@@ -77,7 +77,7 @@
               <h2 class="title-menu-mobile">{{ user.phone }}</h2>
             </div>
             <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5">wprowadź numer...</h2>
+              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź numer</h2>
             </div>
             <!-- FINISH gdy nie ma danych  -->
           </div>
