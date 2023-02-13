@@ -7,7 +7,7 @@
       <div v-else>
         <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="100" />
       </div>
-      <p class="text-xl font-semibold mb-1 mt-3 ">{{ user.name }}</p>
+      <p class="text-xl font-semibold mb-2 mt-3 ">{{ user.name }}</p>
       <div v-if="!user.is_premium" class="">
         <div class="flex place-items-center gap-1.5">
             <Icon name="fa:diamond" class="primary-color"  size="18" />
