@@ -59,9 +59,9 @@ export const useUser = defineStore('user', {
             }  catch (error) {
                 this.error = error.response.data.message
             }
-        }, async updateUserCompanyAddress(city: string, postcode: string, street: string, building_number: any, house_number:any) {
+        }, async updateUserCompany(company_name:any, nip:any, regon:any,  city: string, postcode: string, street: string, building_number: any, house_number:any) {
             try {
-                const res = await axiosInstance.post('/user/settings',{city, postcode, street, building_number, house_number })
+                const res = await axiosInstance.post('/user/settings',{company_name, nip, regon,city, postcode, street, building_number, house_number })
             }  catch (error) {
                 this.error = error.response.data.message
             }

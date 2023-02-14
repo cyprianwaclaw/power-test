@@ -76,17 +76,6 @@
               </div>
             </div>
           </div>
-          <div class="row-table-start flex place-items-center justify-between">
-            <div class="">
-              <p class="text-des-mobile">REGON</p>
-              <div v-if="company.regon">
-                <h2 class="title-menu-mobile">{{ company.regon }}</h2>
-              </div>
-              <div v-else>
-                <h2 class="text-gary text-sm font-thin primary-color">wprowadź REGON</h2>
-              </div>
-            </div>
-          </div>
         <NuxtLink to="/panel/ustawienia/dane-faktura">
           <div class="row-table-end flex place-items-center justify-between">
             <div class="flex place-items-center">
@@ -102,14 +91,14 @@
       <div class="white-retangle">
           <div class="row-table-start -mt-4 flex place-items-center justify-between">
             <div class="">
-              <p class="text-des-mobile">Numer iban</p>
+              <p class="text-des-mobile">Numer IBAN</p>
               <!-- gdy nie ma numeru iban -->
               <div v-if="financial.iban">
                 <h2 class="text-sm font-semibold">{{ financial.iban }}</h2>
               </div>
               <div v-else>
                 <h2 class="text-gary text-sm font-thin primary-color">
-                  wprowadź numer iban
+                  wprowadź numer IBAN
                 </h2>
               </div>
             </div>
@@ -126,11 +115,10 @@
                 </h2>
               </div>
             </div>
-
           </div>
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
-              <p class="text-des-mobile">Kod swift</p>
+              <p class="text-des-mobile">Kod SWIFT</p>
               <div v-if="financial.swift">
                 <h2 class="title-menu-mobile">{{ financial.swift }}</h2>
               </div>
@@ -140,10 +128,8 @@
                 </h2>
               </div>
             </div>
-
           </div>
-
-          <NuxtLink to="/panel/ustawienia/dane-faktura">
+          <NuxtLink to="/panel/ustawienia/edycja/wyplata">
             <div class="row-table-end flex place-items-center justify-between">
               <div class="flex place-items-center">
                 <h2 class="title-menu-mobile">Edytuj dane</h2>
@@ -151,7 +137,6 @@
               <Icon name="ph:caret-right-light" size="20" class="text-gray" />
             </div>
           </NuxtLink>
-
       </div>
     </div>
     <div class="flex justify-end mt-14 pb-20">

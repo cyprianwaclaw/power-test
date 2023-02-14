@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="edit-settings">
-    <div class="mb-7">
-      <h1 class="title-h2">Edytuj dane personalne</h1>
+    <div class="mb-8">
+      <h1 class="title-h1">Edytuj dane</h1>
     </div>
     <div class="white-retangle">
       <Form
@@ -49,7 +49,7 @@
             :placeholder="phonePlaceholder.placeholder"
           />
         </div>
-        <div class="flex justify-end mb-5">
+        <div class="flex justify-end mb-4">
           <button class="button-primary mt-3 mr-7" id="submit" type="submit">
             Gotowe
           </button>
@@ -109,7 +109,7 @@ async function onSubmit(values: any) {
   let phoneNew = ChangeDataInput(phone, personal.phone);
 
   await userStore.updateUserPersonal(nameNew, surnameNew, emailNew, phoneNew);
-  window.location.reload();
+
 }
 </script>
 
