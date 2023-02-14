@@ -4,12 +4,10 @@
       <NavUser />
     </div>
     <div class="own-container min-h-screen page-background">
-      <NuxtLink to="/panel/ustawienia">
-      <div class="mb-14 flex justify-end">
+      <div class="mb-10 flex justify-end" @click="Back">
         <Icon name="ph:caret-right-bold" size="22" class="primary-color back-arrow" />
-        <p class="go primary-color">Powrót do Ustawień</p>
-      </div>
-    </NuxtLink><div class="mt-10">
+        <p class="go primary-color">Powrót</p>
+      </div><div class="mt-10">
 
       <slot />
     </div>
@@ -20,7 +18,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+function Back(){useRouter().back()}
+</script>
 
 <style scoped>
 .own-container {

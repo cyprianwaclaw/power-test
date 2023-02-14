@@ -364,9 +364,9 @@ input:focus::placeholder {
     font-style: normal;
     // place-items: center;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 22px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
     display: block;
     border-radius: 8px;
     transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -385,6 +385,10 @@ input:focus::placeholder {
     color: #C4C4C4 !important;
     font-weight: 300 !important;
     font-size: 14px !important;
+}
+
+.input-not-data:focus::placeholder {
+    font-size: 0px !important;
 }
 
 .input-data::placeholder {

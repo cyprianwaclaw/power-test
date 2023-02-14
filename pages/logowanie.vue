@@ -74,7 +74,7 @@ function inputColor() {
   ErrorLogin = false;
 }
 
-async function onSubmit(values: any) {
+async function onSubmit(values) {
   const { email, password } = values;
   await authStore.loginUser(email, password);
   let input = ErrorInput(error.value);

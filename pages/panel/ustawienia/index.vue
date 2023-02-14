@@ -50,7 +50,6 @@
         Uzupełnij w przypadku chęci otrzymania faktury za zakupione pakiety
       </p>
       <div class="white-retangle">
-        <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start -mt-4 flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Nazwa działalności</p>
@@ -63,10 +62,7 @@
                 </h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
-        </NuxtLink>
-        <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">NIP</p>
@@ -79,10 +75,7 @@
                 </h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
-        </NuxtLink>
-        <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">REGON</p>
@@ -93,13 +86,11 @@
                 <h2 class="text-gary text-sm font-thin primary-color">wprowadź REGON</h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
-        </NuxtLink>
-        <NuxtLink to="/panel/wiadomosc">
+        <NuxtLink to="/panel/ustawienia/dane-faktura">
           <div class="row-table-end flex place-items-center justify-between">
             <div class="flex place-items-center">
-              <h2 class="title-menu-mobile">Siedziba działalności</h2>
+              <h2 class="title-menu-mobile">Zobacz pełne dane</h2>
             </div>
             <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
@@ -109,7 +100,6 @@
     <div class="mt-14">
       <h2 class="title-h2 mb-7">Wypłata środków</h2>
       <div class="white-retangle">
-        <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start -mt-4 flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Numer iban</p>
@@ -123,10 +113,7 @@
                 </h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
           </div>
-        </NuxtLink>
-        <NuxtLink to="/panel/ustawienia">
           <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Nazwa banku</p>
@@ -139,11 +126,9 @@
                 </h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
+
           </div>
-        </NuxtLink>
-        <NuxtLink to="/panel/ustawienia">
-          <div class="row-table-end flex place-items-center justify-between">
+          <div class="row-table-start flex place-items-center justify-between">
             <div class="">
               <p class="text-des-mobile">Kod swift</p>
               <div v-if="financial.swift">
@@ -155,9 +140,18 @@
                 </h2>
               </div>
             </div>
-            <Icon name="ph:caret-right-light" size="20" class="text-gray" />
+
           </div>
-        </NuxtLink>
+
+          <NuxtLink to="/panel/ustawienia/dane-faktura">
+            <div class="row-table-end flex place-items-center justify-between">
+              <div class="flex place-items-center">
+                <h2 class="title-menu-mobile">Edytuj dane</h2>
+              </div>
+              <Icon name="ph:caret-right-light" size="20" class="text-gray" />
+            </div>
+          </NuxtLink>
+
       </div>
     </div>
     <div class="flex justify-end mt-14 pb-20">

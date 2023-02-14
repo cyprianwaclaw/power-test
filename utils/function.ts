@@ -67,12 +67,31 @@ export function AddAnswer(correct: number, incorrect: number){
   return correct + incorrect
   }
 
- export  function ChangePlaceholderInput(name: any, text:string){
-    var results = null
+ export  function ChangePlaceholderInput(name: any, text:any){
+    var results = {
+      placeholder: '',
+      class: ''
+    }
     if(name.length > 0){
-      results = name
+      results = {
+        placeholder: name,
+        class: 'input-data'
+      }
     } else {
-      results = text
+      results = {
+        placeholder: text,
+        class: 'input-not-data'
+      }
     }
     return results;
+}
+
+export function ChangeDataInput(value: any, apiData:any){
+  let results = ''
+  if(value.length > 0){
+results= value
+  } else if(apiData.length > 0){
+    results = apiData
+  }
+  return results;
 }

@@ -26,68 +26,66 @@
     </div>
     <!-- START retangle with user data  -->
     <div class="white-retangle">
-      <NuxtLink to="/panel/ustawienia/edycja/imie">
-        <div class="row-table-start -mt-3 flex justify-between">
-          <div class="flex gap-3">
-            <p class="text-des-mobile">Imię</p>
-            <div v-if="user.name">
-              <h2 class="title-menu-mobile">{{ user.name }}</h2>
-            </div>
-            <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź imię...</h2>
-            </div>
+      <div class="row-table-start -mt-3 flex justify-between">
+        <div class="flex gap-3">
+          <p class="text-des-mobile">Imię</p>
+          <div v-if="user.name">
+            <h2 class="title-menu-mobile">{{ user.name }}</h2>
           </div>
-          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/panel/ustawienia">
-        <div class="row-table-start flex justify-between">
-          <div class="flex gap-3">
-            <p class="text-des-mobile">Nazwisko</p>
-            <div v-if="user.surname">
-              <h2 class="title-menu-mobile">{{ user.surname }}</h2>
-            </div>
-            <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź nazwisko...</h2>
-            </div>
+          <div v-else>
+            <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">
+              wprowadź imię 
+            </h2>
           </div>
-          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
         </div>
-      </NuxtLink>
-      <NuxtLink to="/panel/ustawienia">
-        <div class="row-table-start flex justify-between">
-          <div class="flex gap-3">
-            <p class="text-des-mobile">E-mail</p>
-            <div v-if="user.email">
-              <h2 class="title-menu-mobile">{{ user.email }}</h2>
-            </div>
-            <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź email...</h2>
-            </div>
+      </div>
+      <div class="row-table-start flex justify-between">
+        <div class="flex gap-3">
+          <p class="text-des-mobile">Nazwisko</p>
+          <div v-if="user.surname">
+            <h2 class="title-menu-mobile">{{ user.surname }}</h2>
           </div>
-          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/panel/ustawienia">
-        <div class="row-table-end flex justify-between">
-          <div class="flex gap-3">
-            <p class="text-des-mobile">Telefon</p>
-            <!-- START gdy nie ma danych  -->
-            <div v-if="user.phone">
-              <h2 class="title-menu-mobile">{{ user.phone }}</h2>
-            </div>
-            <div v-else>
-              <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">wprowadź numer</h2>
-            </div>
-            <!-- FINISH gdy nie ma danych  -->
+          <div v-else>
+            <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">
+              wprowadź nazwisko 
+            </h2>
           </div>
-          <Icon name="ph:caret-right-light" size="20" class="text-gray" />
         </div>
+      </div>
+      <div class="row-table-start flex justify-between">
+        <div class="flex gap-3">
+          <p class="text-des-mobile">E-mail</p>
+          <div v-if="user.email">
+            <h2 class="title-menu-mobile">{{ user.email }}</h2>
+          </div>
+          <div v-else>
+            <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">
+              wprowadź email 
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row-table-end flex justify-between">
+        <div class="flex gap-3">
+          <p class="text-des-mobile">Telefon</p>
+          <!-- START gdy nie ma danych  -->
+          <div v-if="user.phone">
+            <h2 class="title-menu-mobile">{{ user.phone }}</h2>
+          </div>
+          <div v-else>
+            <h2 class="text-gary text-sm font-thin mt-0.5 primary-color">
+              wprowadź numer
+            </h2>
+          </div>
+          <!-- FINISH gdy nie ma danych  -->
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <NuxtLink to="/panel/ustawienia/edycja/dane-personalne">
+        <p class="primary-color text-sm font-medium">Edytuj</p>
       </NuxtLink>
     </div>
-    <div class="flex justify-end mt-4"><NuxtLink to="/panel/ustawienia/edycja/dane-personalne">
-      <p>Edytuj</p>
-    </NuxtLink></div>
 
     <!-- FINISH retangle with user data  -->
   </NuxtLayout>
