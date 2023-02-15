@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="panel">
-    <h1 class="title-h1">Dodaj nowy</h1>
+    <h1 class="title-h1">Nowy quiz</h1>
   </NuxtLayout>
 </template>
 
@@ -12,14 +12,4 @@ definePageMeta({
   middleware: "auth",
 });
 
-const authStore = useAuth();
-const { user, fastTwo, loggedIn } = storeToRefs(authStore);
-await authStore.getUser();
-await authStore.getFastTwo();
-let userObject = user.value;
-let fastTwoObject = fastTwo.value;
-
-async function logoutUser() {
-  await authStore.logout();
-}
 </script>

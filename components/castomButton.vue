@@ -1,6 +1,6 @@
 
 <template>
-    <button :disabled="isDisabled">Submit</button>
+    <button class="button-primary" :disabled="isDisabled">Submit</button>
 </template>
 <script setup lang="ts">
   import { useIsFormDirty, useIsFormValid } from "vee-validate";
