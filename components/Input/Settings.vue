@@ -12,7 +12,6 @@
       @input="handleChange"
       @blur="handleBlur"
     />
-
     <p class="help-message" v-show="errorMessage || meta.valid">
       {{ errorMessage || successMessage }}
     </p>
@@ -21,6 +20,7 @@
 
 <script setup lang="ts">
 import { toRef } from "vue";
+import { provide } from 'vue'
 import { useField } from "vee-validate";
 
 const props = defineProps({
@@ -51,7 +51,7 @@ const props = defineProps({
   color: {
     type: String,
     default: "",
-  },
+  }, 
 });
 
 const name = toRef(props, "name");
@@ -63,6 +63,14 @@ const { value: inputValue, errorMessage, handleBlur, handleChange, meta } = useF
     initialValue: props.value,
   }
 );
+
+provide(/* key */ 'count', /* value */ 0)
+
+const message = ref('hello')
+provide('message', message)
+
+// provide(/* key */ 'message', /* value */ 'hello!')
+// console.log(meta)
 </script>
 <style scoped>
 .base-input::placeholder {

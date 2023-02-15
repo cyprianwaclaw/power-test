@@ -16,7 +16,6 @@
                   <Icon name="carbon:user-avatar-filled" class="" color="#BFCBEE" size="55" />
                 </div>
               </div>
-              <!-- <img src="@/assets/file/photo1.jpg" class="image-hero" /> -->
               <div>
                 <div v-if="personal.surname">
                   <h2 class="text-name">{{ personal.name }} {{ personal.surname }}</h2>

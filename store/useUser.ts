@@ -14,7 +14,8 @@ export const useUser = defineStore('user', {
         getPersonal: {} as Personal,
         getCompany: {} as Company,
         getFinancial: {} as Financial,
-        error: [],
+        successCompany: [],
+        errorMessage: [] as any
     }),
 
     actions: {
@@ -56,14 +57,14 @@ export const useUser = defineStore('user', {
         async updateUserPersonal(name: string, surname: string, email: string, phone: any) {
             try {
                 const res = await axiosInstance.post('/user/settings',{name, surname, email, phone})
-            }  catch (error) {
-                this.error = error.response.data.message
+            }  catch {
             }
         }, async updateUserCompany(company_name:any, nip:any, regon:any,  city: string, postcode: string, street: string, building_number: any, house_number:any) {
             try {
                 const res = await axiosInstance.post('/user/settings',{company_name, nip, regon,city, postcode, street, building_number, house_number })
+                this.successCompany = await res.data.success
             }  catch (error) {
-                this.error = error.response.data.message
+                this.errorMessage = error.response.data
             }
         },
     }

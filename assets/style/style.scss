@@ -35,15 +35,6 @@
     color: $text-black
 }
 
-.modal-view {
-    background-color: white;
-    border: solid transparent;
-    border-radius: 46px 46px 0px 0px;
-    padding: 24px 24px 24px 24px;
-    position: relative;
-    z-index: 100;
-}
-
 .submit-auth {
     box-shadow: inset 0 0 0 1 $primary-hover;
     background-color: $primary;
@@ -150,7 +141,7 @@ input:focus::placeholder {
 .has-error input {
     background-color: $error-backgrund;
     color: $color-error;
-    border: 2px solid transparent;
+    border: 1px solid$color-error;
     outline: none;
 }
 
@@ -215,11 +206,40 @@ input:focus::placeholder {
 }
 
 .dark-blur-background {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px); // height: 100%;
     width: 100%;
     height: 100vh;
     margin-bottom: -150px
+}
+
+.modal-view {
+    background-color: white;
+    border: solid transparent;
+    border-radius: 46px 46px 0px 0px;
+    padding: 24px 24px 24px 24px;
+    position: relative;
+    z-index: 100;
+}
+
+.blur-background-update {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px); // height: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.modal-view-update {
+    background-color: white;
+    border: solid transparent;
+    border-radius: 12px;
+    margin-left: 44px;
+    margin-right: 44px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 32%;
+    z-index: 100;
 }
 
 @media only screen and (max-width: 520px) {
@@ -379,6 +399,13 @@ input:focus::placeholder {
 .button-primary.invalid {
     animation: shake 0.5s;
     animation-iteration-count: infinite;
+}
+
+.button-primary.invalid:disabled,
+button.button-primary[disabled] {
+    // animation: shake 0.5s;
+    // animation-iteration-count: infinite;
+    background-color: #a0b9f7;
 }
 
 .input-not-data::placeholder {
