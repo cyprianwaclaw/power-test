@@ -1,4 +1,12 @@
 @import "variables";
+@supports (-webkit-overflow-scrolling: touch) {
+    select,
+    textarea,
+    input {
+        font-size: 16px;
+    }
+}
+
 .click {
     -webkit-tap-highlight-color: transparent;
     border-radius: 999px;
