@@ -1,12 +1,11 @@
 <template>
-<div class="family black-color  page-background">
+  <Meta name="viewport" content="My app description" />
+  <div class="family black-color page-background">
     <div class="click">
-        <!-- <NuxtLoadingIndicator /> -->
-        <NuxtPage />  
+      <!-- <NuxtLoadingIndicator /> -->
+      <NuxtPage />
     </div>
-    </div>    
+  </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
