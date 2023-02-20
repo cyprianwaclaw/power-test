@@ -2,6 +2,13 @@ import { defineStore } from 'pinia'
 import { axiosInstance } from '@/axios.config'
 import { Financial, Company, Personal, User } from '@/types'
 
+type ErrorMessageCompany = {
+    errors:[
+        regon: string,
+        nip: string,
+    ]
+}
+
 export const useUser = defineStore('user', {
     state: () => ({
         currentUser: {} as User,
@@ -14,8 +21,8 @@ export const useUser = defineStore('user', {
         getPersonal: {} as Personal,
         getCompany: {} as Company,
         getFinancial: {} as Financial,
-        successCompany: [],
-        errorMessage: [] as any
+        successCompany: [] as boolean,
+        errorMessage: [] as string,
     }),
 
     actions: {

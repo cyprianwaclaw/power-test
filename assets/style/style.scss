@@ -34,6 +34,10 @@
     color: $color-error
 }
 
+.green {
+    color: $color-success
+}
+
 .page-background {
     background-color: $page-backgroud;
 }
@@ -241,8 +245,8 @@ input:focus::placeholder {
     background-color: white;
     border: solid transparent;
     border-radius: 12px;
-    margin-left: 44px;
-    margin-right: 44px;
+    margin-left: 54px;
+    margin-right: 54px;
     position: fixed;
     left: 0;
     right: 0;
@@ -383,6 +387,21 @@ input:focus::placeholder {
     }
 }
 
+.button-primary-disabled {
+    cursor: not-allowed;
+    background-color: #aec5ff;
+    padding: 10px 23px;
+    color: $white;
+    font-family: $family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+    display: block;
+    border-radius: 8px;
+}
+
 .button-primary {
     box-shadow: inset 0 0 0 1 $primary-hover;
     background-color: $primary;
@@ -409,13 +428,6 @@ input:focus::placeholder {
     animation-iteration-count: infinite;
 }
 
-.button-primary.invalid:disabled,
-button.button-primary[disabled] {
-    // animation: shake 0.5s;
-    // animation-iteration-count: infinite;
-    background-color: #a0b9f7;
-}
-
 .input-not-data::placeholder {
     color: #C4C4C4 !important;
     font-weight: 300 !important;
@@ -428,4 +440,11 @@ button.button-primary[disabled] {
 
 .input-data::placeholder {
     color: $text-black !important
+}
+
+.edit-message-modal {
+    line-height: 27px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
 }

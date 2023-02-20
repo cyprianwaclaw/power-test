@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="edit-settings">
     <div class="mb-8">
-      <h1 class="title-h1">Edytuj dane</h1>
+      <h1 class="title-h1">Dane personalne</h1>
     </div>
     <div class="white-retangle">
       <Form

@@ -1,6 +1,6 @@
 
 export function ErrorInput(text: string,) {
-  var result = {
+  let result = {
     plMessage: '',
     errorInput: false
   }

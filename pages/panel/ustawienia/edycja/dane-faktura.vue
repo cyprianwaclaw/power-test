@@ -3,32 +3,35 @@
     <!-- TODO: błędy walidacji do poprawy -->
     <div class="fixed z-50 left-0 bottom-0 w-full" v-if="isOpen">
       <div class="blur-background-update"></div>
-      <div class="modal-view-update">
-        <div v-if="success" class="px-3 py-4">
-          <p>Brak danych</p>
-        </div>
-        <div v-else>
-          <div v-if="!success" class="px-3 py-4">
-            <p>Edyctowano dane</p>
-          </div> 
-          <!-- <div v-else-if="(success=true)" class="px-3 py-4">
-            <p>Edyctowano dane</p>
-          </div> -->
-          <div v-else>
-            {{ error }}
-          </div>
-        </div>
-        <div class="border-top">
+      <div class="modal-view-update">    
+          <div class="px-7 py-7 grid ">
+            <div v-if="successCompany==true">
+              <div class="flex justify-center w0-full">
+                <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
+              </div>
+              <p class="edit-message-modal"><span class="green">Gratulacje!</span> Twoje zmiany zostały poprawnie zapisane </p>            
+            </div>
+            <div v-else>
+              <div class="flex justify-center w0-full">
+                <Icon name="ph:x-circle-light" size="72" class="red mb-3" />
+              </div>
+              <p class="edit-message-modal"><span class="red">Wystąpił błąd!</span> Wprowadzone dane są błędne, sprawdź poprawność danych</p>            
+            </div>
+          </div>    
+        <div v-if=" successCompany==true" class="border-top flex justify-end">
           <button class="button-modal primary-color" @click="Modal()">Okej</button>
+        </div>
+        <div v-else class="border-top flex justify-end">
+          <button class="button-modal primary-color" @click="ModalError()">Popraw błędy</button>
         </div>
       </div>
     </div>
     <NuxtLayout name="edit-settings">
       <div class="mb-10">
-        <h1 class="title-h1">Edycja danych</h1>
+        <h1 class="title-h1">Dane do faktury</h1>
       </div>
       <Form
-      v-slot="{ values }"
+        v-slot="{ values }"
         @submit="onSubmit"
         :validation-schema="schema"
         @invalid-submit="onInvalidSubmit"
@@ -122,9 +125,24 @@
         </div>
         <!-- wszystkie dane value, z pól, czyli to co wpisujemy. gdy choć jedno jest 
         'napisane' zmienić button na aktywny plus dodać v-slot do form -->
-        <div class="mt-8 justify-end flex"
-        v-if="values.company_name ||values.nip || values.regon || values.city || values.street || values.postcode  || values.bulding_number  || values.house_number ? false : true">
-          <button class="button-primary" disabled  id="submit" type="submit">Gotowe</button>
+        <div
+          class="mt-8 justify-end flex"
+          v-if="
+            values.company_name ||
+            values.nip ||
+            values.regon ||
+            values.city ||
+            values.street ||
+            values.postcode ||
+            values.building_number ||
+            values.house_number
+              ? false
+              : true
+          "
+        >
+          <button class="button-primary-disabled" disabled id="submit" type="submit">
+            Gotowe
+          </button>
         </div>
         <div v-else class="mt-8 justify-end flex">
           <button class="button-primary" id="submit" type="submit">Gotowe</button>
@@ -136,30 +154,35 @@
 
 <script setup lang="ts">
 import * as Yup from "yup";
+import { ref } from "vue";
+import type { Ref } from "vue";
 import { storeToRefs } from "pinia";
-import { Form  } from "vee-validate";
+import { Form } from "vee-validate";
 import { useUser } from "@/store/useUser";
 import {
   onInvalidSubmit,
   ChangePlaceholderInput,
   ChangeDataInput,
 } from "@/utils/function";
-import { inject } from "vue";
 
 definePageMeta({
   middleware: "auth",
 });
 
+
 const userStore = useUser();
 await userStore.getSettingsUser();
 const { getCompany, successCompany, errorMessage } = storeToRefs(userStore);
-let allCompany = getCompany.value;
-let company = allCompany.address;
-let error = ref();
-let success = ref();
-let isOpen = ref(false);
+const allCompany = getCompany.value;
+const company = allCompany.address;
+const isOpen = ref(false);
 function Modal() {
   isOpen.value = !isOpen.value;
+  window.location.reload();
+}
+function ModalError() {
+  isOpen.value = !isOpen.value;
+  errorMessage.value = ''
 }
 
 
@@ -171,18 +194,12 @@ const schema = Yup.object().shape({
   regon: Yup.string()
     .matches(/^[0-9 ]*$/, "Dozwolone tylko cyfry")
     .max(9, "REGON ma 9 cyfr"),
-  name: Yup.string()
-    .matches(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*$/, "Please enter valid name")
-    .max(20, "Imię nie może być dłuższe niż 20 znaków"),
-  surname: Yup.string()
-    .matches(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*$/, "Please enter valid name")
-    .max(20, "Nazwisko nie może być dłuższe niż 20 znaków"),
-  email: Yup.string()
-    .email("Błędny email")
-    .max(35, "Email nie może być dłuższe niż 35  znaków"),
-  phone: Yup.string()
-    .matches(/^[0-9 ]*$/)
-    .max(9, "Numer telefonu musi mieć 9 cyfr"),
+    postcode: Yup.string(),
+    street: Yup.string(),
+    city: Yup.string(),
+    building_numbere: Yup.string(),
+    house_number: Yup.string(),
+
 });
 
 const company_namePlaceholder = ChangePlaceholderInput(
@@ -215,7 +232,6 @@ async function onSubmit(values: any) {
     house_number,
   } = values;
 
-
   let company_nameNew = ChangeDataInput(company_name, allCompany.name);
   let nipNew = ChangeDataInput(nip, allCompany.nip);
   let regonNew = ChangeDataInput(regon, allCompany.regon);
@@ -235,9 +251,6 @@ async function onSubmit(values: any) {
     building_numberNew,
     house_numberNew
   );
-  // setInterval(errorMessage.value, 10)
-  error = errorMessage.value;
-  // window.location.reload();
   isOpen.value = !isOpen.value;
 }
 </script>
@@ -257,7 +270,6 @@ async function onSubmit(values: any) {
   padding-top: 6px;
   padding-bottom: 6px;
   display: flex;
-  justify-content: end;
   padding-right: 16px;
 }
 .button-modal {
