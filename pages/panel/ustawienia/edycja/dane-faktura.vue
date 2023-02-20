@@ -274,7 +274,10 @@ async function onSubmit(values: any) {
 }
 .button-modal {
   letter-spacing: 0.02em;
-  font-size: 14px;
+  margin-top: 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  font-size: 15px;
   font-weight: 500;
 }
 </style>
