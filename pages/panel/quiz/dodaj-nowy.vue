@@ -274,7 +274,7 @@ select {
   border-radius: 24px;
   margin-left: 64px;
   margin-right: 64px;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 25%;
