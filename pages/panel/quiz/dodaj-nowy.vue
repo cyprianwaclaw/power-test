@@ -22,7 +22,7 @@
           <p @click="isTime()">Szacunkowy czas trwania</p>
         </div>
         <div class="row-table-start -mt-3 flex" v-if="timeActive">
-          <Field name="time" class="w-20" autofocus/> minut
+          <Field name="time" class="w-20" ref="search" id="myText"  autofocus/> minut
         </div>
 
         <div class="row-table-start -mt-3 flex">
@@ -70,6 +70,8 @@ definePageMeta({
 const timeActive = ref(false)
 function isTime(){
   timeActive.value = true
+  document.getElementById("myText").focus();
+
 }
 
 const quizStore = useQuiz();
