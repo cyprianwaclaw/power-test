@@ -31,7 +31,7 @@
               <option v-for="single in category" :key="single.id" :value="single.name">{{ single.name }}</option>
           </Field>
         </div>
-
+<p @click="focus">click</p>
         <div class="row-table-start -mt-3 flex">
           <Field  name="diffucult" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz poziom trudności</option>
@@ -70,8 +70,10 @@ definePageMeta({
 const timeActive = ref(false)
 function isTime(){
   timeActive.value = true
-  document.getElementById("myText").focus();
+}
 
+function focus(){
+  document.getElementById("myText").focus();
 }
 
 const quizStore = useQuiz();
