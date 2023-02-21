@@ -450,7 +450,7 @@ input:focus::placeholder {
 }
 
 .border-top {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0 !important;
     padding-top: 6px;
     padding-bottom: 6px;
     display: flex;
