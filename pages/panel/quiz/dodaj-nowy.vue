@@ -272,8 +272,8 @@ select {
   background-color: white;
   border: solid transparent;
   border-radius: 24px;
-  margin-left: 64px;
-  margin-right: 64px;
+  margin-left: 54px;
+  margin-right: 54px;
   position: absolute;
   left: 0;
   right: 0;
