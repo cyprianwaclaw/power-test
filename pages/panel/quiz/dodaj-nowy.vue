@@ -27,15 +27,15 @@
         <div class="row-table-start -mt-3 flex">
           <InputNotBorder name="title" id="title" type="text" placeholder="Szacowany czas trwania" />
         </div>
-        <div class="row-table-start -mt-3 flex">
-          <Field name="field" as="select" class="base-input-new-quiz">
-            <optgroup label="4-legged pets">
 
-              <option value="">Select value</option>
+        <div class="row-table-start -mt-3 flex">
+          <Field name="field" as="select" class="base-input-new-quiz" required>
+
+              <option value="" hidden invalid>test</option>
               <option value="..">...</option>
-            </optgroup>
           </Field>
         </div>
+
       </div>
       <div class="mt-8 justify-end flex" v-if="values.title ? false : true">
         <button class="button-primary" disabled id="submit" type="submit">Gotowe</button>
@@ -46,6 +46,7 @@
       {{ values }}
       <!-- koniec formularza -->
     </Form>
+    
   </NuxtLayout>
 </template>
 
@@ -81,73 +82,25 @@ title, difficult, field
 }
 </script>
 <style scoped lang="scss">
-$text-black:#1461af;
-$white:#ffffff;
-$text-gray: #d02525;
-$input-border:#E6E8EA;
 .row-table-start {
   border-bottom: 1px solid #ededed;
   padding: 16px 28px 16px 8px;
   margin-left: 20px;
 }
 
-.base-input-new-quiz {
-  display: block;
-  width: 100%;
-  margin-top: 4px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #D1D5DB;
-}
-
-.base-input-new-quiz:focus {
-  display: block;
-  width: 100%;
-  margin-top: 4px;
-  border-width: 1px;
-  border-radius: 8px;
-  border-color: #618CFB;
-}
-
-.base-input-new-quiz:focus::placeholder {
-  font-size: 0px
-}
-
-.base-input-new-quiz::placeholder {
-  font-size: 16px;
-  color: $text-gray
-}
-
-.base-input-new-quiz select {
-  display: block;
-  width: 100%;
-  margin-top: 4px;
-  border-width: 10px;
-  border-radius: 8px;
-  border-color: #D1D5DB;
-}
-
-.base-input-new-quiz select {
-  display: block;
-  width: 100%;
-  margin-top: 4px;
-  border-width: 10px;
-  border-radius: 8px;
-  border-color: #D1D5DB;
-}
-
 select:invalid {
+  color: #a7a2a2;
   font-size: 16px;
-  color: $text-gray;
+}
+select {
+	appearance: none;
+}
+.base-input-new-quiz, .base-input-new-quiz:focus {
+  border-radius: 8px;
+  border-width: 1px;
+  display: block;
+  margin-top: 4px;
+  width: 100%;
 }
 
-select:invalid:focus {
-  font-size: 16px;
-  color: $text-black;
-}
-
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
 </style>
