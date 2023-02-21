@@ -18,12 +18,13 @@
             placeholder="Nazwa quizu"
           />
         </div>
-        <div class="row-table-start -mt-3 flex" v-if="!timeActive">
-          <p @click="isTime()">Szacunkowy czas trwania</p>
+        <div class="row-table-start -mt-3 flex place-items-center"  @click="isTime()">
+          <Field name="time" class="time" ref="search" id="myText" :placeholder="timePlaceholder" :style="styleObject"/>
+          <p v-if="timeActive">minut</p>
         </div>
-        <div class="row-table-start -mt-3 flex" v-if="timeActive">
-          <Field name="time" class="w-20" ref="search" id="myText"  autofocus/> minut
-        </div>
+        <!-- <div class="row-table-start -mt-3 flex" v-if="timeActive">
+         minut
+        </div> -->
 
         <div class="row-table-start -mt-3 flex">
           <Field  name="category" as="select" class="base-input-new-quiz" required>
@@ -31,7 +32,6 @@
               <option v-for="single in category" :key="single.id" :value="single.name">{{ single.name }}</option>
           </Field>
         </div>
-<p @click="focus">click</p>
         <div class="row-table-start -mt-3 flex">
           <Field  name="diffucult" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz poziom trudności</option>
@@ -67,9 +67,17 @@ definePageMeta({
   middleware: "auth",
 });
 
+
+const styleObject = reactive({
+  width: "100%",
+});
 const timeActive = ref(false)
+const timePlaceholder = ref('Szacunkowy czas trwania')
 function isTime(){
   timeActive.value = true
+  timePlaceholder.value = '0'
+  styleObject.width = '40px'
+  
 }
 
 function focus(){
@@ -115,5 +123,8 @@ select {
   margin-top: 4px;
   width: 100%;
 }
-
+.time{
+  border-color: white;
+  padding: 0px;
+}
 </style>
