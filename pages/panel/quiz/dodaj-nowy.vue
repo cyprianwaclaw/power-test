@@ -109,21 +109,30 @@ title, difficult, field
 select:invalid {
   color: #a7a2a2;
   font-size: 16px;
-}
+}`
+
+select::-ms-expand { display: none; }
 select {
-  overflow: hidden !important;
-  overflow: -moz-hidden-unscrollable !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
-  font-size: 16px;
-  font-weight: 500;
+    box-shadow:none;   
+    outline:none;      
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-position-x: 21px;
+    background-position-y: 0px;
+    border: 1px solid #dfdfdf;
+    padding: 5px;
+    width: 44px;
 }
+
 .base-input-new-quiz, .base-input-new-quiz:focus {
   font-size: 16px;
   margin-top: 4px;
   font-weight: 500;
   width: 100%;
+
 }
 .time{
   border-color: white;
