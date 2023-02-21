@@ -19,7 +19,7 @@
           />
         </div>
         <div class="row-table-start -mt-3 flex place-items-center"  @click="isTime()">
-          <Field name="time" class="time" ref="search" id="myText" :placeholder="timePlaceholder" :style="styleObject"/>
+          <Field name="time" class="time" ref="search" id="myText" type="number" :placeholder="timePlaceholder" :style="styleObject"/>
           <p v-if="timeActive">minut</p>
         </div>
         <!-- <div class="row-table-start -mt-3 flex" v-if="timeActive">
@@ -74,6 +74,7 @@ const styleObject = reactive({
 const timeActive = ref(false)
 const timePlaceholder = ref('Szacunkowy czas trwania')
 function isTime(){
+  document.getElementById("myText").focus();
   timeActive.value = true
   timePlaceholder.value = '0'
   styleObject.width = '40px'
