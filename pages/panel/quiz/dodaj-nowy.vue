@@ -18,8 +18,8 @@
             placeholder="Nazwa quizu"
           />
         </div>
-        <div class="row-table-start -mt-3 flex place-items-center"  @click="isTime()">
-          <Field name="time" class="time" ref="search" id="myText" type="number" :placeholder="timePlaceholder" :style="styleObject"/>
+        <div class="row-table-start -mt-3 flex place-items-end"  @click="isTime()">
+          <Field name="time" class="time" ref="search" id="myText"  type="tel" :placeholder="timePlaceholder" :style="styleObject"/>
           <p v-if="timeActive">minut</p>
         </div>
         <!-- <div class="row-table-start -mt-3 flex" v-if="timeActive">
@@ -127,5 +127,7 @@ select {
 .time{
   border-color: white;
   padding: 0px;
+  margin-bottom: -2.5px;
+  font-size: 16px;
 }
 </style>
