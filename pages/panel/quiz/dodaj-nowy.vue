@@ -113,17 +113,18 @@ select:invalid {
 
 select::-ms-expand { display: none; }
 select {
+  overflow: hidden !important;
+  overflow: -moz-hidden-unscrollable !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  font-size: 16px;
+  font-weight: 500;
     box-shadow:none;   
-    outline:none;      
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    outline:none;     
   background: transparent;
     background-repeat: no-repeat;
-    background-position-x: 21px;
-    background-position-y: 0px;
-    border: 1px solid #dfdfdf;
-    padding: 5px;
-    width: 44px;
+
 }
 
 .base-input-new-quiz, .base-input-new-quiz:focus {
