@@ -111,7 +111,9 @@ select:invalid {
   font-size: 16px;
 }
 select {
-	appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   font-size: 16px;
   font-weight: 500;
 }
