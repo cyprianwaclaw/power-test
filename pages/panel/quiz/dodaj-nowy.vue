@@ -10,7 +10,7 @@
       >
       <!-- początek formularza -->
       <div class="white-retangle">
-        <div class="row-table-start -mt-3 flex">
+        <div class="row-table-start -mt-3 -pb-20 flex">
           <textAreaNotBorder
             name="title"
             id="title"
@@ -18,26 +18,25 @@
             placeholder="Nazwa quizu"
           />
         </div>
-        <div class="row-table-start -mt-3 flex place-items-end"  @click="isTime()">
-          <Field name="time" class="time" ref="search" id="myText"  type="tel" :placeholder="timePlaceholder" :style="styleObject"/>
-          <p v-if="timeActive">minut</p>
+        <div class="row-table-start -mt-2 -mb-1 flex place-items-end"  @click="isTime()">
+          <Field name="time" class="time" ref="search" id="timeInput"  type="tel" :placeholder="timePlaceholder" :style="styleObject"/>
+          <p v-if="timeActive" class="font1">minut</p>
         </div>
-        <!-- <div class="row-table-start -mt-3 flex" v-if="timeActive">
-         minut
-        </div> -->
 
-        <div class="row-table-start -mt-3 flex">
+        <div class="row-table-start flex flex-col">
+          <p v-if="values.category" class="text-des-mobile-add">Kategoria</p>
           <Field  name="category" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz kategorie</option>
-              <option v-for="single in category" :key="single.id" :value="single.name">{{ single.name }}</option>
+              <option v-for="single in category" :key="single.id" :value="single.name"><p class="font1">{{ single.name }}</p></option>
           </Field>
         </div>
-        <div class="row-table-start -mt-3 flex">
-          <Field  name="diffucult" as="select" class="base-input-new-quiz" required>
+        <div class="row-table-end mb-2 flex flex-col">
+          <p v-if="values.difficult" class="text-des-mobile-add">Poziom trudności</p>
+          <Field  name="difficult" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz poziom trudności</option>
-              <option value="easy">Łatwe</option> 
-              <option value="">Średnie</option>
-              <option value="">Trudne</option>
+              <option value="easy"><p class="font1">Łatwy</p></option> 
+              <option value="medium"><p class="font1">Średni</p></option>
+              <option value="hard"><p class="font1">Trudny</p></option>
           </Field>
         </div>
 
@@ -74,15 +73,11 @@ const styleObject = reactive({
 const timeActive = ref(false)
 const timePlaceholder = ref('Szacunkowy czas trwania')
 function isTime(){
-  document.getElementById("myText").focus();
+  document.getElementById("timeInput").focus();
   timeActive.value = true
   timePlaceholder.value = '0'
-  styleObject.width = '40px'
+  styleObject.width = '30px'
   
-}
-
-function focus(){
-  document.getElementById("myText").focus();
 }
 
 const quizStore = useQuiz();
@@ -92,7 +87,7 @@ let  category = categories.value;
 
 
 const schema = Yup.object().shape({
-  title: Yup.string().max(10, "NIP ma 10 cyfr"),
+  title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
 });
 
 function onSubmit(values: any) {
@@ -104,30 +99,54 @@ title, difficult, field
 }
 </script>
 <style scoped lang="scss">
+
+
 .row-table-start {
   border-bottom: 1px solid #ededed;
   padding: 16px 28px 16px 8px;
   margin-left: 20px;
 }
-
 select:invalid {
   color: #a7a2a2;
   font-size: 16px;
 }
 select {
 	appearance: none;
+  font-size: 16px;
+  font-weight: 500;
 }
 .base-input-new-quiz, .base-input-new-quiz:focus {
-  border-radius: 8px;
-  border-width: 1px;
-  display: block;
+  font-size: 16px;
   margin-top: 4px;
+  font-weight: 500;
   width: 100%;
 }
 .time{
   border-color: white;
   padding: 0px;
-  margin-bottom: -2.5px;
   font-size: 16px;
+  font-weight: 500;
+  margin-bottom: -2.5px;
+}
+.time::placeholder{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.base-input-new-quiz::placeholder{
+  font-size: 16px;
+  font-weight: 500;
+}
+.text-des-mobile-add {
+  font-size: 14px;
+  font-weight: 300;
+  color: #a7a2a2;
+  margin-top: 2px;
+  margin-bottom: -6px;
+  z-index:10
+}
+.font1{
+  font-size: 16px;
+  font-weight: 500;
 }
 </style>
