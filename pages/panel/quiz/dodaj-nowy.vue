@@ -7,22 +7,26 @@
           <div class="flex justify-center w-full">
             <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
           </div>
-          <p class="edit-message-modal">
-            <span class="green">Dziękujemy za przesłanie quizu!</span> Twoje zmiany zostały poprawnie zapisane
-          </p>
-        </div>
-        <div class="flex justify-between border-top w-full">
-          <div class="flex w-full justify-center">
-            <NuxtLink to="/panel">
-              <p class="button-modal text-gray">Strona główna</p>
-            </NuxtLink>
+          <div>
+            <p class="edit-message-modal-title green text-center">
+            Dziękujemy!
+            </p>
+            <p class="edit-message-modal">
+               Twój quiz został przesłany do nas w celu weryfikacji, gdy zostanie weryfikowany poprawnie, zostaniesz o tym poinformowany
+            </p>
           </div>
-          <div class="vl"></div>
-          <div class="flex w-full justify-center" @click="modalClose()">
-            <button class="button-modal primary-color">
-              Dodaj kolejny
+        </div>
+        <div class="flex flex-col w-full">       
+          <div class="flex w-full justify-center border-top pl-3.5" @click="modalClose()">
+            <button class="button-modal1 primary-color">
+              Dodaj kolejny quiz
             </button>
           </div>
+          <NuxtLink to="/panel">
+            <div class="flex w-full justify-center border-top pl-3.5">
+                <p class="button-modal1 text-gray">Wróć na stronę główną</p>
+              </div>
+            </NuxtLink>
         </div>
       </div>
     </div>
@@ -85,7 +89,7 @@
               name="des"
               id="des"
               type="text"
-              placeholder="Tutaj możesz wstawić opis quizu"
+              placeholder="Twój opis quizu"
             />
           </div>
         </div>
@@ -110,7 +114,7 @@
           "
         >
           <button class="button-primary-disabled" disabled id="submit" type="submit">
-            Prześlij quziz do apceptacji
+            Prześlij quiz do akceptacji
             <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
         </div>
@@ -244,9 +248,24 @@ select {
   margin-bottom: 3px;
   margin-left: 2px;
 }
-.vl {
-  border-left: 1px solid #e0e0e0;
-  margin-top: 3px;
-  margin-bottom: 3px;
+.button-modal1 {
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.edit-message-modal {
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+.edit-message-modal-title {
+  line-height: 27px;
+  font-weight: 500;
+  font-size: 21px;
+  text-align: center;
 }
 </style>
