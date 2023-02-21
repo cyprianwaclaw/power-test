@@ -111,6 +111,8 @@ select:invalid {
   font-size: 16px;
 }
 select {
+  overflow: hidden;
+  overflow: -moz-hidden-unscrollable;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
