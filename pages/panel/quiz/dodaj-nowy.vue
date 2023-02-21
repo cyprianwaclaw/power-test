@@ -18,21 +18,26 @@
             placeholder="Nazwa quizu"
           />
         </div>
-        <div class="row-table-start -mt-3 flex">
-          <InputNotBorder name="title" id="title" type="text" placeholder="Nazwa quizu" />
+        <div class="row-table-start -mt-3 flex" v-if="!timeActive">
+          <p @click="isTime()">Szacunkowy czas trwania</p>
         </div>
-        <div class="row-table-start -mt-3 flex">
-          <InputNotBorder name="title" id="title" type="text" placeholder="Kategoria" />
-        </div>
-        <div class="row-table-start -mt-3 flex">
-          <InputNotBorder name="title" id="title" type="text" placeholder="Szacowany czas trwania" />
+        <div class="row-table-start -mt-3 flex" v-if="timeActive">
+          <Field name="time" class="w-20" autofocus/> minut
         </div>
 
         <div class="row-table-start -mt-3 flex">
-          <Field name="field" as="select" class="base-input-new-quiz" required>
+          <Field  name="category" as="select" class="base-input-new-quiz" required>
+              <option value="" hidden invalid>Wybierz kategorie</option>
+              <option v-for="single in category" :key="single.id" :value="single.name">{{ single.name }}</option>
+          </Field>
+        </div>
 
-              <option value="" hidden invalid>test</option>
-              <option value="..">...</option>
+        <div class="row-table-start -mt-3 flex">
+          <Field  name="diffucult" as="select" class="base-input-new-quiz" required>
+              <option value="" hidden invalid>Wybierz poziom trudności</option>
+              <option value="easy">Łatwe</option> 
+              <option value="">Średnie</option>
+              <option value="">Trudne</option>
           </Field>
         </div>
 
@@ -44,6 +49,7 @@
         <button class="button-primary" id="submit" type="submit">Gotowe</button>
       </div>
       {{ values }}
+
       <!-- koniec formularza -->
     </Form>
     
@@ -52,7 +58,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useUser } from "@/store/useUser";
+import { useQuiz } from "@/store/useQuiz";
 import * as Yup from "yup";
 import { Form, Field } from "vee-validate";
 import { onInvalidSubmit } from "@/utils/function";
@@ -61,13 +67,16 @@ definePageMeta({
   middleware: "auth",
 });
 
-const difficult = ref()
+const timeActive = ref(false)
+function isTime(){
+  timeActive.value = true
+}
 
-const userStore = useUser();
-const { getCompany } = storeToRefs(userStore);
-await userStore.getSettingsUser();
-let company = getCompany.value;
-let companyAddress = company.address;
+const quizStore = useQuiz();
+const { categories} = storeToRefs(quizStore);
+await quizStore.getCategory()
+let  category = categories.value;
+
 
 const schema = Yup.object().shape({
   title: Yup.string().max(10, "NIP ma 10 cyfr"),
