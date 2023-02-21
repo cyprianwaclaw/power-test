@@ -2,13 +2,6 @@ import { defineStore } from 'pinia'
 import { axiosInstance } from '@/axios.config'
 import { Financial, Company, Personal, User } from '@/types'
 
-type ErrorMessageCompany = {
-    errors:[
-        regon: string,
-        nip: string,
-    ]
-}
-
 export const useUser = defineStore('user', {
     state: () => ({
         currentUser: {} as User,
@@ -21,7 +14,7 @@ export const useUser = defineStore('user', {
         getPersonal: {} as Personal,
         getCompany: {} as Company,
         getFinancial: {} as Financial,
-        successCompany: [] as boolean,
+        success: [] as boolean,
         errorMessage: [] as string,
     }),
 
@@ -64,12 +57,24 @@ export const useUser = defineStore('user', {
         async updateUserPersonal(name: string, surname: string, email: string, phone: any) {
             try {
                 const res = await axiosInstance.post('/user/settings',{name, surname, email, phone})
-            }  catch {
+                this.success = await res.data.success
+                // this.success = await res.data
+            }  catch(error) {
+                this.errorMessage = error.response.data
             }
-        }, async updateUserCompany(company_name:any, nip:any, regon:any,  city: string, postcode: string, street: string, building_number: any, house_number:any) {
+        }, 
+        async updateUserFinancial(iban:string, bank_name:string, swift:string) {
+            try {
+                const res = await axiosInstance.post('/user/settings',{iban, bank_name, swift})
+                this.success = await res.data.success
+            }  catch(error) {
+                this.errorMessage = error.response.data
+            }
+        }, 
+        async updateUserCompany(company_name:any, nip:any, regon:any,  city: string, postcode: string, street: string, building_number: any, house_number:any) {
             try {
                 const res = await axiosInstance.post('/user/settings',{company_name, nip, regon,city, postcode, street, building_number, house_number })
-                this.successCompany = await res.data.success
+                this.success = await res.data.success
             }  catch (error) {
                 this.errorMessage = error.response.data
             }

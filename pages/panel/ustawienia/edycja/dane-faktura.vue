@@ -5,7 +5,7 @@
       <div class="blur-background-update"></div>
       <div class="modal-view-update">    
           <div class="px-7 py-7 grid ">
-            <div v-if="successCompany==true">
+            <div v-if="success">
               <div class="flex justify-center w0-full">
                 <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
               </div>
@@ -18,7 +18,7 @@
               <p class="edit-message-modal"><span class="red">Wystąpił błąd!</span> Wprowadzone dane są błędne, sprawdź poprawność danych</p>            
             </div>
           </div>    
-        <div v-if=" successCompany==true" class="border-top flex justify-end">
+        <div v-if="success" class="border-top flex justify-end">
           <button class="button-modal primary-color" @click="Modal()">Okej</button>
         </div>
         <div v-else class="border-top flex justify-end">
@@ -147,6 +147,7 @@
         <div v-else class="mt-8 justify-end flex">
           <button class="button-primary" id="submit" type="submit">Gotowe</button>
         </div>
+        <!-- koniec button disabled -->
       </Form>
     </NuxtLayout>
   </div>
@@ -155,7 +156,6 @@
 <script setup lang="ts">
 import * as Yup from "yup";
 import { ref } from "vue";
-import type { Ref } from "vue";
 import { storeToRefs } from "pinia";
 import { Form } from "vee-validate";
 import { useUser } from "@/store/useUser";
@@ -172,10 +172,11 @@ definePageMeta({
 
 const userStore = useUser();
 await userStore.getSettingsUser();
-const { getCompany, successCompany, errorMessage } = storeToRefs(userStore);
+const { getCompany, success, errorMessage } = storeToRefs(userStore);
 const allCompany = getCompany.value;
 const company = allCompany.address;
 const isOpen = ref(false);
+
 function Modal() {
   isOpen.value = !isOpen.value;
   window.location.reload();
@@ -265,19 +266,5 @@ async function onSubmit(values: any) {
   padding: 16px 28px 14px 9px;
   margin-left: 20px;
 }
-.border-top {
-  border-top: 1px solid #e0e0e0;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  display: flex;
-  padding-right: 16px;
-}
-.button-modal {
-  letter-spacing: 0.02em;
-  margin-top: 6px;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  font-size: 15px;
-  font-weight: 500;
-}
+
 </style>

@@ -5,7 +5,7 @@
    >
     <div class="base-input">
       <label :for="name">{{ label }}</label>
-      <input
+      <textarea
         class="base-input"
         :name="name"
         :id="name"
@@ -76,40 +76,24 @@
   );
   </script>
   <style scoped>
-  .success input {
-    border: 2px solid transparent;
-    outline: none;
-    color:#212427;
-    background: white;
-    border-color: white;
-    padding: 0px;
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-
-}
-.has-error input{
-  background-color: white;
-  padding: 0px;
-}
-.success input:focus {
-  padding: 0px;
-  border-color: white;
-}
-
-  input {
+  
+  .success input:focus {
+    border-color: #618cfb;
+  }
+  textarea {
     outline: none;
     font-size: 16px;
     width: 100%;
     overflow: hidden;
     min-height: 30px;
-  padding: 0px;
     max-height: 100px;
     font-weight: 500;
     border-color: white;
   }
-  input::placeholder {
+  textarea::placeholder {
     font-size: 16px;
   }
-  input:focus::placeholder {
+  textarea:focus::placeholder {
     font-size: 0px;
   }
   </style>
