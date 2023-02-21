@@ -253,7 +253,7 @@ select {
   margin-top: 4px;
   margin-bottom: 4px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .edit-message-modal {
   line-height: 24px;
@@ -264,7 +264,7 @@ select {
 }
 .edit-message-modal-title {
   line-height: 27px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 21px;
   text-align: center;
 }
@@ -279,5 +279,12 @@ select {
   right: 0;
   top: 25%;
   z-index: 100;
+}
+.border-top {
+  border-top: 1px solid #e0e0e0 !important;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  display: flex;
+  padding-right: 16px;
 }
 </style>
