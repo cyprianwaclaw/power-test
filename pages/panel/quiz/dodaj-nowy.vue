@@ -109,7 +109,7 @@ title, difficult, field
 select:invalid {
   color: #a7a2a2;
   font-size: 16px;
-}`
+}
 
 select::-ms-expand { display: none; }
 select {
@@ -118,7 +118,6 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
     background-repeat: no-repeat;
     background-position-x: 21px;
     background-position-y: 0px;
