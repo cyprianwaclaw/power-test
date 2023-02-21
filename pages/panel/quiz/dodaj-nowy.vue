@@ -268,4 +268,16 @@ select {
   font-size: 21px;
   text-align: center;
 }
+.modal-view-update {
+  background-color: white;
+  border: solid transparent;
+  border-radius: 24px;
+  margin-left: 64px;
+  margin-right: 64px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 25%;
+  z-index: 100;
+}
 </style>
