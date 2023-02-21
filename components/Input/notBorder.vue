@@ -89,6 +89,11 @@
 .has-error input{
   background-color: white;
   padding: 0px;
+  color:#212427;
+}
+.has-error input:focus{
+  padding: 0px;
+  border-color: white;
 }
 .success input:focus {
   padding: 0px;
@@ -112,5 +117,13 @@
   input:focus::placeholder {
     font-size: 0px;
   }
+
+  .help-message {
+    position: absolute;
+    margin-top: -3px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    width: 100vh;
+}
   </style>
   

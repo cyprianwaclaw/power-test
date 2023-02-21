@@ -19,16 +19,15 @@
           />
         </div>
         <div class="row-table-start -mt-2 -mb-1 flex place-items-end" @click="isTime()">
-          <Field
+          <InputNotBorder
             name="time"
             class="time"
-            ref="search"
             id="timeInput"
             type="tel"
             :placeholder="timePlaceholder"
             :style="styleObject"
           />
-          <p v-if="timeActive" class="font1">minut</p>
+          <p v-if="timeActive" class="font1 time1">minut</p>
         </div>
 
         <div class="row-table-start flex flex-col">
@@ -96,6 +95,9 @@ let category = categories.value;
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
+  time: Yup.string()
+    .matches(/^[0-9]*$/, "Wpisz liczbę")
+    .max(2, "Quiz nie może być dłuższy niż 99 minut"),
 });
 
 function onSubmit(values: any) {
@@ -166,5 +168,9 @@ select {
 .font1 {
   font-size: 16px;
   font-weight: 500;
+}
+.time1{
+  margin-bottom: 3px;
+  margin-left: 2px;
 }
 </style>
