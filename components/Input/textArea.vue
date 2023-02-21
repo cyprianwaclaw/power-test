@@ -3,7 +3,7 @@
   class="base-input"
    :class="{ 'has-error': !!errorMessage, success: meta.valid }"
  >
-  <div class="base-input">
+  <div class="-mb-4">
     <label :for="name">{{ label }}</label>
     <textarea
       class="base-input"
@@ -83,11 +83,11 @@ const { value: inputValue, errorMessage, handleBlur, handleChange, meta } = useF
 textarea {
   outline: none;
   font-size: 16px;
-  width: 100%;
-  overflow: hidden;
-  min-height: 30px;
-  max-height: 100px;
   font-weight: 500;
+  width: 100%;
+  padding-right: 6px;
+  overflow: hidden;
+height: 200px;
   border-color: white;
 }
 textarea::placeholder {
@@ -95,5 +95,11 @@ textarea::placeholder {
 }
 textarea:focus::placeholder {
   font-size: 0px;
+}
+
+.help-message {
+  margin-top: -2px;
+  margin-bottom: 8px;
+  font-size: 12px;
 }
 </style>
