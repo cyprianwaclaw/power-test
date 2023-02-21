@@ -111,11 +111,11 @@ select:invalid {
   font-size: 16px;
 }
 select {
-  overflow: hidden;
-  overflow: -moz-hidden-unscrollable;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  overflow: hidden !important;
+  overflow: -moz-hidden-unscrollable !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   font-size: 16px;
   font-weight: 500;
 }
