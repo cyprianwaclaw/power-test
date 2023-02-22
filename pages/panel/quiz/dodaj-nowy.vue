@@ -163,7 +163,7 @@
             </div>        
           <div class="row-table-start -mt-3 -pb-20 flex">
             <InputTextAreaNotBorder
-              name="title"
+              :name="index+'asweer'"
               id="title"
               type="text"
               placeholder="Nazwa quizu"
@@ -227,7 +227,7 @@
             <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
         </div>
-        <!-- {{ values }} -->
+        {{ values }}
 
         <!-- koniec formularza -->
       </Form>

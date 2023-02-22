@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="nav-border-bottom px-2 sm:py-4 w-fullflex bg-white w-full fixed left-0 bottom-0">
+  <div class="nav-border-bottom px-2 sm:py-4 w-full flex bg-white w-full fixed left-0 bottom-0 z-30">
     <div class="flex w-full justify-beetwen py-2">
       <div class="w-full">
         <div v-if="routeName == 'home'">

@@ -31,38 +31,16 @@
   import { toRef } from "vue";
   import { useField } from "vee-validate";
   
-  const props = defineProps({
-    type: {
-      type: String,
-      default: "text",
-    },
-    value: {
-      type: String,
-      default: "",
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    label: {
-      type: String,
-    },
-    successMessage: {
-      type: String,
-      default: "",
-    },
-    hasError: {
-      type: Boolean,
-    },
-    errorMessage: {
-      type: String,
-      default: "",
-    },
-    placeholder: {
-      type: String,
-      default: "",
-    },
-  });
+  const props = defineProps<{
+    type?:string
+    value?:string
+    name?:any
+    label?:string
+    successMessage?:string
+    hasError?: boolean
+    errorMessage?:string
+    placeholder?:string
+  }>();
   
   let ErrorLogin: any = props.hasError;
   
