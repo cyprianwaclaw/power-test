@@ -21,7 +21,7 @@
                   <h2 class="text-name">{{ personal.name }} {{ personal.surname }}</h2>
                 </div>
                 <div v-else>
-                  <h2 class="text-name">Imię Nazwisko</h2>
+                  <h2 class="text-name">{{ personal.name }}</h2>
                 </div>
                 <p class="text-email text-gray">{{ personal.email }}</p>
               </div>

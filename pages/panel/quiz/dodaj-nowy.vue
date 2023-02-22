@@ -244,6 +244,13 @@ import { useQuiz } from "@/store/useQuiz";
 import * as Yup from "yup";
 import { Form, Field } from "vee-validate";
 import { onInvalidSubmit } from "@/utils/function";
+import { v4 as uuidv4 } from 'uuid';
+
+
+// dodawanie identyfikatora
+let test_id = uuidv4()
+console.log(test_id) 
+// koniec
 
 definePageMeta({
   middleware: "auth",
