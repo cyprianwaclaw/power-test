@@ -157,7 +157,7 @@
         <div v-for="(item, index) in form" :key="item.id" :class="{margin: item.line}"   class="white-retangle">      
           <p class="quest-text">Pytanie {{ index + 1 }}</p>
           <div v-if="index > 0">
-              <p class="red text-xs w-full text-end -left-14 z-10 -mt-3  absolute" @click="  isRemove = !isRemove">
+              <p class="red text-xs w-full text-end -left-16 z-10 -mt-6  absolute" @click="  isRemove = !isRemove">
                 Usuń 
               </p>
             </div>        
