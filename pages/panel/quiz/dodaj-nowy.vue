@@ -156,10 +156,13 @@
         <h2 class="title-h2 mt-14 mb-8">Dodaj pytania do quizu</h2>
         <div v-for="(item, index) in form" :key="item.id" :class="{margin: item.line}"   class="white-retangle">      
           <p class="quest-text">Pytanie {{ index + 1 }}</p>
-          <div v-if="index > 0">
-              <p class="red text-xs w-full text-end -left-16 z-10 -mt-6  absolute" @click="  isRemove = !isRemove">
-                Usuń 
-              </p>
+          <div v-if="index > 0" class="justify-end flex mr-6">
+            <Icon
+          name="carbon:close"
+          size="30"
+          class="red text-xs  z-10 -mt-8  absolute"
+          @click="isRemove = !isRemove"
+        />
             </div>        
           <div class="row-table-start -mt-3 -pb-20 flex">
             <InputTextAreaNotBorder
@@ -465,7 +468,7 @@ input[type="file"] {
   margin-left: 28px;
   margin-top: 4px;
   margin-bottom: 6px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .margin{
   margin-top: 34px;
