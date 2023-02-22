@@ -1,5 +1,50 @@
 <template>
   <div>
+
+
+    <div class="fixed z-50 left-0 bottom-0 w-full" v-if="removeSucess">
+      <div class="blur-background-update"></div>
+      <div class="modal-view-update">    
+          <div class="px-7 py-7 grid ">
+              <div class="flex justify-center w-full">
+                <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
+              </div>
+              <p class="edit-message-modal">Pytanie zostało usuniętę pomyślnie </p>            
+          </div>    
+        <div class="border-top flex justify-end">
+          <button class="button-modal primary-color" @click="removeSucess =! removeSucess">Okej</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fixed z-50 left-0 bottom-0 w-full" v-if="isRemove">
+      <div class="blur-background-update"></div>
+      <div class="modal-view-update">
+        <div class="px-7 py-7 grid">
+          <!-- <div class="flex justify-center w-full">
+            <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
+          </div> -->
+          <div>
+            <p class="red text-center font-medium">Czy napewno chcesz usunąć pytanie ? </p>
+            <p class="text-center mt-3 text-gray text-sm">
+              Tej operacji nie można cofnąć
+            </p>
+          </div>
+        </div>
+        <div class="flex w-full border-top">
+          <div class="flex w-full justify-center" @click="remove">
+            <button class="button-modal1 red">Usuń</button>
+          </div>
+          <div class="vl"></div>
+            <div class="flex w-full justify-center">
+              <p class="button-modal1 text-gray" @click ="  isRemove = !isRemove">Anuluj</p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="fixed z-50 left-0 bottom-0 w-full" v-if="isOpen">
       <div class="blur-background-update"></div>
       <div class="modal-view-update">
@@ -8,25 +53,22 @@
             <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
           </div>
           <div>
-            <p class="edit-message-modal-title green text-center">
-            Dziękujemy!
-            </p>
+            <p class="edit-message-modal-title green text-center">Dziękujemy!</p>
             <p class="edit-message-modal">
-               Twój quiz został przesłany do nas w celu weryfikacji, gdy zostanie weryfikowany poprawnie, zostaniesz o tym poinformowany
+              Twój quiz został przesłany do nas w celu weryfikacji, gdy zostanie
+              weryfikowany poprawnie, zostaniesz o tym poinformowany
             </p>
           </div>
         </div>
-        <div class="flex flex-col w-full">       
+        <div class="flex flex-col w-full">
           <div class="flex w-full justify-center border-top pl-3.5" @click="modalClose()">
-            <button class="button-modal1 primary-color">
-              Dodaj kolejny quiz
-            </button>
+            <button class="button-modal1 primary-color">Dodaj kolejny quiz</button>
           </div>
           <NuxtLink to="/panel">
             <div class="flex w-full justify-center border-top pl-3.5">
-                <p class="button-modal1 text-gray">Wróć na stronę główną</p>
-              </div>
-            </NuxtLink>
+              <p class="button-modal1 text-gray">Wróć na stronę główną</p>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -94,15 +136,76 @@
           </div>
         </div>
         <!-- zdjęcie quizu -->
-        <h2 class="title-h2 mt-14 mb-8">Dodaj zdjęcie</h2>
-        <div class="white-retangle">
-          <div class="row-table-end -mt-4 -pb-20 flex">
-            <InputTextArea
-              name="des"
-              id="des"
-              type="text"
-              placeholder="Tutaj możesz wstawić opis quizu"
+        <!-- TODO: edycja -->
+        <h2 class="title-h2 mt-14 mb-8">Zdjęcie</h2>
+        <div class="white-retangle-image">
+          <label class="image-retangle">
+            <Icon
+              name="carbon:cloud-upload"
+              size="38"
+              color="9F9F9F"
+              class="justify-center flex w-full"
             />
+            <Field name="image" type="file" />
+            <h1>Dodaj zdjęcie</h1>
+            <p>Kliknij tutaj aby dodać zdjęcie</p>
+          </label>
+        </div>
+
+        <!-- pytania do quizu -->
+        <h2 class="title-h2 mt-14 mb-8">Dodaj pytania do quizu</h2>
+        <div v-for="(item, index) in form" :key="item.id" :class="{margin: item.line}"   class="white-retangle">      
+          <p class="quest-text">Pytanie {{ index + 1 }}</p>
+          <div v-if="index > 0">
+              <p class="red text-xs w-full text-end -left-14 z-10 -mt-3  absolute" @click="  isRemove = !isRemove">
+                Usuń 
+              </p>
+            </div>        
+          <div class="row-table-start -mt-3 -pb-20 flex">
+            <InputTextAreaNotBorder
+              name="title"
+              id="title"
+              type="text"
+              placeholder="Nazwa quizu"
+            />
+          </div>
+          <div class="row-table-start -mt-2 -mb-1 flex place-items-end" @click="isTime()">
+            <InputNotBorder
+              name="time"
+              class="time"
+              id="timeInput"
+              type="tel"
+              :placeholder="timePlaceholder"
+              :style="styleObject"
+            />
+            <p v-if="timeActive" class="font1 time1">minut</p>
+          </div>
+          <div class="row-table-start flex flex-col">
+            <p v-if="values.category" class="text-des-mobile-add">Kategoria</p>
+            <Field name="category" as="select" class="base-input-new-quiz" required>
+              <option value="" hidden invalid>Wybierz kategorie</option>
+              <option v-for="single in category" :key="single.id" :value="single.name">
+                <p class="font1">{{ single.name }}</p>
+              </option>
+            </Field>
+          </div>
+          <div class="row-table-end mb-2 -mt-1.5 flex flex-col">
+            <p v-if="values.difficult" class="text-des-mobile-add">Poziom trudności</p>
+            <Field name="difficult" as="select" class="base-input-new-quiz" required>
+              <option value="" hidden invalid>Wybierz poziom trudności</option>
+              <option value="easy"><p class="font1">Łatwy</p></option>
+              <option value="medium"><p class="font1">Średni</p></option>
+              <option value="hard"><p class="font1">Trudny</p></option>
+            </Field>
+          </div>
+          <div class="mr-7 mb-3 mt-8">
+            <p
+              v-if="index + 1 == form.length"
+              @click="newQuestionInput"
+              class="text-end primary-color font-medium"
+            >
+              Kolejne pytanie
+            </p>
           </div>
         </div>
         <div
@@ -144,11 +247,14 @@ definePageMeta({
 });
 
 const isOpen = ref(false);
+const isRemove = ref(false);
+const removeSucess = ref(false);
 
 function modalClose() {
   isOpen.value = !isOpen.value;
   window.location.reload();
 }
+
 
 const styleObject = reactive({
   width: "100%",
@@ -161,6 +267,38 @@ function isTime() {
   timePlaceholder.value = "0";
   styleObject.width = "30px";
 }
+
+const form = reactive([
+  {
+    id: 1,
+    title: "",
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
+    line: false,
+  },
+]);
+
+const remove = (index: any) => {
+  isRemove.value = !isRemove.value;
+  form.splice(index, 1);
+  removeSucess.value =! removeSucess.value
+};
+
+const newQuestionInput = () => {
+  console.log("Nowe pole do odpowiedzi");
+  console.log(form);
+  form.push({
+    id: 2,
+    title: "",
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
+    line: true,
+  });
+};
 
 const quizStore = useQuiz();
 const { categories } = storeToRefs(quizStore);
@@ -286,5 +424,55 @@ select {
   padding-bottom: 6px;
   display: flex;
   padding-right: 16px;
+}
+.image-retangle {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 37px;
+  background: #f7f7f7;
+  border: 2px dashed #9f9f9f;
+  border-radius: 16px;
+}
+
+input[type="file"]::file-selector-button {
+  display: hidden;
+}
+input[type="file"] {
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.image-retangle h1 {
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 600;
+  color: #9c9c9c;
+}
+.image-retangle p {
+  text-align: center;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #9c9c9c;
+}
+.white-retangle-image {
+  background-color: white;
+  border-radius: 24px;
+  padding: 33px;
+}
+.quest-text {
+  font-size: 16px;
+  margin-left: 28px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.margin{
+  margin-top: 34px;
+}
+.vl {
+  border-left: 1px solid #e0e0e0 !important;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 </style>
