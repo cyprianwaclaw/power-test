@@ -106,7 +106,6 @@ import { storeToRefs } from "pinia";
 import { Form } from "vee-validate";
 import { useUser } from "@/store/useUser";
 import { onInvalidSubmit, ChangePlaceholderInput,  ChangeDataInput } from "@/utils/function";
-import { resourceLimits } from "worker_threads";
 
 definePageMeta({
   middleware: "auth",

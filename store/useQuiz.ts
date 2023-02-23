@@ -14,6 +14,8 @@ export const useQuiz = defineStore('quiz', {
         answer: null,
         nextQuestion: [],
         getNextQuestionTest: null,
+        newQuizId:{} as number,
+        newQuestionId:{} as number,
     }),
     actions: {
         async getFastTwo() {
@@ -26,7 +28,7 @@ export const useQuiz = defineStore('quiz', {
             }
         },
         async getAllQuiz() {
-            const res = await axiosInstance.get('/quizzes/popular')
+            const res = await axiosInstance.get('/quizzes')
             try {
                 this.allQuiz = await res.data.data.data
             } catch (e) {
@@ -50,6 +52,8 @@ export const useQuiz = defineStore('quiz', {
                 console.error(e)
             }
         },
+
+        //! granie w quizy 
         async startingQuiz(id: any) {
             const res = await axiosInstance.get(`/quiz/${id}/start`)
             try {
@@ -89,6 +93,24 @@ export const useQuiz = defineStore('quiz', {
             const res = await axiosInstance.get(`/questions/${question}/answers `)
             try {
                 this.answer = await res.data.data
+            } catch (e) {
+                console.error(e)
+            }
+        },
+
+        //! dodawanie nowego quizu 
+        async postNewQuiz(title:string, time:number, category_id:number, difficulty:string) {
+            const res = await axiosInstance.post('/quizzes',{title, time, category_id, difficulty})
+            try {
+                this.newQuizId = await res.data.data.id
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async postNewQuestion(question:any, quiz_id:number) {
+            const res = await axiosInstance.post('/questions',{question, quiz_id})
+            try {
+                this.newQuestionId = await res.data.data.id
             } catch (e) {
                 console.error(e)
             }

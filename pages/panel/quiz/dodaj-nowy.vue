@@ -105,17 +105,17 @@
             <p v-if="timeActive" class="font1 time1">minut</p>
           </div>
           <div class="row-table-start flex flex-col">
-            <p v-if="values.category" class="text-des-mobile-add">Kategoria</p>
-            <Field name="category" as="select" class="base-input-new-quiz" required>
+            <p v-if="values.category_id" class="text-des-mobile-add">Kategoria</p>
+            <Field name="category_id" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz kategorie</option>
-              <option v-for="single in category" :key="single.id" :value="single.name">
+              <option v-for="single in category" :key="single.id" :value="single.id">
                 <p class="font1">{{ single.name }}</p>
               </option>
             </Field>
           </div>
           <div class="row-table-end mb-2 -mt-1.5 flex flex-col">
-            <p v-if="values.difficult" class="text-des-mobile-add">Poziom trudności</p>
-            <Field name="difficult" as="select" class="base-input-new-quiz" required>
+            <p v-if="values.difficulty" class="text-des-mobile-add">Poziom trudności</p>
+            <Field name="difficulty" as="select" class="base-input-new-quiz" required>
               <option value="" hidden invalid>Wybierz poziom trudności</option>
               <option value="easy"><p class="font1">Łatwy</p></option>
               <option value="medium"><p class="font1">Średni</p></option>
@@ -166,41 +166,44 @@
             </div>        
           <div class="row-table-start -mt-3 -pb-20 flex">
             <InputTextAreaNotBorder
-              :name="index+'asweer'"
+              :name="'question_'+(index +1)"
               id="title"
               type="text"
-              placeholder="Nazwa quizu"
+              placeholder="Treść pytania"
             />
           </div>
-          <div class="row-table-start -mt-2 -mb-1 flex place-items-end" @click="isTime()">
+          <!-- pytania do quizu -->
+          <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
             <InputNotBorder
-              name="time"
-              class="time"
-              id="timeInput"
-              type="tel"
-              :placeholder="timePlaceholder"
-              :style="styleObject"
+              :name="'answer1_'+(index +1)"
+              type="text"
+              placeholder="Odpowiedź 1"
             />
-            <p v-if="timeActive" class="font1 time1">minut</p>
           </div>
-          <div class="row-table-start flex flex-col">
-            <p v-if="values.category" class="text-des-mobile-add">Kategoria</p>
-            <Field name="category" as="select" class="base-input-new-quiz" required>
-              <option value="" hidden invalid>Wybierz kategorie</option>
-              <option v-for="single in category" :key="single.id" :value="single.name">
-                <p class="font1">{{ single.name }}</p>
-              </option>
-            </Field>
+          <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <InputNotBorder
+              :name="'answer2_'+(index +1)"
+              type="text"
+              placeholder="Odpowiedź 2"
+            />
           </div>
-          <div class="row-table-end mb-2 -mt-1.5 flex flex-col">
-            <p v-if="values.difficult" class="text-des-mobile-add">Poziom trudności</p>
-            <Field name="difficult" as="select" class="base-input-new-quiz" required>
-              <option value="" hidden invalid>Wybierz poziom trudności</option>
-              <option value="easy"><p class="font1">Łatwy</p></option>
-              <option value="medium"><p class="font1">Średni</p></option>
-              <option value="hard"><p class="font1">Trudny</p></option>
-            </Field>
+          <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <InputNotBorder
+              :name="'answer3_'+(index +1)"
+              type="text"
+              placeholder="Odpowiedź 3"
+            />
           </div>
+          <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <InputNotBorder
+              :name="'answer4_'+(index +1)"
+              type="text"
+              placeholder="Odpowiedź 4"
+            />
+          </div>
+
+
+
           <div class="mr-7 mb-3 mt-8">
             <p
               v-if="index + 1 == form.length"
@@ -211,23 +214,23 @@
             </p>
           </div>
         </div>
-        <div
+        <!-- <div
           class="mt-9 justify-end flex"
           v-if="
-            values.title && values.difficult && values.category && values.time
+          values.title && values.difficulty && values.category_id && values.time
               ? false
               : true
           "
         >
           <button class="button-primary-disabled" disabled id="submit" type="submit">
             Prześlij quiz do akceptacji
-            <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
+           <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
-        </div>
-        <div v-else class="mt-9 justify-end flex">
+        </div> -->
+        <div  class="mt-9 justify-end flex">
           <button class="button-primary" id="submit" type="submit">
             Prześlij quiz do akceptacji
-            <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
+            <!-- <Icon name="carbon:chevron-right" class="-mr-2" size="24" /> -->
           </button>
         </div>
         {{ values }}
@@ -244,13 +247,12 @@ import { useQuiz } from "@/store/useQuiz";
 import * as Yup from "yup";
 import { Form, Field } from "vee-validate";
 import { onInvalidSubmit } from "@/utils/function";
-import { v4 as uuidv4 } from 'uuid';
 
+const quizStore = useQuiz();
+const { categories, newQuizId, newQuestionId } = storeToRefs(quizStore);
+await quizStore.getCategory();
+let category = categories.value;
 
-// dodawanie identyfikatora
-let test_id = uuidv4()
-console.log(test_id) 
-// koniec
 
 definePageMeta({
   middleware: "auth",
@@ -297,8 +299,6 @@ const remove = (index: any) => {
 };
 
 const newQuestionInput = () => {
-  console.log("Nowe pole do odpowiedzi");
-  console.log(form);
   form.push({
     id: 2,
     title: "",
@@ -310,10 +310,6 @@ const newQuestionInput = () => {
   });
 };
 
-const quizStore = useQuiz();
-const { categories } = storeToRefs(quizStore);
-await quizStore.getCategory();
-let category = categories.value;
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
@@ -322,12 +318,77 @@ const schema = Yup.object().shape({
     .max(2, "Quiz nie może być dłuższy niż 99 minut"),
 });
 
-function onSubmit(values: any) {
-  let { title, difficult, field } = values;
-  isOpen.value = !isOpen.value;
-  console.log(values);
-  console.log("test");
+async function onSubmit(values: any) {
+  // !dodać obraz
+
+  let { title, time, category_id,difficulty, question_1, question_2, question_3 } = values;
+
+  let i = form.length
+  let j = 1
+
+
+function changeQuestion(){
+  let results = ''
+  if(1>0){
+    results = question_1
+  }
+  return results
 }
+
+// !działa już dodawanie quizu
+await quizStore.postNewQuiz(title, time, category_id,difficulty)
+let quziId = newQuizId.value;
+
+// !działa już dodawanie pytania - jednego
+// while (j<=i) {
+//   await quizStore.postNewQuestion(question_1, quziId) 
+// let questionId = newQuestionId.value;
+//     // console.log("question_j"+j);
+//     j++;
+    
+// console.log('id question_'+questionId)
+// }
+
+let counter = question_1
+await quizStore.postNewQuestion(counter, quziId) 
+let questionId = newQuestionId.value;
+    // console.log("question_j"+j);
+    j++;
+    
+// console.log('id question_'+questionId)
+// await quizStore.postNewQuestion(question_2, quziId) 
+//     // console.log("question_j"+j);
+//     j++;
+    
+// console.log('id question_'+questionId)
+
+// await quizStore.postNewQuestion(question_1, quziId) 
+// let questionId = newQuestionId.value;
+
+// console.log('id question_'+questionId)
+// !gdy jest w pętli działa poprawnie 
+//   await quizStore.postNewQuestion(question_1, quziId) 
+// let questionId = newQuestionId.value;
+//     console.log(questionId)
+// for (let i=1; i<5; i++) {
+//     console.log("Trwa odliczanie", "question_"+i, questionId);
+// }
+
+console.log('id quizu_'+quziId)
+  isOpen.value = !isOpen.value;
+}
+
+// while (j<=i) {
+  
+let i = form.length
+  let j = 1
+
+function changeCounter(index: number){
+  let results = ''
+  if(index)
+  return results
+}
+
 </script>
 <style scoped lang="scss">
 .row-table-start {
