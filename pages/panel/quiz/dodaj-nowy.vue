@@ -1,22 +1,41 @@
 <template>
   <div>
-
-
-    <div class="fixed z-50 left-0 bottom-0 w-full" v-if="removeSucess">
+    <div class="fixed z-50 left-0 bottom-0 w-full" v-if="allQuestion">
       <div class="blur-background-update"></div>
-      <div class="modal-view-update">    
-          <div class="px-7 py-7 grid ">
-              <div class="flex justify-center w-full">
-                <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
-              </div>
-              <p class="edit-message-modal">Pytanie zostało usuniętę pomyślnie </p>            
-          </div>    
+      <div class="modal-view-update">
+        <div class="px-7 py-7 grid">
+          <div class="flex justify-center w-full">
+            <Icon name="ph:x-circle-light" size="72" class="red mb-3" />
+          </div>
+          <p class="edit-message-modal">Uzupełnij tytół pytania, wszystkie odpowiedzi oraz zaznacz poprawną z nich</p>
+        </div>
         <div class="border-top flex justify-end">
-          <button class="button-modal primary-color" @click="removeSucess =! removeSucess">Okej</button>
+          <button class="button-modal primary-color" @click="allQuestion = !allQuestion">
+            Okej
+          </button>
         </div>
       </div>
     </div>
 
+    <div class="fixed z-50 left-0 bottom-0 w-full" v-if="removeSucess">
+      <div class="blur-background-update"></div>
+      <div class="modal-view-update">
+        <div class="px-7 py-7 grid">
+          <div class="flex justify-center w-full">
+            <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
+          </div>
+          <p class="edit-message-modal">Pytanie zostało usuniętę pomyślnie</p>
+        </div>
+        <div class="border-top flex justify-end">
+          <button
+            class="button-modal primary-color"
+            @click="removeSucess = !removeSucess"
+          >
+            Okej
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div class="fixed z-50 left-0 bottom-0 w-full" v-if="isRemove">
       <div class="blur-background-update"></div>
@@ -26,7 +45,7 @@
             <Icon name="ph:check-circle-light" size="72" class="green mb-3" />
           </div> -->
           <div>
-            <p class="red text-center font-medium">Czy napewno chcesz usunąć pytanie ? </p>
+            <p class="red text-center font-medium">Czy napewno chcesz usunąć pytanie ?</p>
             <p class="text-center mt-3 text-gray text-sm">
               Tej operacji nie można cofnąć
             </p>
@@ -37,13 +56,12 @@
             <button class="button-modal1 red">Usuń</button>
           </div>
           <div class="vl"></div>
-            <div class="flex w-full justify-center">
-              <p class="button-modal1 text-gray" @click ="  isRemove = !isRemove">Anuluj</p>
-            </div>
+          <div class="flex w-full justify-center">
+            <p class="button-modal1 text-gray" @click="isRemove = !isRemove">Anuluj</p>
+          </div>
         </div>
       </div>
     </div>
-
 
     <div class="fixed z-50 left-0 bottom-0 w-full" v-if="isOpen">
       <div class="blur-background-update"></div>
@@ -154,66 +172,194 @@
 
         <!-- pytania do quizu -->
         <h2 class="title-h2 mt-14 mb-8">Dodaj pytania do quizu</h2>
-        <div v-for="(item, index) in form" :key="item.id" :class="{margin: item.line}"   class="white-retangle">      
-          <p class="quest-text">Pytanie {{ index + 1 }}</p>
-          <div v-if="index > 0" class="justify-end flex mr-6">
-            <Icon
-          name="carbon:close"
-          size="30"
-          class="red text-xs  z-10 -mt-8  absolute"
-          @click="isRemove = !isRemove"
-        />
-            </div>        
-          <div class="row-table-start -mt-3 -pb-20 flex">
-            <InputTextAreaNotBorder
-              :name="'question_'+(index +1)"
-              id="title"
+
+        <div v-for="(item, index) in form" :key="index">
+          <div
+            class="white-retangle"
+            v-if="form.length > 0"
+            :class="{ margin: indexBigger(form.length) }"
+          >
+            <p class="quest-text">Pytanie {{ index + 1 }}</p>
+            <div v-if="form.length >= 1" class="justify-end flex mr-6">
+              <Icon
+                name="carbon:close"
+                size="30"
+                class="red text-xs z-10 -mt-8 absolute"
+                @click="isRemove = !isRemove"
+              />
+              <p class="edit-quest primary-color">Edytuj</p>
+            </div>
+            <div class="row-table-end flex place-items-center gap-3 mb-4 mt-1">
+              <div class="">
+                <p class="text-des-mobile-add">Treść pytania</p>
+                <div>
+                  <h2 class="font-medium mt-0.5">{{ item.title }}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row-table-start flex place-items-center gap-3">
+              <div v-if="testIcon">
+                <Icon name="ph:check-circle-light" size="21" class="green" />
+              </div>
+              <div v-else class="w-5"></div>
+              <div class="">
+                <p class="text-des-mobile-add">Odpowiedź 1</p>
+                <div>
+                  <h2 class="font-medium mt-0.5">{{ item.answer1 }}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row-table-start flex place-items-center gap-3">
+              <div v-if="testIcon">
+                <Icon name="ph:check-circle-light" size="21" class="green" />
+              </div>
+              <div v-else class="w-5"></div>
+              <div class="">
+                <p class="text-des-mobile-add">Odpowiedź 2</p>
+                <div>
+                  <h2 class="font-medium mt-0.5">{{ item.answer2 }}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row-table-start flex place-items-center gap-3">
+              <div v-if="testIcon">
+                <Icon name="ph:check-circle-light" size="21" class="green" />
+              </div>
+              <div v-else class="w-5"></div>
+              <div class="">
+                <p class="text-des-mobile-add">Odpowiedź 3</p>
+                <div>
+                  <h2 class="font-medium mt-0.5">{{ item.answer3 }}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row-table-end flex place-items-center gap-3">
+              <div v-if="testIcon">
+                <Icon name="ph:check-circle-light" size="21" class="green" />
+              </div>
+              <div v-else class="w-5"></div>
+              <div class="">
+                <p class="text-des-mobile-add">Odpowiedź 4</p>
+                <div>
+                  <h2 class="font-medium mt-0.5">{{ item.answer4 }}</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="white-retangle" :class="{ margin: indexBigger(form.length) }">
+          <p class="quest-text">Pytanie {{ form.length + 1 }}</p>
+          <div class="row-table-start mt-3 -pb-20 flex">
+            <textarea
+              name="titleQuestion"
+              v-model="titleQuestion"
               type="text"
               placeholder="Treść pytania"
             />
           </div>
           <!-- pytania do quizu -->
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <InputNotBorder
-              :name="'answer1_'+(index +1)"
+            <input
+              name="answer_1"
+              v-model="answer_1"
               type="text"
               placeholder="Odpowiedź 1"
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <InputNotBorder
-              :name="'answer2_'+(index +1)"
+            <input
+              name="answer_2"
+              v-model="answer_2"
               type="text"
               placeholder="Odpowiedź 2"
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <InputNotBorder
-              :name="'answer3_'+(index +1)"
+            <input
+              name="answer_3"
+              v-model="answer_3"
               type="text"
               placeholder="Odpowiedź 3"
             />
           </div>
-          <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <InputNotBorder
-              :name="'answer4_'+(index +1)"
+          <div class="row-table-end -mt-2 -mb-1 flex place-items-end">
+            <input
+              name="answer_4"
+              v-model="answer_4"
               type="text"
               placeholder="Odpowiedź 4"
             />
           </div>
+          <div v-if="form.length + 1 == 1">
+            <div
+              class="mr-7 mb-3 mt-8"
+              v-if="
+                titleQuestion.length > 1 &&
+                answer_1.length > 1 &&
+                answer_2.length > 1 &&
+                answer_3.length > 1 &&
+                answer_4.length > 1
+              "
+            >
+              <p
+                @click="newQuestionInput"
+                class="text-end primary-color font-medium"
+              >
+                Dodaj pierwsze pytanie
+              </p>
+            </div>
 
-
-
-          <div class="mr-7 mb-3 mt-8">
+            <div
+            class="mr-7 mb-3 mt-8"
+            v-else
+          >
             <p
-              v-if="index + 1 == form.length"
+              @click="allQuestion = !allQuestion"
+              class="text-end primary-color font-medium"
+            >
+              Dodaj pierwsze pytanie
+            </p>
+          </div>
+          </div>
+          <div v-else>
+            <div
+            class="mr-7 mb-3 mt-8"
+            v-if="
+              titleQuestion.length > 1 &&
+              answer_1.length > 1 &&
+              answer_2.length > 1 &&
+              answer_3.length > 1 &&
+              answer_4.length > 1
+            "
+          >
+            <p
               @click="newQuestionInput"
               class="text-end primary-color font-medium"
             >
               Kolejne pytanie
             </p>
           </div>
+
+          <div
+          class="mr-7 mb-3 mt-8"
+          v-else
+        >
+          <p
+            @click="allQuestion = !allQuestion"
+            class="text-end primary-color font-medium"
+          >
+            Kolejne pytanie
+          </p>
         </div>
+          </div>
+        </div>
+
+        <div>
+          <p @click="console1">console.log</p>
+        </div>
+
+        <!-- TODO: musi być  -->
         <!-- <div
           class="mt-9 justify-end flex"
           v-if="
@@ -227,14 +373,12 @@
            <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
         </div> -->
-        <div  class="mt-9 justify-end flex">
+        <div class="mt-9 justify-end flex">
           <button class="button-primary" id="submit" type="submit">
             Prześlij quiz do akceptacji
             <!-- <Icon name="carbon:chevron-right" class="-mr-2" size="24" /> -->
           </button>
         </div>
-        {{ values }}
-
         <!-- koniec formularza -->
       </Form>
     </NuxtLayout>
@@ -246,17 +390,30 @@ import { storeToRefs } from "pinia";
 import { useQuiz } from "@/store/useQuiz";
 import * as Yup from "yup";
 import { Form, Field } from "vee-validate";
-import { onInvalidSubmit } from "@/utils/function";
+import { onInvalidSubmit, indexBigger } from "@/utils/function";
 
 const quizStore = useQuiz();
 const { categories, newQuizId, newQuestionId } = storeToRefs(quizStore);
 await quizStore.getCategory();
 let category = categories.value;
 
+let titleQuestion = ref("");
+let answer_1 = ref("");
+let answer_2 = ref("");
+let answer_3 = ref("");
+let answer_4 = ref("");
+
+const allQuestion = ref(false);
 
 definePageMeta({
   middleware: "auth",
 });
+
+const testIcon = ref(false);
+
+function titleModel(name: any, number: number) {
+  return name + number;
+}
 
 const isOpen = ref(false);
 const isRemove = ref(false);
@@ -266,7 +423,6 @@ function modalClose() {
   isOpen.value = !isOpen.value;
   window.location.reload();
 }
-
 
 const styleObject = reactive({
   width: "100%",
@@ -280,36 +436,39 @@ function isTime() {
   styleObject.width = "30px";
 }
 
-const form = reactive([
-  {
-    id: 1,
-    title: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
-    line: false,
-  },
-]);
+let form = reactive<any>([]);
 
 const remove = (index: any) => {
   isRemove.value = !isRemove.value;
   form.splice(index, 1);
-  removeSucess.value =! removeSucess.value
+  removeSucess.value = !removeSucess.value;
 };
 
 const newQuestionInput = () => {
+  let formL = form.length;
   form.push({
-    id: 2,
-    title: "",
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
-    line: true,
+    title: titleQuestion.value,
+    answer2: answer_1.value,
+    answer1: answer_2.value,
+    answer3: answer_3.value,
+    answer4: answer_4.value,
   });
+
+  titleQuestion.value = "";
+  answer_1.value = "";
+  answer_2.value = "";
+  answer_3.value = "";
+  answer_4.value = "";
 };
 
+function console1() {
+  let formPre = JSON.stringify(form);
+  let formL = form.length;
+  console.log(formPre);
+  console.log(formL);
+  const test = "test";
+  console.log(titleModel(test, 1));
+}
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
@@ -321,74 +480,113 @@ const schema = Yup.object().shape({
 async function onSubmit(values: any) {
   // !dodać obraz
 
-  let { title, time, category_id,difficulty, question_1, question_2, question_3 } = values;
+  let {
+    title,
+    time,
+    category_id,
+    difficulty,
+    question_1,
+    question_2,
+    question_3,
+  } = values;
 
-  let i = form.length
-  let j = 1
+  let i = form.length;
+  let j = 1;
 
+  console.log(JSON.stringify(form));
+  console.log(form.title);
+  console.log(JSON.stringify(newQuestionInput));
 
-function changeQuestion(){
-  let results = ''
-  if(1>0){
-    results = question_1
+  function changeQuestion() {
+    let results = "";
+    if (1 > 0) {
+      results = question_1;
+    }
+    return results;
   }
-  return results
-}
 
-// !działa już dodawanie quizu
-await quizStore.postNewQuiz(title, time, category_id,difficulty)
-let quziId = newQuizId.value;
+  // !działa już dodawanie quizu
+  await quizStore.postNewQuiz(title, time, category_id, difficulty);
+  let quziId = newQuizId.value;
 
-// !działa już dodawanie pytania - jednego
-// while (j<=i) {
-//   await quizStore.postNewQuestion(question_1, quziId) 
-// let questionId = newQuestionId.value;
-//     // console.log("question_j"+j);
-//     j++;
-    
-// console.log('id question_'+questionId)
-// }
+  // !działa już dodawanie pytania - jednego
+  while (j <= i) {
+    let counter = question_1;
+    // let counter = question_1
+    //  let quest = changeCounter(j, question_1)
+    //  let c =j
+    await quizStore.postNewQuestion(question_1, quziId);
+    let questionId = newQuestionId.value;
 
-let counter = question_1
-await quizStore.postNewQuestion(counter, quziId) 
-let questionId = newQuestionId.value;
-    // console.log("question_j"+j);
+    console.log(questionId);
     j++;
-    
-// console.log('id question_'+questionId)
-// await quizStore.postNewQuestion(question_2, quziId) 
-//     // console.log("question_j"+j);
-//     j++;
-    
-// console.log('id question_'+questionId)
+  }
 
-// await quizStore.postNewQuestion(question_1, quziId) 
-// let questionId = newQuestionId.value;
+  // console.log('id question_'+questionId)
 
-// console.log('id question_'+questionId)
-// !gdy jest w pętli działa poprawnie 
-//   await quizStore.postNewQuestion(question_1, quziId) 
-// let questionId = newQuestionId.value;
-//     console.log(questionId)
-// for (let i=1; i<5; i++) {
-//     console.log("Trwa odliczanie", "question_"+i, questionId);
-// }
+  //   #najlepsza pętla w wykonaniu Szymona Wojaka!!! (podejscie numer 6)
+  // library(climate)
+  // setwd("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/Dane")
+  // H=read.csv("kody_stacji.csv",sep=";")
+  // head(H,20)
+  // W=c(149180160,149180140,149180110,149180100,149180080,149180210,149180240,149190060,150190140,150190170,150190360,150190260,149190230,150190340,151230040,151230060,150240010,150240020,152220050,152230080)
+  // HW=H[H$Identyfikator%in%W,]
+  // head(HW)
+  // for(i in 1:20)
+  // {
+  //   setwd("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/zad37")
+  //   dir.create(paste0(HW$Rzeka[i],"_",HW$Identyfikator[i]))
+  //   setwd(paste0("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/zad37/",HW$Rzeka[i],"_",HW$Identyfikator[i]))
+  //   Q=hydro_imgw_annual(2005:2020,station=HW$Identyfikator[i])
+  //   write.table(Q,paste0("roczne_",HW$Nazwa[i]))
+  // }
 
-console.log('id quizu_'+quziId)
+  // #ta da!
+
+  // let counter = changeCounter(1, question_1, question_2, )
+  // await quizStore.postNewQuestion(counter, quziId)
+  // let questionId = newQuestionId.value;
+  //     j++;
+
+  // console.log('id question_'+questionId)
+  // await quizStore.postNewQuestion(question_2, quziId)
+  //     // console.log("question_j"+j);
+  //     j++;
+
+  // console.log('id question_'+questionId)
+
+  // await quizStore.postNewQuestion(question_1, quziId)
+  // let questionId = newQuestionId.value;
+
+  // console.log('id question_'+questionId)
+  // !gdy jest w pętli działa poprawnie
+  //   await quizStore.postNewQuestion(question_1, quziId)
+  // let questionId = newQuestionId.value;
+  //     console.log(questionId)
+  // for (let i=1; i<5; i++) {
+  //     console.log("Trwa odliczanie", "question_"+i, questionId);
+  // }
+
+  console.log("id quizu_" + quziId);
   isOpen.value = !isOpen.value;
 }
 
 // while (j<=i) {
-  
-let i = form.length
-  let j = 1
 
-function changeCounter(index: number){
-  let results = ''
-  if(index)
-  return results
-}
+// let i = form.length;
+// let j = 1;
 
+// function changeCounter(j: number, question_: string) {
+//   let results: any = "";
+//   if (j == 1) {
+//     results = question_ + j;
+//   }
+
+//   return results;
+// }
+
+// const question_ = "question_";
+// console.log(changeCounter(1, question_));
 </script>
 <style scoped lang="scss">
 .row-table-start {
@@ -538,12 +736,54 @@ input[type="file"] {
   margin-bottom: 6px;
   font-weight: 600;
 }
-.margin{
+.margin {
   margin-top: 34px;
 }
 .vl {
   border-left: 1px solid #e0e0e0 !important;
   margin-top: 3px;
   margin-bottom: 3px;
+}
+
+.edit-quest {
+  font-size: 14px;
+  margin-top: -28px;
+  position: absolute;
+  margin-right: 52px;
+}
+
+textarea {
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  min-height: 30px;
+  max-height: 100px;
+  border-color: white;
+}
+textarea::placeholder {
+  font-size: 16px;
+}
+textarea:focus::placeholder {
+  font-size: 0px;
+}
+
+input {
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  overflow: hidden;
+  min-height: 30px;
+  padding: 0px;
+  max-height: 100px;
+  font-weight: 500;
+  border-color: white;
+}
+input::placeholder {
+  font-size: 16px;
+}
+input:focus::placeholder {
+  font-size: 0px;
 }
 </style>

@@ -155,7 +155,7 @@ async function onSubmit(values: any) {
 
 function Modal() {
 isOpen.value =! isOpen.value
-window.location.reload();
+// window.location.reload();
 }
 
 function ModalError() {

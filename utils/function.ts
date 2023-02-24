@@ -101,10 +101,19 @@ export function AddAnswer(correct: number, incorrect: number){
 
 export function ChangeDataInput(value: any, apiData:any){
   let results = ''
-  if(value.length > 0){
+  if(value){
 results= value
-  } else if(apiData.length > 0){
+  } else if(apiData){
     results = apiData
   }
   return results;
+}
+
+
+export function indexBigger (index: number){
+  let results = false
+  if(index > 0){
+  results = true
+  }
+return results
 }
