@@ -142,7 +142,7 @@
           </div>
         </div>
         <!-- opis quizu -->
-        <h2 class="title-h2 mt-14 mb-8">Opis quizu</h2>
+        <h2 class="title-h2 mt-14 mb-8">Opis</h2>
         <div class="white-retangle">
           <div class="row-table-end -mt-4 -pb-20 flex">
             <InputTextArea
@@ -171,7 +171,7 @@
         </div>
 
         <!-- pytania do quizu -->
-        <h2 class="title-h2 mt-14 mb-8">Dodaj pytania do quizu</h2>
+        <h2 class="title-h2 mt-14 mb-8">Pytania</h2>
 
         <div v-for="(item, index) in form" :key="index">
           <div
@@ -183,11 +183,10 @@
             <div v-if="form.length >= 1" class="justify-end flex mr-6">
               <Icon
                 name="carbon:close"
-                size="30"
-                class="red text-xs z-10 -mt-8 absolute"
+                size="22"
+                class="red text-xs -mt-7 absolute"
                 @click="isRemove = !isRemove"
               />
-              <p class="edit-quest primary-color">Edytuj</p>
             </div>
             <div class="row-table-end flex place-items-center gap-3 mb-4 mt-1">
               <div class="">
@@ -244,6 +243,9 @@
                   <h2 class="font-medium mt-0.5">{{ item.answer4 }}</h2>
                 </div>
               </div>
+            </div>
+            <div class="w-full">
+            <p class="edit-quest primary-color">Edytuj</p>
             </div>
           </div>
         </div>
@@ -331,6 +333,8 @@
               answer_2.length > 1 &&
               answer_3.length > 1 &&
               answer_4.length > 1
+
+
             "
           >
             <p
@@ -446,6 +450,7 @@ const remove = (index: any) => {
 
 const newQuestionInput = () => {
   let formL = form.length;
+
   form.push({
     title: titleQuestion.value,
     answer2: answer_1.value,
@@ -461,14 +466,31 @@ const newQuestionInput = () => {
   answer_4.value = "";
 };
 
+
+
+
 function console1() {
-  let formPre = JSON.stringify(form);
-  let formL = form.length;
-  console.log(formPre);
-  console.log(formL);
-  const test = "test";
-  console.log(titleModel(test, 1));
+  
+  form.forEach(element => console.log(form));
+  let singleElement = ''
+   form.forEach(element=>{
+    singleElement = element.title
+    console.log(singleElement)
+  }
+  );
+
+    // console.log('pojedyńczy element'+singleElement);
+    // console.log('pojedyńczy element _+_value'+singleElement.value);
+
+
 }
+
+
+
+
+
+
+
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
@@ -510,17 +532,27 @@ async function onSubmit(values: any) {
   let quziId = newQuizId.value;
 
   // !działa już dodawanie pytania - jednego
-  while (j <= i) {
+  // while (j <= i) {
     let counter = question_1;
     // let counter = question_1
     //  let quest = changeCounter(j, question_1)
     //  let c =j
-    await quizStore.postNewQuestion(question_1, quziId);
+
+    // let singleElement = form.forEach(element => console.log(form));
+    form.forEach(async (element)=>{
+    await quizStore.postNewQuestion(element.title, quziId);
+    }
+    );
+
+form.forEach(element=>
+    console.log(element.title)
+    );
+
     let questionId = newQuestionId.value;
 
     console.log(questionId);
-    j++;
-  }
+  //   j++;
+  // }
 
   // console.log('id question_'+questionId)
 
@@ -732,12 +764,12 @@ input[type="file"] {
 .quest-text {
   font-size: 16px;
   margin-left: 28px;
-  margin-top: 4px;
+  margin-top: 6px;
   margin-bottom: 6px;
   font-weight: 600;
 }
 .margin {
-  margin-top: 34px;
+  margin-top: 36px;
 }
 .vl {
   border-left: 1px solid #e0e0e0 !important;
@@ -746,10 +778,10 @@ input[type="file"] {
 }
 
 .edit-quest {
-  font-size: 14px;
-  margin-top: -28px;
-  position: absolute;
-  margin-right: 52px;
+font-size: 13px;
+font-weight: 500;
+text-align: end;
+padding: 12px 25px 5px 12px;
 }
 
 textarea {
