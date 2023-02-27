@@ -15,29 +15,28 @@ export const useQuiz = defineStore('quiz', {
         nextQuestion: [],
         getNextQuestionTest: null,
         newQuizId:{} as number,
-        newQuestionId:{} as number,
+        newQuestionId:{} as any,
+        new:{} as string,
     }),
     actions: {
         async getFastTwo() {
-            const res = await axiosInstance.get('/quizzes/fast-two', {
-            })
             try {
+                const res = await axiosInstance.get('/quizzes/fast-two')
                 this.fastTwo = await res
             } catch (e) {
                 console.error(e)
             }
         },
         async getAllQuiz() {
-            const res = await axiosInstance.get('/quizzes')
             try {
+                const res = await axiosInstance.get('/quizzes')
                 this.allQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
             }
         },
         async getCategory() {
-            const res = await axiosInstance.get('/categories', {
-            })
+            const res = await axiosInstance.get('/categories')
             try {
                 this.categories = await res.data.data
             } catch (e) {
@@ -45,8 +44,8 @@ export const useQuiz = defineStore('quiz', {
             }
         },
         async getSingleQuiz(id: any) {
-            const res = await axiosInstance.get(`/quizzes/${id}`)
             try {
+                const res = await axiosInstance.get(`/quizzes/${id}`)
                 this.singleQuiz = await res.data.data
             } catch (e) {
                 console.error(e)
@@ -55,25 +54,25 @@ export const useQuiz = defineStore('quiz', {
 
         //! granie w quizy 
         async startingQuiz(id: any) {
-            const res = await axiosInstance.get(`/quiz/${id}/start`)
             try {
+                const res = await axiosInstance.get(`/quiz/${id}/start`)
                 this.startQuiz = await res.data.data
             } catch (e) {
                 console.error(e)
             }
         },
         async postAnswerNextQuestion(quiz_submission: any, question_id: any, answer_id: any) {
-            const res = await axiosInstance.post(`/quiz/submission/${quiz_submission}/answerQuestion`, 
-            { question_id, answer_id })
             try {
+                const res = await axiosInstance.post(`/quiz/submission/${quiz_submission}/answerQuestion`, 
+                { question_id, answer_id })
                 this.nextQuestion = await res.data
             } catch (e) {
                 console.error(e)
             }
         },
         async getNextQuestion(quiz_submission: any) {
-            const res = await axiosInstance.get(`/quiz/submission/${quiz_submission}/getNextQuestion`)
             try {
+                const res = await axiosInstance.get(`/quiz/submission/${quiz_submission}/getNextQuestion`)
                 this.getNextQuestion = await res.data
             } catch (e) {
                 console.error(e)
@@ -82,16 +81,16 @@ export const useQuiz = defineStore('quiz', {
 
         //! odpowiedzi i pytanie do pojedyńczego quizu 
         async correctAnswerId(id_question: any) {
-            const res = await axiosInstance.get(`/questions/${id_question}`)
             try {
+                const res = await axiosInstance.get(`/questions/${id_question}`)
                 this.correctAnswer = await res.data.data
             } catch (e) {
                 console.error(e)
             }
         },
         async cAnswer(question: any) {
-            const res = await axiosInstance.get(`/questions/${question}/answers `)
             try {
+                const res = await axiosInstance.get(`/questions/${question}/answers `)
                 this.answer = await res.data.data
             } catch (e) {
                 console.error(e)
@@ -99,18 +98,26 @@ export const useQuiz = defineStore('quiz', {
         },
 
         //! dodawanie nowego quizu 
-        async postNewQuiz(title:string, time:number, category_id:number, difficulty:string) {
-            const res = await axiosInstance.post('/quizzes',{title, time, category_id, difficulty})
+        async postNewQuiz(title:string, time:number, category_id:number, difficulty:string, image:any) {
             try {
+                const res = await axiosInstance.post('/quizzes',{title, time, category_id, difficulty, image})
                 this.newQuizId = await res.data.data.id
             } catch (e) {
                 console.error(e)
             }
         },
         async postNewQuestion(question:any, quiz_id:number) {
-            const res = await axiosInstance.post('/questions',{question, quiz_id})
             try {
+                const res = await axiosInstance.post('/questions',{question, quiz_id})
                 this.newQuestionId = await res.data.data.id
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async postNewAnswer(answer:any, question_id:any, correct:boolean) {
+            try {
+                const res = await axiosInstance.post('/answers',{answer, question_id, correct})
+                this.new = await res.data
             } catch (e) {
                 console.error(e)
             }

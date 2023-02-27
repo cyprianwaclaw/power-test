@@ -47,8 +47,8 @@
       </template>
       
       <script setup lang="ts">
-  import { ref } from "vue";
   import * as Yup from 'yup';
+  import { ref } from "vue";
   import { storeToRefs } from "pinia";
   import { Form } from 'vee-validate';
   import { useAuth } from "@/store/useAuth";
@@ -79,5 +79,8 @@
     token: Yup.string().min(6).required("Pole wymagane"),
   })
   
+
+  const test = 'ome'
+  console.log(test)
   </script>
   

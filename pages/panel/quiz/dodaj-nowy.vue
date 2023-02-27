@@ -7,7 +7,9 @@
           <div class="flex justify-center w-full">
             <Icon name="ph:x-circle-light" size="72" class="red mb-3" />
           </div>
-          <p class="edit-message-modal">Uzupełnij tytół pytania, wszystkie odpowiedzi oraz zaznacz poprawną z nich</p>
+          <p class="edit-message-modal">
+            Uzupełnij tytół pytania, wszystkie odpowiedzi oraz zaznacz poprawną z nich
+          </p>
         </div>
         <div class="border-top flex justify-end">
           <button class="button-modal primary-color" @click="allQuestion = !allQuestion">
@@ -163,11 +165,13 @@
               size="38"
               color="9F9F9F"
               class="justify-center flex w-full"
-            />
-            <Field name="image" type="file" />
+            />    <Field name="image" type="file"  ref="fileInput"/>
+            <!-- <input type="file" onchange="previewFile()" /><br />
+<img src="" height="200" alt="Image preview" /> -->
             <h1>Dodaj zdjęcie</h1>
             <p>Kliknij tutaj aby dodać zdjęcie</p>
           </label>
+          {{ image }}
         </div>
 
         <!-- pytania do quizu -->
@@ -197,55 +201,56 @@
               </div>
             </div>
             <div class="row-table-start flex place-items-center gap-3">
-              <div v-if="testIcon">
+              <div v-if="item.answer1.isCorrect">
                 <Icon name="ph:check-circle-light" size="21" class="green" />
               </div>
               <div v-else class="w-5"></div>
               <div class="">
                 <p class="text-des-mobile-add">Odpowiedź 1</p>
                 <div>
-                  <h2 class="font-medium mt-0.5">{{ item.answer1 }}</h2>
+                  <h2 class="font-medium mt-0.5">{{ item.answer1.title }}</h2>
                 </div>
               </div>
             </div>
             <div class="row-table-start flex place-items-center gap-3">
-              <div v-if="testIcon">
+              <div v-if="item.answer2.isCorrect">
                 <Icon name="ph:check-circle-light" size="21" class="green" />
               </div>
               <div v-else class="w-5"></div>
               <div class="">
                 <p class="text-des-mobile-add">Odpowiedź 2</p>
                 <div>
-                  <h2 class="font-medium mt-0.5">{{ item.answer2 }}</h2>
+                  <h2 class="font-medium mt-0.5">{{ item.answer2.title }}</h2>
                 </div>
               </div>
             </div>
             <div class="row-table-start flex place-items-center gap-3">
-              <div v-if="testIcon">
+              <!--! zmienić we waszystkich -->
+              <div v-if="item.answer3.isCorrect">
                 <Icon name="ph:check-circle-light" size="21" class="green" />
               </div>
               <div v-else class="w-5"></div>
               <div class="">
                 <p class="text-des-mobile-add">Odpowiedź 3</p>
                 <div>
-                  <h2 class="font-medium mt-0.5">{{ item.answer3 }}</h2>
+                  <h2 class="font-medium mt-0.5">{{ item.answer3.title }}</h2>
                 </div>
               </div>
             </div>
             <div class="row-table-end flex place-items-center gap-3">
-              <div v-if="testIcon">
+              <div v-if="item.answer4.isCorrect">
                 <Icon name="ph:check-circle-light" size="21" class="green" />
               </div>
               <div v-else class="w-5"></div>
               <div class="">
                 <p class="text-des-mobile-add">Odpowiedź 4</p>
                 <div>
-                  <h2 class="font-medium mt-0.5">{{ item.answer4 }}</h2>
+                  <h2 class="font-medium mt-0.5">{{ item.answer4.title }}</h2>
                 </div>
               </div>
             </div>
             <div class="w-full">
-            <p class="edit-quest primary-color">Edytuj</p>
+              <p class="edit-quest primary-color">Edytuj</p>
             </div>
           </div>
         </div>
@@ -262,6 +267,7 @@
           </div>
           <!-- pytania do quizu -->
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <input type="checkbox" value="true" v-model="correct1" />
             <input
               name="answer_1"
               v-model="answer_1"
@@ -270,6 +276,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <input type="checkbox" v-model="correct2" />
             <input
               name="answer_2"
               v-model="answer_2"
@@ -278,6 +285,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
+            <input type="checkbox" v-model="correct3" />
             <input
               name="answer_3"
               v-model="answer_3"
@@ -286,6 +294,7 @@
             />
           </div>
           <div class="row-table-end -mt-2 -mb-1 flex place-items-end">
+            <input type="checkbox" v-model="correct4" />
             <input
               name="answer_4"
               v-model="answer_4"
@@ -304,61 +313,46 @@
                 answer_4.length > 1
               "
             >
+              <p @click="newQuestionInput" class="text-end primary-color font-medium">
+                Dodaj pierwsze pytanie
+              </p>
+            </div>
+
+            <div class="mr-7 mb-3 mt-8" v-else>
               <p
-                @click="newQuestionInput"
+                @click="allQuestion = !allQuestion"
                 class="text-end primary-color font-medium"
               >
                 Dodaj pierwsze pytanie
               </p>
             </div>
-
-            <div
-            class="mr-7 mb-3 mt-8"
-            v-else
-          >
-            <p
-              @click="allQuestion = !allQuestion"
-              class="text-end primary-color font-medium"
-            >
-              Dodaj pierwsze pytanie
-            </p>
-          </div>
           </div>
           <div v-else>
             <div
-            class="mr-7 mb-3 mt-8"
-            v-if="
-              titleQuestion.length > 1 &&
-              answer_1.length > 1 &&
-              answer_2.length > 1 &&
-              answer_3.length > 1 &&
-              answer_4.length > 1
-
-
-            "
-          >
-            <p
-              @click="newQuestionInput"
-              class="text-end primary-color font-medium"
+              class="mr-7 mb-3 mt-8"
+              v-if="
+                titleQuestion.length > 1 &&
+                answer_1.length > 1 &&
+                answer_2.length > 1 &&
+                answer_3.length > 1 &&
+                answer_4.length > 1
+              "
             >
-              Kolejne pytanie
-            </p>
-          </div>
+              <p @click="newQuestionInput" class="text-end primary-color font-medium">
+                Kolejne pytanie
+              </p>
+            </div>
 
-          <div
-          class="mr-7 mb-3 mt-8"
-          v-else
-        >
-          <p
-            @click="allQuestion = !allQuestion"
-            class="text-end primary-color font-medium"
-          >
-            Kolejne pytanie
-          </p>
-        </div>
+            <div class="mr-7 mb-3 mt-8" v-else>
+              <p
+                @click="allQuestion = !allQuestion"
+                class="text-end primary-color font-medium"
+              >
+                Kolejne pytanie
+              </p>
+            </div>
           </div>
         </div>
-
         <div>
           <p @click="console1">console.log</p>
         </div>
@@ -377,6 +371,7 @@
            <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
         </div> -->
+        {{ values }}
         <div class="mt-9 justify-end flex">
           <button class="button-primary" id="submit" type="submit">
             Prześlij quiz do akceptacji
@@ -391,6 +386,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { ref, reactive } from "vue";
 import { useQuiz } from "@/store/useQuiz";
 import * as Yup from "yup";
 import { Form, Field } from "vee-validate";
@@ -401,11 +397,17 @@ const { categories, newQuizId, newQuestionId } = storeToRefs(quizStore);
 await quizStore.getCategory();
 let category = categories.value;
 
+let image = ref()
+
 let titleQuestion = ref("");
 let answer_1 = ref("");
 let answer_2 = ref("");
 let answer_3 = ref("");
 let answer_4 = ref("");
+let correct1 = ref(false);
+let correct2 = ref(false);
+let correct3 = ref(false);
+let correct4 = ref(false);
 
 const allQuestion = ref(false);
 
@@ -413,19 +415,13 @@ definePageMeta({
   middleware: "auth",
 });
 
-const testIcon = ref(false);
-
-function titleModel(name: any, number: number) {
-  return name + number;
-}
-
 const isOpen = ref(false);
 const isRemove = ref(false);
 const removeSucess = ref(false);
 
 function modalClose() {
   isOpen.value = !isOpen.value;
-  window.location.reload();
+  // window.location.reload();
 }
 
 const styleObject = reactive({
@@ -453,10 +449,22 @@ const newQuestionInput = () => {
 
   form.push({
     title: titleQuestion.value,
-    answer2: answer_1.value,
-    answer1: answer_2.value,
-    answer3: answer_3.value,
-    answer4: answer_4.value,
+    answer1: {
+      title: answer_1.value,
+      isCorrect: correct1.value,
+    },
+    answer2: {
+      title: answer_2.value,
+      isCorrect: correct2.value,
+    },
+    answer3: {
+      title: answer_3.value,
+      isCorrect: correct3.value,
+    },
+    answer4: {
+      title: answer_4.value,
+      isCorrect: correct4.value,
+    },
   });
 
   titleQuestion.value = "";
@@ -464,33 +472,20 @@ const newQuestionInput = () => {
   answer_2.value = "";
   answer_3.value = "";
   answer_4.value = "";
+
+  correct1.value = false;
+  correct2.value = false;
+  correct3.value = false;
+  correct4.value = false;
 };
 
-
-
-
 function console1() {
-  
-  form.forEach(element => console.log(form));
-  let singleElement = ''
-   form.forEach(element=>{
-    singleElement = element.title
-    console.log(singleElement)
-  }
-  );
+  // for (let element in form){
+  //   console.log(form[element].answer1);
 
-    // console.log('pojedyńczy element'+singleElement);
-    // console.log('pojedyńczy element _+_value'+singleElement.value);
-
-
+  // }
+  form.forEach((element) => console.log(element.answer1));
 }
-
-
-
-
-
-
-
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
@@ -502,123 +497,110 @@ const schema = Yup.object().shape({
 async function onSubmit(values: any) {
   // !dodać obraz
 
-  let {
-    title,
-    time,
-    category_id,
-    difficulty,
-    question_1,
-    question_2,
-    question_3,
-  } = values;
-
-  let i = form.length;
-  let j = 1;
-
-  console.log(JSON.stringify(form));
-  console.log(form.title);
-  console.log(JSON.stringify(newQuestionInput));
-
-  function changeQuestion() {
-    let results = "";
-    if (1 > 0) {
-      results = question_1;
-    }
-    return results;
-  }
+  let { title, time, category_id, difficulty, image } = values;
 
   // !działa już dodawanie quizu
-  await quizStore.postNewQuiz(title, time, category_id, difficulty);
+  await quizStore.postNewQuiz(title, time, category_id, difficulty, image);
   let quziId = newQuizId.value;
 
-  // !działa już dodawanie pytania - jednego
-  // while (j <= i) {
-    let counter = question_1;
-    // let counter = question_1
-    //  let quest = changeCounter(j, question_1)
-    //  let c =j
-
-    // let singleElement = form.forEach(element => console.log(form));
-    form.forEach(async (element)=>{
-    await quizStore.postNewQuestion(element.title, quziId);
-    }
-    );
-
-form.forEach(element=>
-    console.log(element.title)
-    );
-
+// for(let element in form){
+  form.forEach(async (answer) => {
+    await quizStore.postNewQuestion(answer.title, quziId);
+    // let arrayQuest_id = reactive([])
     let questionId = newQuestionId.value;
+//     function add(){
+//       arrayQuest_id.push(questionId)
+//     }
+// add()
+// console.log(arrayQuest_id)
 
-    console.log(questionId);
-  //   j++;
-  // }
+    // form.forEach(async (answer) => {
+    //   console.log(answer);
+    //   console.log(answer.answer1.title);
+    //   console.log(questionId);
+      await quizStore.postNewAnswer(
+        answer.answer1.title,
+        questionId,
+        answer.answer1.isCorrect
+      );
+      await quizStore.postNewAnswer(
+        answer.answer2.title,
+        questionId,
+        answer.answer2.isCorrect
+      );
+      await quizStore.postNewAnswer(
+        answer.answer3.title,
+        questionId,
+        answer.answer3.isCorrect
+      );
+      await quizStore.postNewAnswer(
+        answer.answer4.title,
+        questionId,
+        answer.answer4.isCorrect
+      );
+  // });
 
-  // console.log('id question_'+questionId)
+  // });
+  }),
+  // form.forEach(async(answer)=>{
+  //  console.log(answer)
+  //  console.log(answer.answer1.title)
+  //  console.log(this.questionId)
+  //   await quizStore.postNewAnswer(answer.answer1.title, this.questionId, answer.answer1.isCorrect);
+  //   })
 
-  //   #najlepsza pętla w wykonaniu Szymona Wojaka!!! (podejscie numer 6)
-  // library(climate)
-  // setwd("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/Dane")
-  // H=read.csv("kody_stacji.csv",sep=";")
-  // head(H,20)
-  // W=c(149180160,149180140,149180110,149180100,149180080,149180210,149180240,149190060,150190140,150190170,150190360,150190260,149190230,150190340,151230040,151230060,150240010,150240020,152220050,152230080)
-  // HW=H[H$Identyfikator%in%W,]
-  // head(HW)
-  // for(i in 1:20)
-  // {
-  //   setwd("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/zad37")
-  //   dir.create(paste0(HW$Rzeka[i],"_",HW$Identyfikator[i]))
-  //   setwd(paste0("I:/Studia/Zastosowanie metod statystycznych/OneDrive_1_17.03.2022/zad37/",HW$Rzeka[i],"_",HW$Identyfikator[i]))
-  //   Q=hydro_imgw_annual(2005:2020,station=HW$Identyfikator[i])
-  //   write.table(Q,paste0("roczne_",HW$Nazwa[i]))
-  // }
-
-  // #ta da!
-
-  // let counter = changeCounter(1, question_1, question_2, )
-  // await quizStore.postNewQuestion(counter, quziId)
-  // let questionId = newQuestionId.value;
-  //     j++;
-
-  // console.log('id question_'+questionId)
-  // await quizStore.postNewQuestion(question_2, quziId)
-  //     // console.log("question_j"+j);
-  //     j++;
-
-  // console.log('id question_'+questionId)
-
-  // await quizStore.postNewQuestion(question_1, quziId)
-  // let questionId = newQuestionId.value;
-
-  // console.log('id question_'+questionId)
-  // !gdy jest w pętli działa poprawnie
-  //   await quizStore.postNewQuestion(question_1, quziId)
-  // let questionId = newQuestionId.value;
-  //     console.log(questionId)
-  // for (let i=1; i<5; i++) {
-  //     console.log("Trwa odliczanie", "question_"+i, questionId);
-  // }
-
-  console.log("id quizu_" + quziId);
+  // console.log("id quizu_" + quziId);
   isOpen.value = !isOpen.value;
 }
 
-// while (j<=i) {
 
-// let i = form.length;
-// let j = 1;
 
-// function changeCounter(j: number, question_: string) {
-//   let results: any = "";
-//   if (j == 1) {
-//     results = question_ + j;
+// const file = ref(null);
+
+// const fileName = computed(() => file.value?.name);
+// const fileExtension = computed(() => fileName.value?.substr(fileName.value?.lastIndexOf(".") + 1));
+// const fileMimeType = computed(() => file.value?.type);
+
+// const uploadFile = (event) => {
+//   file.value = event.target.files[0];
+// };
+
+
+// const reader = new FileReader();
+//   reader.readAsDataURL(file.value);
+//   reader.onload = async () => {
+//     const encodedFile = reader.result.split(",")[1];
+//     const data = {
+//       file: encodedFile,
+//       fileName: fileName.value,
+//       fileExtension: fileExtension.value,
+//       fileMimeType: fileMimeType.value,
+//     };
+//     console.log(data)
+
 //   }
 
-//   return results;
+
+// function previewFile() {
+//   const preview = document.querySelector("img");
+//   const file = document.querySelector("input[type=file]").files[0];
+//   const reader = new FileReader();
+
+//   reader.addEventListener(
+//     "load",
+//     () => {
+//       // convert image file to base64 string
+//       preview.src = reader.result;
+//     },
+//     false
+//   );
+
+//   if (file) {
+//     reader.readAsDataURL(file);
+//   }
 // }
 
-// const question_ = "question_";
-// console.log(changeCounter(1, question_));
+
 </script>
 <style scoped lang="scss">
 .row-table-start {
@@ -778,10 +760,10 @@ input[type="file"] {
 }
 
 .edit-quest {
-font-size: 13px;
-font-weight: 500;
-text-align: end;
-padding: 12px 25px 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: end;
+  padding: 12px 25px 5px 12px;
 }
 
 textarea {

@@ -14,26 +14,26 @@ export const useUser = defineStore('user', {
         getPersonal: {} as Personal,
         getCompany: {} as Company,
         getFinancial: {} as Financial,
-        success: [] as boolean,
-        errorMessage: [] as string,
+        success: {} as boolean,
+        errorMessage: {} as string,
     }),
 
     actions: {
         async getUser() {
-            const res = await axiosInstance.get('/users/current')
             try {
+                const res = await axiosInstance.get('/users/current')
                 this.currentUser = await res.data.user
             } catch { }
         },
         async getInvitationToken() {
-            const res = await axiosInstance.get('/user/getInvitationToken')
             try {
+                const res = await axiosInstance.get('/user/getInvitationToken')
                 this.invitationToken = await res.data.invitationToken
             } catch { }
         },
         async getUserStats() {
-            const res = await axiosInstance.get('/user/stats')
             try {
+                const res = await axiosInstance.get('/user/stats')
                 this.inCorrectAnswers = await res.data.data.incorrect_answers
                 this.correctAnswers = await res.data.data.correct_answers
             } catch { }
@@ -47,8 +47,8 @@ export const useUser = defineStore('user', {
             } catch { }
         },
         async getSettingsUser() {
-            const res = await axiosInstance.get('/user/settings')
             try {
+                const res = await axiosInstance.get('/user/settings')
                 this.getPersonal = await res.data.personal
                 this.getFinancial = await res.data.financial
                 this.getCompany = await res.data.company
