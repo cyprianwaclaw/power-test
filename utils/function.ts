@@ -74,26 +74,14 @@ export function AddAnswer(correct: number, incorrect: number){
     }
     if(!name){
       results = {
-        // placeholder: name,
-        // class: 'input-data'
-                placeholder: text,
+        placeholder: text,
         class: 'input-not-data'
       }
     } 
-    //  if(name.length >0){
-    //   results = {
-    //     // placeholder: name,
-    //     // class: 'input-data'
-    //             placeholder: text,
-    //     class: 'input-not-data'
-    //   }
-    // }
     else {
       results = {
         placeholder: name,
         class: 'input-data'
-        // placeholder: text,
-        // class: 'input-not-data'
       }
     }
     return results;

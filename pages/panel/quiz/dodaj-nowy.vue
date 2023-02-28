@@ -158,14 +158,20 @@
         <!-- zdjęcie quizu -->
         <!-- TODO: edycja -->
         <h2 class="title-h2 mt-14 mb-8">Zdjęcie</h2>
-        <div class="white-retangle-image">
+        <div class="white-retangle-image" v-if="imageUrl">
+          <img v-show="imageUrl"
+          :src="imageUrl"
+          class="w-full border rounded-2xl">
+        </div>
+        <div class="white-retangle-image" v-else>
           <label class="image-retangle">
             <Icon
               name="carbon:cloud-upload"
               size="38"
               color="9F9F9F"
-              class="justify-center flex w-full"
-            />    <Field name="image" type="file"  ref="fileInput"/>
+              class="justify-center flex w-full -mb-4 mt-3"
+            />    <Field name="image" type="file"  accept="image/*"
+            @change="handleImageSelected"  class="default-file-input"  ref="fileInput"/>
             <!-- <input type="file" onchange="previewFile()" /><br />
 <img src="" height="200" alt="Image preview" /> -->
             <h1>Dodaj zdjęcie</h1>
@@ -266,8 +272,9 @@
             />
           </div>
           <!-- pytania do quizu -->
+          <fieldset id="group1">
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <input type="checkbox" value="true" v-model="correct1" />
+             <input type="radio" name="group1" v-model="radioCorrect"  value="correct1" />
             <input
               name="answer_1"
               v-model="answer_1"
@@ -276,7 +283,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <input type="checkbox" v-model="correct2" />
+             <input type="radio" name="group1" v-model="radioCorrect" value="correct2"  />
             <input
               name="answer_2"
               v-model="answer_2"
@@ -285,7 +292,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-            <input type="checkbox" v-model="correct3" />
+             <input type="radio" name="group1" v-model="radioCorrect"  value="correct3" />
             <input
               name="answer_3"
               v-model="answer_3"
@@ -294,7 +301,7 @@
             />
           </div>
           <div class="row-table-end -mt-2 -mb-1 flex place-items-end">
-            <input type="checkbox" v-model="correct4" />
+             <input type="radio" name="group1" v-model="radioCorrect" value="correct4"  />
             <input
               name="answer_4"
               v-model="answer_4"
@@ -302,6 +309,7 @@
               placeholder="Odpowiedź 4"
             />
           </div>
+        </fieldset>
           <div v-if="form.length + 1 == 1">
             <div
               class="mr-7 mb-3 mt-8"
@@ -353,9 +361,6 @@
             </div>
           </div>
         </div>
-        <div>
-          <p @click="console1">console.log</p>
-        </div>
 
         <!-- TODO: musi być  -->
         <!-- <div
@@ -371,7 +376,6 @@
            <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
           </button>
         </div> -->
-        {{ values }}
         <div class="mt-9 justify-end flex">
           <button class="button-primary" id="submit" type="submit">
             Prześlij quiz do akceptacji
@@ -397,6 +401,9 @@ const { categories, newQuizId, newQuestionId } = storeToRefs(quizStore);
 await quizStore.getCategory();
 let category = categories.value;
 
+
+let isDisabled = true
+
 let image = ref()
 
 let titleQuestion = ref("");
@@ -404,16 +411,54 @@ let answer_1 = ref("");
 let answer_2 = ref("");
 let answer_3 = ref("");
 let answer_4 = ref("");
-let correct1 = ref(false);
-let correct2 = ref(false);
-let correct3 = ref(false);
-let correct4 = ref(false);
+let radioCorrect = ref("")
 
 const allQuestion = ref(false);
 
 definePageMeta({
   middleware: "auth",
 });
+
+
+
+
+function isCorrect1(params: any){
+    let results = false 
+  if(params=='correct1'){
+   results = true
+  }else{
+  results = false
+}
+    return results
+}
+function isCorrect2(params: any){
+    let results = false 
+  if(params=='correct2'){
+   results = true
+  }else{
+  results = false
+}
+    return results
+}
+function isCorrect3(params: any){
+    let results = false 
+  if(params=='correct3'){
+   results = true
+  }else{
+  results = false
+}
+    return results
+}
+function isCorrect4(params: any){
+    let results = false 
+  if(params=='correct4'){
+   results = true
+  }else{
+  results = false
+}
+    return results
+}
+
 
 const isOpen = ref(false);
 const isRemove = ref(false);
@@ -451,19 +496,19 @@ const newQuestionInput = () => {
     title: titleQuestion.value,
     answer1: {
       title: answer_1.value,
-      isCorrect: correct1.value,
+      isCorrect: isCorrect1(radioCorrect.value),
     },
     answer2: {
       title: answer_2.value,
-      isCorrect: correct2.value,
+      isCorrect: isCorrect2(radioCorrect.value),
     },
     answer3: {
       title: answer_3.value,
-      isCorrect: correct3.value,
+      isCorrect: isCorrect3(radioCorrect.value),
     },
     answer4: {
       title: answer_4.value,
-      isCorrect: correct4.value,
+      isCorrect: isCorrect4(radioCorrect.value),
     },
   });
 
@@ -472,11 +517,7 @@ const newQuestionInput = () => {
   answer_2.value = "";
   answer_3.value = "";
   answer_4.value = "";
-
-  correct1.value = false;
-  correct2.value = false;
-  correct3.value = false;
-  correct4.value = false;
+  radioCorrect.value = ""
 };
 
 function console1() {
@@ -484,7 +525,7 @@ function console1() {
   //   console.log(form[element].answer1);
 
   // }
-  form.forEach((element) => console.log(element.answer1));
+  form.forEach((element) => console.log(element));
 }
 
 const schema = Yup.object().shape({
@@ -599,6 +640,13 @@ async function onSubmit(values: any) {
 //     reader.readAsDataURL(file);
 //   }
 // }
+
+
+
+let message = ref("");
+    let images = ref([]);
+    let { imageFile, imageUrl, handleImageSelected } = useImageUpload();
+
 
 
 </script>
@@ -727,7 +775,7 @@ input[type="file"] {
 }
 .image-retangle h1 {
   text-align: center;
-  margin-top: 6px;
+  margin-top: -6px;
   font-weight: 600;
   color: #9c9c9c;
 }
@@ -737,6 +785,7 @@ input[type="file"] {
   font-weight: 400;
   font-size: 14px;
   color: #9c9c9c;
+  margin-bottom: 12px;
 }
 .white-retangle-image {
   background-color: white;
@@ -799,5 +848,27 @@ input::placeholder {
 }
 input:focus::placeholder {
   font-size: 0px;
+}
+
+.default-file-input {
+	opacity: 0;
+}
+
+input[type=radio] {
+  appearance: none;
+
+  border-radius: 50%;
+  width: 50px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+input[type=radio]:checked {
+  border: 6px solid black;
 }
 </style>
