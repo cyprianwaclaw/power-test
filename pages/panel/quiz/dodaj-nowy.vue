@@ -163,7 +163,7 @@
           :src="imageUrl"
           class="w-full border rounded-2xl">
         </div>
-        <div class="white-retangle-image" v-else>
+        <div class="white-retangle-image" :class="{ imagehidden: imageUrl }">
           <label class="image-retangle">
             <Icon
               name="carbon:cloud-upload"
@@ -172,14 +172,10 @@
               class="justify-center flex w-full -mb-4 mt-3"
             />    <Field name="image" type="file"  accept="image/*"
             @change="handleImageSelected"  class="default-file-input"  ref="fileInput"/>
-            <!-- <input type="file" onchange="previewFile()" /><br />
-<img src="" height="200" alt="Image preview" /> -->
             <h1>Dodaj zdjęcie</h1>
             <p>Kliknij tutaj aby dodać zdjęcie</p>
           </label>
-          {{ image }}
         </div>
-
         <!-- pytania do quizu -->
         <h2 class="title-h2 mt-14 mb-8">Pytania</h2>
 
@@ -272,9 +268,9 @@
             />
           </div>
           <!-- pytania do quizu -->
-          <fieldset id="group1">
+          <fieldset id="group">
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-             <input type="radio" name="group1" v-model="radioCorrect"  value="correct1" />
+             <Field type="radio" name="group" v-model="radioCorrect"  value="correct1" />
             <input
               name="answer_1"
               v-model="answer_1"
@@ -283,7 +279,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-             <input type="radio" name="group1" v-model="radioCorrect" value="correct2"  />
+             <Field type="radio" name="group" v-model="radioCorrect" value="correct2"  />
             <input
               name="answer_2"
               v-model="answer_2"
@@ -292,7 +288,7 @@
             />
           </div>
           <div class="row-table-start -mt-2 -mb-1 flex place-items-end">
-             <input type="radio" name="group1" v-model="radioCorrect"  value="correct3" />
+             <Field type="radio" name="group" v-model="radioCorrect"  value="correct3" />
             <input
               name="answer_3"
               v-model="answer_3"
@@ -301,7 +297,7 @@
             />
           </div>
           <div class="row-table-end -mt-2 -mb-1 flex place-items-end">
-             <input type="radio" name="group1" v-model="radioCorrect" value="correct4"  />
+             <Field type="radio" name="group" v-model="radioCorrect" value="correct4"  />
             <input
               name="answer_4"
               v-model="answer_4"
@@ -314,11 +310,12 @@
             <div
               class="mr-7 mb-3 mt-8"
               v-if="
-                titleQuestion.length > 1 &&
-                answer_1.length > 1 &&
-                answer_2.length > 1 &&
-                answer_3.length > 1 &&
-                answer_4.length > 1
+                titleQuestion.length > 2 &&
+                answer_1.length > 2 &&
+                answer_2.length > 2 &&
+                answer_3.length > 2 &&
+                answer_4.length > 2 &&
+                values.group
               "
             >
               <p @click="newQuestionInput" class="text-end primary-color font-medium">
@@ -339,15 +336,16 @@
             <div
               class="mr-7 mb-3 mt-8"
               v-if="
-                titleQuestion.length > 1 &&
-                answer_1.length > 1 &&
-                answer_2.length > 1 &&
-                answer_3.length > 1 &&
-                answer_4.length > 1
+                titleQuestion.length > 2 &&
+                answer_1.length > 2 &&
+                answer_2.length > 2 &&
+                answer_3.length > 2 &&
+                answer_4.length > 2 &&
+                values.group
               "
             >
               <p @click="newQuestionInput" class="text-end primary-color font-medium">
-                Kolejne pytanie
+                Dodaj
               </p>
             </div>
 
@@ -356,27 +354,27 @@
                 @click="allQuestion = !allQuestion"
                 class="text-end primary-color font-medium"
               >
-                Kolejne pytanie
+                Dodaj
               </p>
             </div>
           </div>
         </div>
 
-        <!-- TODO: musi być  -->
-        <!-- <div
+       
+        <div
           class="mt-9 justify-end flex"
           v-if="
-          values.title && values.difficulty && values.category_id && values.time
+          values.title && values.difficulty && values.category_id && values.time && values.image && form.length
               ? false
               : true
           "
         >
           <button class="button-primary-disabled" disabled id="submit" type="submit">
             Prześlij quiz do akceptacji
-           <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
+           <!-- <Icon name="carbon:chevron-right" class="-mr-2" size="24" /> -->
           </button>
-        </div> -->
-        <div class="mt-9 justify-end flex">
+        </div>
+        <div class="mt-9 justify-end flex" v-else>
           <button class="button-primary" id="submit" type="submit">
             Prześlij quiz do akceptacji
             <!-- <Icon name="carbon:chevron-right" class="-mr-2" size="24" /> -->
@@ -458,7 +456,6 @@ function isCorrect4(params: any){
 }
     return results
 }
-
 
 const isOpen = ref(false);
 const isRemove = ref(false);
@@ -854,21 +851,16 @@ input:focus::placeholder {
 	opacity: 0;
 }
 
+
 input[type=radio] {
-  appearance: none;
+   border-radius: 50%;
+   width: 24px;
+   height: 3px;
+   margin-right: 14px;
+   position: relative;
+ }
 
-  border-radius: 50%;
-  width: 50px;
-
-  border: 2px solid #999;
-  transition: 0.2s all linear;
-  margin-right: 5px;
-
-  position: relative;
-  top: 4px;
-}
-
-input[type=radio]:checked {
-  border: 6px solid black;
-}
+.imagehidden{
+display:none
+ }
 </style>
