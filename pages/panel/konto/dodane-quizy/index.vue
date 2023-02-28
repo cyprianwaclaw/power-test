@@ -3,13 +3,48 @@
     <!-- user avatar image -->
     <h1 class="title-h1">Dodane quizy</h1>
 
-    <div class="mt-5">
-      <div class="flex space-y-reverse mb-14">
-      <button class="single-item-active"> Wszystkie</button>
-      <div class="float-left">
-        <button class="single-item-dis-active">  test</button>
+    <!-- <div class="absolute overflow-auto">
+      <div class="flex w-full">
+
+        <button class="single-item-active w-12 flex"> Wszystkie</button>
+        <button class="single-item-dis-active w-full flex">  Zaakceptowane</button>
+        <button class="single-item-dis-active w-full flex">  Do akceptacji</button>
       </div>
-</div>
+</div> -->
+
+<div class="flex overflow-x-auto space-x-8 w-11/12 absolute  right-0">
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
+  <section class="flex-shrink-0 rounded-full border-2 border-purple-300">
+    <span><img src="download.jfif" class="bg-purple-200 h-14 w-14 rounded-full border-2 border-purple-300" alt="" /></span>
+    <span>John</span>
+  </section>
 </div>
 
 
