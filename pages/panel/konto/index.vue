@@ -2,12 +2,10 @@
   <NuxtLayout name="panel">
     <h1 class="title-h1 pb-6">Twoje konto</h1>
     <div class="columns-2 flex gap-5">
-      <div class="retangle gold">
-        <NuxtLink to="">
+      <NuxtLink to="/panel/konto/dodane-quizy"  class="retangle gold">
           <Icon name="ph:game-controller-fill" color="D19D38" size="34" />
           <p class="retangle-title family">Quizy</p>
-        </NuxtLink>
-      </div>
+      </NuxtLink>
       <div class="retangle blue">
         <NuxtLink to="">
           <Icon name="ph:wallet-fill" color="2B3BC7" size="34" />

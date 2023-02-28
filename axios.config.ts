@@ -7,9 +7,16 @@ export const axiosInstance = axios.create({
     baseURL: API_URL,
     headers: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':  'Content-Type, X-Auth-Token, Authorization, Origin',
         Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    },
+})
+
+export const axiosData = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        Accept: "multipart/form-data",
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     },
 })

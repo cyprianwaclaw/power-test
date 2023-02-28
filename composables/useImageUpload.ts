@@ -1,7 +1,7 @@
 import { ref, watch } from "vue";
 
 export function useImageUpload() {
-  let imageFile = ref<any>("");
+  let imageFile = ref<any>();
   let imageUrl = ref<any>("");
 
   function handleImageSelected(event) {

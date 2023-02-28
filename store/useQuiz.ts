@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 // import { FastTwo, CategoryState, Category } from '@/api/types'
-import { axiosInstance } from '@/axios.config'
+import { axiosInstance, axiosData } from '@/axios.config'
 
 export const useQuiz = defineStore('quiz', {
 
@@ -98,9 +98,9 @@ export const useQuiz = defineStore('quiz', {
         },
 
         //! dodawanie nowego quizu 
-        async postNewQuiz(title:string, time:number, category_id:number, difficulty:string, image:any) {
+        async postNewQuiz(title:string, time:number, category_id:number, difficulty:string,description: string, image:any) {
             try {
-                const res = await axiosInstance.post('/quizzes',{title, time, category_id, difficulty, image})
+                const res = await axiosData.post('/quizzes',{title, time, category_id, difficulty,description, image})
                 this.newQuizId = await res.data.data.id
             } catch (e) {
                 console.error(e)

@@ -148,8 +148,8 @@
         <div class="white-retangle">
           <div class="row-table-end -mt-4 -pb-20 flex">
             <InputTextArea
-              name="des"
-              id="des"
+              name="description"
+              id="description"
               type="text"
               placeholder="Twój opis quizu"
             />
@@ -170,8 +170,8 @@
               size="38"
               color="9F9F9F"
               class="justify-center flex w-full -mb-4 mt-3"
-            />    <Field name="image" type="file"  accept="image/*"
-            @change="handleImageSelected"  class="default-file-input"  ref="fileInput"/>
+            />    <Field name="image" type="file"  accept=".png, .jpg, .jpeg" 
+            @change="handleImageSelected"  class="default-file-input"/>
             <h1>Dodaj zdjęcie</h1>
             <p>Kliknij tutaj aby dodać zdjęcie</p>
           </label>
@@ -400,6 +400,12 @@ await quizStore.getCategory();
 let category = categories.value;
 
 
+
+let message = ref("");
+    let images = ref([]);
+    let { imageFile, imageUrl, handleImageSelected } = useImageUpload();
+
+
 let isDisabled = true
 
 let image = ref()
@@ -463,7 +469,7 @@ const removeSucess = ref(false);
 
 function modalClose() {
   isOpen.value = !isOpen.value;
-  // window.location.reload();
+  window.location.reload();
 }
 
 const styleObject = reactive({
@@ -523,6 +529,7 @@ function console1() {
 
   // }
   form.forEach((element) => console.log(element));
+  console.log(imageFile.value)
 }
 
 const schema = Yup.object().shape({
@@ -535,10 +542,10 @@ const schema = Yup.object().shape({
 async function onSubmit(values: any) {
   // !dodać obraz
 
-  let { title, time, category_id, difficulty, image } = values;
+  let { title, time, category_id, difficulty, description } = values;
 
   // !działa już dodawanie quizu
-  await quizStore.postNewQuiz(title, time, category_id, difficulty, image);
+  await quizStore.postNewQuiz(title, time, category_id, difficulty,description, imageFile.value);
   let quziId = newQuizId.value;
 
 // for(let element in form){
@@ -640,9 +647,9 @@ async function onSubmit(values: any) {
 
 
 
-let message = ref("");
-    let images = ref([]);
-    let { imageFile, imageUrl, handleImageSelected } = useImageUpload();
+// let message = ref("");
+//     let images = ref([]);
+//     let { imageFile, imageUrl, handleImageSelected } = useImageUpload();
 
 
 

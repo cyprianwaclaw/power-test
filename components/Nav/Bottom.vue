@@ -54,44 +54,44 @@
     <div class="flex w-full justify-beetwen py-2">
       <div class="w-full">
         <div v-if="routeName == 'home'">
-          <Icon name="ph:house-fill" size="33" class="nav-icon primary-color" />
+          <Icon name="ph:house-fill" size="36" class="nav-icon primary-color" />
         </div>
         <div class="w-full" v-else>
           <NuxtLink to="/panel">
-            <Icon name="ph:house-light" size="33" class="nav-icon" />
+            <Icon name="ph:house-light" size="36" class="nav-icon" />
           </NuxtLink>
         </div>
       </div>
       <div class="w-full">
         <div v-if="routeName == 'quiz'">
-          <Icon name="ph:game-controller-fill" size="33" class="nav-icon primary-color" />
+          <Icon name="ph:game-controller-fill" size="36" class="nav-icon primary-color" />
         </div>
         <div class="w-full" v-else>
           <NuxtLink to="/panel/quiz">
-            <Icon name="ph:game-controller-light" size="33" class="nav-icon" />
+            <Icon name="ph:game-controller-light" size="36" class="nav-icon" />
           </NuxtLink>
         </div>
       </div>
       <div class="w-full" @click="Modal">
-        <Icon name="ph:plus-circle-light" size="33" class="nav-icon" />
+        <Icon name="ph:plus-circle-light" size="36" class="nav-icon" />
       </div>
       <div class="w-full">
         <div v-if="routeName == 'invite'">
-          <Icon name="ph:users-fill" size="33" class="nav-icon primary-color" />
+          <Icon name="ph:users-fill" size="36" class="nav-icon primary-color" />
         </div>
         <div class="w-full" v-else>
           <NuxtLink to="/panel/zaproszeni">
-            <Icon name="ph:users-light" size="33" class="nav-icon" />
+            <Icon name="ph:users-light" size="36" class="nav-icon" />
           </NuxtLink>
         </div>
       </div>
       <div class="w-full">
         <div v-if="routeName == 'account'">
-          <Icon name="ph:user-circle-fill" size="33" class="nav-icon primary-color" />
+          <Icon name="ph:user-circle-fill" size="36" class="nav-icon primary-color" />
         </div>
         <div class="w-full" v-else>
           <NuxtLink to="/panel/konto">
-            <Icon name="ph:user-circle-light" size="33" class="nav-icon" />
+            <Icon name="ph:user-circle-light" size="36" class="nav-icon" />
           </NuxtLink>
         </div>
       </div>
