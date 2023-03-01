@@ -68,9 +68,9 @@ definePageMeta({
 });
 
 const quiz = useQuiz();
-const { allQuiz } = storeToRefs(quiz);
-await quiz.getAllQuiz();
-let quizes = allQuiz.value;
+const { activeQuiz } = storeToRefs(quiz);
+await quiz.getActiveQuiz();
+let quizes = activeQuiz.value;
 
 var isOpen = ref(false);
 function Modal() {

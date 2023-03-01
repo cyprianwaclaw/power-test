@@ -104,7 +104,6 @@ const { currentUser } = storeToRefs(userStore);
 await userStore.getUser();
 let user = currentUser.value;
 
-console.log(user.email.length);
 </script>
 
 <style scoped></style>

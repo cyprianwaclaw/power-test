@@ -6,7 +6,8 @@ export const useQuiz = defineStore('quiz', {
 
     state: () => ({
         fastTwo: [],
-        allQuiz: [],
+        activeQuiz: [],
+        notActiveQuiz: [],
         categories: [],
         singleQuiz: null,
         startQuiz: null,
@@ -17,6 +18,7 @@ export const useQuiz = defineStore('quiz', {
         newQuizId:{} as number,
         newQuestionId:{} as any,
         new:{} as string,
+        // deactivateQuiz: [] as any,
     }),
     actions: {
         async getFastTwo() {
@@ -27,10 +29,21 @@ export const useQuiz = defineStore('quiz', {
                 console.error(e)
             }
         },
-        async getAllQuiz() {
+
+        // const res = await axiosInstance.get('/quizzes/all?is_activate=0&per_page=56')
+
+        async getActiveQuiz() {
             try {
-                const res = await axiosInstance.get('/quizzes')
-                this.allQuiz = await res.data.data.data
+                const res = await axiosInstance.get('/quizzes?per_page=23')
+                this.activeQuiz = await res.data.data.data
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async getNotActiveQuiz() {
+            try {
+                const res = await axiosInstance.get('/quizzes/all?is_activate=0&per_page=23')
+                this.notActiveQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
             }
@@ -51,6 +64,14 @@ export const useQuiz = defineStore('quiz', {
                 console.error(e)
             }
         },
+        // async getDeactivateQuiz(){
+        //     try{
+        //         const res = await axiosInstance.get('/quiz/100/deactivate')
+        //         this.deactivateQuiz = res.data
+        //     }catch(e){
+        //         console.log(e)
+        //     }
+        // },
 
         //! granie w quizy 
         async startingQuiz(id: any) {

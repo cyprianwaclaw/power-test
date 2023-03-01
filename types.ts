@@ -34,6 +34,7 @@ export type Financial = {
 }
 
 export type User = {
+  id:any
   name: string,
   surname: string,
   phone: null | string,

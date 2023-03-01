@@ -477,13 +477,13 @@ input:focus::placeholder {
     width: 100%;
     font-size: 14px;
     color: #618CFB;
-    margin-right: 12px;
+    white-space: nowrap;
 }
 
 .single-item-dis-active {
-    padding: 10px 15px;
+    // padding: 10px 15px;
     font-weight: 600;
     font-size: 14px;
     color: #B0B0B0;
-    margin-right: 12px;
+    white-space: nowrap;
 }
