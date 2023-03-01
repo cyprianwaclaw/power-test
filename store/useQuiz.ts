@@ -7,6 +7,7 @@ export const useQuiz = defineStore('quiz', {
     state: () => ({
         fastTwo: [],
         activeQuiz: [],
+        allQuiz: [],
         notActiveQuiz: [],
         categories: [],
         singleQuiz: null,
@@ -44,6 +45,14 @@ export const useQuiz = defineStore('quiz', {
             try {
                 const res = await axiosInstance.get('/quizzes/all?is_activate=0&per_page=23')
                 this.notActiveQuiz = await res.data.data.data
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async getAllQuiz() {
+            try {
+                const res = await axiosInstance.get('/quizzes/all?is_activate=1&per_page=23')
+                this.allQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
             }

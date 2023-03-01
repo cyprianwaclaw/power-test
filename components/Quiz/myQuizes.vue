@@ -1,18 +1,9 @@
 <template>
-    <NuxtLink :to="`/panel/quiz/${quiz.id}`">
-        <div class="card" :style="`background-image: url(${quiz.image})`">
-            <div class="bg-image">
-                <div class="details">
-                    <h3 class="title">{{ quiz.title }}</h3>
-                    <div class="float-left flex mt-3 gap-3">
-                        <p class="des">{{ quiz.questions_count }} pytań</p>
-                        <div class="vl"></div>
-                        <p class="des">{{ quiz.time }} min</p>
-                        <div class="vl"></div>
-                        <p class="des">{{ quiz.difficulty }}</p>
-                    </div>
-                </div>
-            </div>
+    <NuxtLink :to="`/panel/konto/dodane-quizy/${quiz.id}`">
+        <div class="">           
+                <img v-if="!quiz.image" src="@/assets/file/placeholder-image.webp" class="my-quiz-image"/>
+                <img v-if="quiz.image" :src="quiz.image" class="my-quiz-image"/>
+                <p class="my-quiz-title">{{ quiz.title }}</p>
         </div>
     </NuxtLink>
 </template>
@@ -25,40 +16,13 @@ defineProps<{ quiz: Quiz }>();
 <style scoped>
 
 @media only screen and (max-width: 520px) {
-.card{
-    border-radius: 24px;
-    margin-top: 32px;
-}
-.bg-image{
+.my-quiz-image{
     width: 100%;
-    position: relative;
-    border-radius: 24px;
-    height: 270px;
-    background: linear-gradient(27.47deg, rgba(0, 0, 0, 0.77) 31.09%, rgba(0, 0, 0, 0) 79.45%);
+    height: 120px;
+    border-radius: 12px;
 }
-.details{
-    position: absolute;
-    bottom: 24px;
-    margin-left: 24px;
-    margin-right: 24px;
-}
-.title{
-color:white;
-font-weight: 500;
-font-size: 18px;
-line-height: 27px;
-}
-
-.des {
-  color:white;
-  font-weight: 300;
-font-size: 14px;
-line-height: 22px;
-}
-.vl {
-  border-left: 1px solid white;
-  margin-top: 3px;
-  margin-bottom: 3px;
+.my-quiz-title{
+font-size: 15px;
 }
 }
 
