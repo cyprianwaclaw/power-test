@@ -12,7 +12,7 @@
       </div>
 </div> -->
 
-    <div class="overflow-x-auto space-x-10 w-11/12 absolute right-0 flex my-4">
+    <div class="overflow-x-scroll space-x-10 w-11/12 absolute right-0 flex py-4 whitespace-nowrap overflow-auto scrollbar-hide">
       <button class="single-item-active w-full">Wszystkie</button>
       <button class="single-item-dis-active w-full">Aktywne</button>
       <button class="single-item-dis-active pr-10">Oczekujące na akceptację</button>
@@ -67,4 +67,15 @@ let userNotAcceptQuiz = notActive.filter((quiz) => quiz.user_id === user.id);
 console.log(userNotAcceptQuiz);
 </script>
 
-<style scoped></style>
+<style scoped>
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+</style>
