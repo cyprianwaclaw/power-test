@@ -58,8 +58,8 @@
           <img v-show="imageUrl" :src="imageUrl" class="w-36 h-36 border rounded-full" />
         </div>
         <div class="relative" v-else @click="Modal">
-          <div class="bg-black w-8 h-8 border rounded-full absolute bottom-4 right-3">
-            <Icon name="ph:camera-bold" color="#BFCBEE" size="20"  class="ml-1 mt-0.5" />
+          <div class="bg-gray-500 w-8 h-8 border-none rounded-full absolute bottom-4 right-3">
+            <Icon name="ph:camera" color="white" size="20"  class="camera" />
           </div>
           <Icon name="carbon:user-avatar-filled" color="#BFCBEE" class="w-36 h-36" />
         <!-- <label class="flex justify-center" v-else>
@@ -188,5 +188,11 @@ let user = currentUser.value;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
+}
+.camera{
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
 }
 </style>
