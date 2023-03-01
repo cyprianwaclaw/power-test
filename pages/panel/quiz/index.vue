@@ -72,7 +72,7 @@ const { activeQuiz } = storeToRefs(quiz);
 await quiz.getActiveQuiz();
 let quizes = activeQuiz.value;
 
-var isOpen = ref(false);
+const isOpen = ref(false);
 function Modal() {
   isOpen.value = !isOpen.value;
 }

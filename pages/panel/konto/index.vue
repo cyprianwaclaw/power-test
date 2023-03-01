@@ -6,19 +6,17 @@
           <Icon name="ph:game-controller-fill" color="D19D38" size="34" />
           <p class="retangle-title family">Quizy</p>
       </NuxtLink>
-      <div class="retangle blue">
-        <NuxtLink to="">
+        <NuxtLink to="/panel/konto/srodki" class="retangle blue">
           <Icon name="ph:wallet-fill" color="2B3BC7" size="34" />
           <p class="retangle-title family">Środki</p>
         </NuxtLink>
-      </div>
     </div>
-    <div class="retangle green">
-      <NuxtLink to="">
+    <!-- <div class="retangle green"> -->
+      <NuxtLink to="/panel/konto/platnosci" class="retangle green flex flex-col" >
         <Icon name="ph:newspaper-fill" color="38D1AC" size="34" />
         <p class="retangle-title family mb-1">Faktury i płatności</p>
       </NuxtLink>
-    </div>
+    <!-- </div> -->
     <!-- w zależności od pakietu -->
     <div class="mt-12 mb-14 bg-white py-8 px-8 rounded-3xl">
       <p class="text-des-mobile">Obecnie posiadasz pakiet</p>

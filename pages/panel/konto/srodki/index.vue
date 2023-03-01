@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="my-account">
-    <h1 class="title-h1 mb-2">Dodane quizy</h1>
+    <h1 class="title-h1 mb-2">Twoje środki</h1>
     <div
       class="overflow-x-scroll space-x-5 w-11/12 absolute right-0 flex py-4 whitespace-nowrap overflow-auto scrollbar-hide pr-10"
     >

@@ -523,14 +523,6 @@ const newQuestionInput = () => {
   radioCorrect.value = ""
 };
 
-function console1() {
-  // for (let element in form){
-  //   console.log(form[element].answer1);
-
-  // }
-  form.forEach((element) => console.log(element));
-  console.log(imageFile.value)
-}
 
 const schema = Yup.object().shape({
   title: Yup.string().max(80, "Ups! nazwa jest zbyt długa"),
@@ -548,21 +540,11 @@ async function onSubmit(values: any) {
   await quizStore.postNewQuiz(title, time, category_id, difficulty,description, imageFile.value);
   let quziId = newQuizId.value;
 
-// for(let element in form){
   form.forEach(async (answer) => {
     await quizStore.postNewQuestion(answer.title, quziId);
-    // let arrayQuest_id = reactive([])
-    let questionId = newQuestionId.value;
-//     function add(){
-//       arrayQuest_id.push(questionId)
-//     }
-// add()
-// console.log(arrayQuest_id)
 
-    // form.forEach(async (answer) => {
-    //   console.log(answer);
-    //   console.log(answer.answer1.title);
-    //   console.log(questionId);
+    let questionId = newQuestionId.value;
+
       await quizStore.postNewAnswer(
         answer.answer1.title,
         questionId,
@@ -583,75 +565,9 @@ async function onSubmit(values: any) {
         questionId,
         answer.answer4.isCorrect
       );
-  // });
-
-  // });
   }),
-  // form.forEach(async(answer)=>{
-  //  console.log(answer)
-  //  console.log(answer.answer1.title)
-  //  console.log(this.questionId)
-  //   await quizStore.postNewAnswer(answer.answer1.title, this.questionId, answer.answer1.isCorrect);
-  //   })
-
-  // console.log("id quizu_" + quziId);
   isOpen.value = !isOpen.value;
 }
-
-
-
-// const file = ref(null);
-
-// const fileName = computed(() => file.value?.name);
-// const fileExtension = computed(() => fileName.value?.substr(fileName.value?.lastIndexOf(".") + 1));
-// const fileMimeType = computed(() => file.value?.type);
-
-// const uploadFile = (event) => {
-//   file.value = event.target.files[0];
-// };
-
-
-// const reader = new FileReader();
-//   reader.readAsDataURL(file.value);
-//   reader.onload = async () => {
-//     const encodedFile = reader.result.split(",")[1];
-//     const data = {
-//       file: encodedFile,
-//       fileName: fileName.value,
-//       fileExtension: fileExtension.value,
-//       fileMimeType: fileMimeType.value,
-//     };
-//     console.log(data)
-
-//   }
-
-
-// function previewFile() {
-//   const preview = document.querySelector("img");
-//   const file = document.querySelector("input[type=file]").files[0];
-//   const reader = new FileReader();
-
-//   reader.addEventListener(
-//     "load",
-//     () => {
-//       // convert image file to base64 string
-//       preview.src = reader.result;
-//     },
-//     false
-//   );
-
-//   if (file) {
-//     reader.readAsDataURL(file);
-//   }
-// }
-
-
-
-// let message = ref("");
-//     let images = ref([]);
-//     let { imageFile, imageUrl, handleImageSelected } = useImageUpload();
-
-
 
 </script>
 <style scoped lang="scss">

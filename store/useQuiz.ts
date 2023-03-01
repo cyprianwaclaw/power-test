@@ -43,7 +43,7 @@ export const useQuiz = defineStore('quiz', {
         },
         async getNotActiveQuiz() {
             try {
-                const res = await axiosInstance.get('/quizzes/all?is_activate=0&per_page=23')
+                const res = await axiosInstance.get('/quizzes/all?per_page=23')
                 this.notActiveQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
@@ -51,7 +51,7 @@ export const useQuiz = defineStore('quiz', {
         },
         async getAllQuiz() {
             try {
-                const res = await axiosInstance.get('/quizzes/all?is_activate=1&per_page=23')
+                const res = await axiosInstance.get('/quizzes/all?per_page=23')
                 this.allQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
