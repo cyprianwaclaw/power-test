@@ -19,6 +19,7 @@ export const useQuiz = defineStore('quiz', {
         newQuizId:{} as number,
         newQuestionId:{} as any,
         new:{} as string,
+        allQuizName:[],
         // deactivateQuiz: [] as any,
     }),
     actions: {
@@ -35,7 +36,7 @@ export const useQuiz = defineStore('quiz', {
 
         async getActiveQuiz() {
             try {
-                const res = await axiosInstance.get('/quizzes?per_page=23')
+                const res = await axiosInstance.get("/quizzes?per_page=23")
                 this.activeQuiz = await res.data.data.data
             } catch (e) {
                 console.error(e)
@@ -51,8 +52,16 @@ export const useQuiz = defineStore('quiz', {
         },
         async getAllQuiz() {
             try {
-                const res = await axiosInstance.get('/quizzes/all?per_page=23')
+                const res = await axiosInstance.get('/quizzes?per_page=23')
                 this.allQuiz = await res.data.data.data
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async getAllName() {
+            try {
+                const res = await axiosInstance.get('/quizzes?per_page=9999999')
+                this.allQuizName = await res.data.data.data
             } catch (e) {
                 console.error(e)
             }
@@ -133,7 +142,6 @@ export const useQuiz = defineStore('quiz', {
                 const res = await axiosData.post('/quizzes',{title, time, category_id, difficulty,description, image})
                 this.newQuizId = await res.data.data.id
             } catch (e) {
-                console.error(e)
             }
         },
         async postNewQuestion(question:any, quiz_id:number) {

@@ -52,6 +52,15 @@
         </div>
     </div>
     <NuxtLayout name="panel">
+      <!-- <input  class="mb-5" type="search" v-model="search" placeholder="Wyszukaj quiz..."/>
+      <div v-for="quiz in searchInput" :key="quiz.id">
+      <div v-if="search.length">
+        {{ quiz.title }}
+      </div>
+    </div>
+    <div v-if="results">
+      <p>brak wyników</p>
+    </div> -->
       <h1 class="title-h1 mb-4">Wszystkie quizy</h1>
         <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
       <div class="h-44"></div>
@@ -67,15 +76,29 @@ definePageMeta({
   middleware: "auth",
 });
 
+const results = ref(false)
+const search:any = ref()
 const quiz = useQuiz();
-const { activeQuiz } = storeToRefs(quiz);
-await quiz.getActiveQuiz();
-let quizes = activeQuiz.value;
-
+const { allQuiz, allQuizName } = storeToRefs(quiz);
+await quiz.getAllQuiz();
+await quiz.getAllName();
+let quizes = allQuiz.value;
+let allquizes = allQuizName.value;
 const isOpen = ref(false);
 function Modal() {
   isOpen.value = !isOpen.value;
 }
+const searchInput:any = computed(()=>{
+  return allQuizName.value.filter((quiz) => quiz.title.toLowerCase().includes(search.value))
+})
+watch(searchInput,(newValue:any)=>{
+if (newValue.length == 0){
+  results.value = true
+} else{
+  results.value = false
+}
+})
+
 </script>
 <style scoped>
 .margin {

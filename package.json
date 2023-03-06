@@ -14,6 +14,7 @@
     "sass-loader": "^10.4.1"
   },
   "dependencies": {
+    "@ballcat/vue-cropper": "^1.0.5",
     "@nuxtjs/tailwindcss": "^6.2.0",
     "@pinia/nuxt": "^0.4.6",
     "axios": "^1.2.3",
@@ -23,6 +24,7 @@
     "pinia": "^2.0.29",
     "uuid": "^9.0.0",
     "vee-validate": "^4.7.3",
+    "vue-advanced-cropper": "^2.8.8",
     "vue-cropperjs": "^5.0.0",
     "vue-image-crop-upload": "^3.0.3",
     "yup": "^0.32.11",

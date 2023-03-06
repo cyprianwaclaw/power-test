@@ -118,8 +118,8 @@ let userNotAcceptQuiz = notActiveQuiz.value.filter((quiz) => quiz.user_id === us
   display: none;
 }
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .invite-text {
   font-style: normal;

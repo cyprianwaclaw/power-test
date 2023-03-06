@@ -26,7 +26,7 @@
         <NuxtLink to="/panel/premium"><span class="navigate"> PREMIUM </span></NuxtLink>i
         zyskaj dodatkowe funkcję
       </p>
-      <button class="button-primary mt-6 mb-1">
+      <button @click="changeClickUp" class="button-primary mt-6 mb-1">
         Przejdź na PREMIUM <Icon name="carbon:chevron-right" class="-mr-2" size="24" />
       </button>
     </div>
@@ -126,10 +126,56 @@ const {
   invitedCount,
 } = storeToRefs(userStore);
 
+const clikUp = ref(0)
+function changeClickUp (){
+ return  clikUp.value ++
+}
+
 let correctAnswer: number = correctAnswers.value;
 let inCorrectAnswer: number = inCorrectAnswers.value;
 let users: number = invitedCount.value;
-let current = currentUser.value;
+let current = reactive(currentUser.value)
+
+console.log(clikUp.value)
+
+watch(clikUp, (newValue, oldValue) => {
+  console.log(newValue)
+  if(newValue == 3){
+    console.log('Liczba 3')
+  }
+})
+
+
+// useUser.$subscribe(console.log(currentUser), { detached: true })
+
+watch(()=>currentUser, (n)=>
+  console.log(n, 'zmienionio imię')
+)
+
+const todoId = ref(1)
+const data = ref(null)
+
+watch(currentUser.value, async (newValue, oldValue) => {
+  await userStore.getUser();
+  // const response = await fetch(
+  //   `https://jsonplaceholder.typicode.com/todos/${clikUp.value}`
+
+  // )
+  console.log(newValue, oldValue)
+  data.value = currentUser.value.name
+  console.log(data.value)
+},  { deep: true } )
+
+
+watchEffect(async () => {
+  await userStore.getUser();
+  // const response = await fetch(
+  //   `https://jsonplaceholder.typicode.com/todos/${clikUp.value}`
+
+  // )
+  data.value = currentUser.value
+  console.log(data.value)
+})
 
 function Modal() {}
 

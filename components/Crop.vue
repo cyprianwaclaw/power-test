@@ -1,8 +1,11 @@
 <template>
-    <div id="cropper-container" :style="containerStyle" :class="containerClass" :alt="alt">
-      <img id="image" ref="imgRef" :src="src" :style="imgStyle" :class="imgClass" />
+    <div>
+
+        <div id="cropper-container" :style="containerStyle" :class="containerClass" :alt="alt">
+            <img id="image" ref="imgRef" :src="src" :style="imgStyle" :class="imgClass" />
+        </div>
+        <p @click="crop">Crop</p>
     </div>
-    <button @click="crop">Crop</button>
   </template>
   <script setup lang="ts">
   import Cropper from 'cropperjs'
@@ -172,5 +175,6 @@
   .cropper-view-box {
     outline: 0;
     box-shadow: 0 0 0 1px #39f;
+    bottom: transparent;
   }
   </style>

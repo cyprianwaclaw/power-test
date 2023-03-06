@@ -2,13 +2,12 @@
   <NuxtLayout name="my-account">
     <h1 class="title-h1 mb-2">Twoje środki</h1>
     <div
-      class="overflow-x-scroll space-x-5 w-11/12 absolute right-0 flex py-4 whitespace-nowrap overflow-auto scrollbar-hide pr-10"
+    class="w-full flex flex-row justify-start"
     >
-      <button class="filter_button_disactive" :class="{filter_button_active: all }"  @click="allButton">Wszystkie</button>
-      <button class="filter_button_disactive" :class="{filter_button_active: active}" @click="acceptButton">Aktywne</button>
-      <button class="filter_button_disactive" :class="{filter_button_active: waiting}" @click="waitingButton">Oczekujące na akceptację</button>
+      <button class="filter_button_disactive" :class="{filter_button_active1: saldo }"  @click="allButton">Saldo konta</button>
+      <button class="filter_button_disactive" :class="{filter_button_active1: historia}" @click="acceptButton">Historia wypłat</button>
     </div>
-    <div class="mt-28" v-if="all">
+    <div class="mt-28" v-if="saldo">
       <div class="grid grid-cols-2 gap-5" v-if="userQuizAll.length">
         <QuizMyQuizes v-for="quiz in userQuizAll" :key="quiz.id" :quiz="quiz" />
       </div>
@@ -25,7 +24,7 @@
       </div>
       </div>
     </div>
-    <div class="mt-28" v-if="active">
+    <div class="mt-28" v-if="historia">
       <div class="grid grid-cols-2 gap-5" v-if="userAcceptQuiz.length">
         <QuizMyQuizes v-for="quiz in userAcceptQuiz" :key="quiz.id" :quiz="quiz" />
       </div>
@@ -42,24 +41,6 @@
         </div>
         </div>
     </div>
-    <div class="mt-28" v-if="waiting">
-      <div class="grid grid-cols-2 gap-5" v-if="userNotAcceptQuiz.length">
-      <QuizMyQuizes v-for="quiz in userNotAcceptQuiz" :key="quiz.id" :quiz="quiz" />
-      </div>
-      <div v-else>
-        <div class="grid place-items-center mt-10">
-          <Icon name="ph:game-controller-light" size="166" color="#CFD8E0" />
-          <p class="invite-text -mt-2 mb-5">Brak quizów</p>
-          <NuxtLink to="/panel/quiz/dodaj-nowy">
-            <p class="font-base font-semibold primary-color place-items-center">
-              Dodaj nowy quiz
-              <Icon name="carbon:chevron-right" size="21" class="primary-color" />
-            </p>
-          </NuxtLink>
-        </div>
-        </div>
-    </div>
-    <!-- paginacja -->
   </NuxtLayout>
 </template>
 
@@ -72,29 +53,24 @@ definePageMeta({
   middleware: "auth",
 });
 
-const all = ref(true);
-const active = ref();
+const saldo = ref(true);
+const historia = ref();
 const waiting = ref();
 
 function acceptButton() {
-  all.value = false;
-  active.value = true;
+  saldo.value = false;
+  historia.value = true;
   waiting.value = false;
 }
 
 
 function allButton() {
-  all.value = true;
-  active.value = false;
+  saldo.value = true;
+  historia.value = false;
   waiting.value = false;
 }
 
 
-function waitingButton() {
-  all.value = false;
-  active.value = false;
-  waiting.value = true;
-}
 
 const userStore = useUser();
 const { currentUser } = storeToRefs(userStore);
@@ -113,7 +89,8 @@ let userNotAcceptQuiz = notActiveQuiz.value.filter((quiz) => quiz.user_id === us
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/assets/style/_variables.scss";
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -127,4 +104,11 @@ let userNotAcceptQuiz = notActiveQuiz.value.filter((quiz) => quiz.user_id === us
   font-size: 38px;
   color: #cfd8e0;
 }
+
+.filter_button_active1{
+  padding: 2px;
+  display: block;
+  background-color: $primary;
+}
+
 </style>
