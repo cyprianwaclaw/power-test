@@ -6,10 +6,9 @@
     </div>
   </div>
   <!-- serach  -->
-  <div v-if="openSearch">
-    <div class=" py-4 px-6 sm:py-4 fixed w-full bg-white z-10 top-14 md:hidden flex min-h-screen">
+  <div v-if="openSearch" class=" py-4 fixed w-full bg-white z-10 top-14 md:hidden flex">
       <div class="w-full">
-        <input  class="mb-5 w-full" v-model="search" placeholder="Wyszukaj quiz..."/>
+        <input  class="w-20" v-model="search" placeholder="Wyszukaj quiz..."/>
         <div class="overflow-auto h-screen relative max-w-sm mx-auto bg-white   rounded-xl flex flex-col">
 
         <div v-for="quiz in searchInput" :key="quiz.id">
@@ -22,8 +21,7 @@
         <div v-if="results" class="absolute top-20">
           <p>brak wyników</p>
         </div>
-      </div>
-      </div>
+    </div>
     </div>
   </div>
 
